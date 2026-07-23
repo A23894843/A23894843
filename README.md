@@ -156,12 +156,18 @@ A GUI-based password tool:
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=A23894843&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&include_all_commits=true" />
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=A23894843&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" />
+<img
+  src="https://github-readme-stats.vercel.app/api?username=A23894843&show_icons=true&theme=tokyonight&hide_border=true&count_private=true&include_all_commits=true"
+  height="170"
+/>
 
-<br/>
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=A23894843&layout=compact&theme=tokyonight&hide_border=true&langs_count=8"/>
 
-[![GitHub Streak](https://streak-stats.demolab.com?user=A23894843&theme=tokyonight&hide_border=true)](https://git.io/streak-stats)
+<br><br>
+
+<img
+  src="https://streak-stats.demolab.com?user=A23894843&theme=tokyonight&hide_border=true"
+/>
 
 </div>
 
