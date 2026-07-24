@@ -44,27 +44,35 @@ class Abhinandan:
 
 <div align="center">
 
-<!-- Stats cards — "dark" theme matches portfolio dark bg -->
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=A23894843&show_icons=true&theme=dark&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&hide_border=false&count_private=true&include_all_commits=true&rank_icon=github" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=A23894843&layout=compact&theme=dark&bg_color=0D1117&title_color=39FF14&text_color=C9D1D9&border_color=30363D&langs_count=8" />
+<!-- ✅ RELIABLE: shields.io stat pills — always load, no rate limits -->
 
-<br/><br/>
+### 🔥 Streak & Contributions
 
-<!-- Streak — corrected stats: 184 total, 16-day streak, longest Jul 9–Jul 24 -->
-<img src="https://streak-stats.demolab.com?user=A23894843&theme=dark&background=0D1117&border=30363D&ring=39FF14&fire=FF6B35&currStreakNum=7FDBCA&sideNums=7FDBCA&currStreakLabel=39FF14&sideLabels=8B949E&dates=8B949E&hide_border=false" />
-
-<br/><br/>
-
-<!-- Contribution graph — green accent matches theme -->
-<img src="https://ghchart.rshah.org/39FF14/A23894843" alt="Abhinandan's GitHub contribution graph" style="border-radius:8px"/>
+![Total Contributions](https://img.shields.io/badge/Total%20Contributions-184-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
+![Current Streak](https://img.shields.io/badge/Current%20Streak-16%20Days-FF6B35?style=for-the-badge&labelColor=0D1117&logo=fire&logoColor=FF6B35)
+![Longest Streak](https://img.shields.io/badge/Longest%20Streak-16%20Days-7FDBCA?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=7FDBCA)
+![Active Since](https://img.shields.io/badge/Active%20Since-Jun%2021%2C%202024-8B949E?style=for-the-badge&labelColor=0D1117)
 
 <br/>
 
-<!-- Hardcoded accurate stat pills from your screenshot -->
-![Total Contributions](https://img.shields.io/badge/Total_Contributions-184-39FF14?style=flat-square&labelColor=0D1117)
-![Current Streak](https://img.shields.io/badge/Current_Streak-16_days_🔥-FF6B35?style=flat-square&labelColor=0D1117)
-![Longest Streak](https://img.shields.io/badge/Longest_Streak-16_days_(Jul_9–Jul_24)-7FDBCA?style=flat-square&labelColor=0D1117)
-![Since](https://img.shields.io/badge/Active_Since-Jun_21,_2024-8B949E?style=flat-square&labelColor=0D1117)
+### 💻 Languages I Work With
+
+![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+
+<br/>
+
+### 📅 Contribution Heatmap
+
+<!-- ✅ RELIABLE: activity-graph by ashutosh00710 — well-maintained, rarely fails -->
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=A23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&hide_border=false&radius=6" width="100%" alt="Abhinandan's contribution activity graph"/>
+
+<br/>
+
+<!-- ✅ Profile view counter — reliable, self-hosted -->
+![Profile Views](https://komarev.com/ghpvc/?username=A23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
 
 </div>
 
