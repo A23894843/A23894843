@@ -1,7 +1,7 @@
 <div align="center">
 
 <!-- ANIMATED BANNER — cybersecurity terminal green palette -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0D1117,0D4F3C&height=210&section=header&text=Abhinandan&fontSize=54&fontColor=39FF14&animation=fadeIn&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=17&descColor=7FDBCA" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=ffffff&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=ffffff" width="100%"/>
 
 <!-- TYPING ANIMATION — terminal green on dark -->
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=39FF14&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F)](https://git.io/typing-svg)
@@ -31,6 +31,7 @@ class Abhinandan:
         self.languages   = ["Python", "C++", "Java", "SQL"]
         self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
         self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
+        self.streak      = "16 days and counting 🔥"
         self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
 
     def current_goal(self) -> str:
@@ -43,34 +44,25 @@ class Abhinandan:
 
 <div align="center">
 
-<!-- ✅ RELIABLE: shields.io stat pills — always load, no rate limits -->
+### 🔥 Live GitHub Stats
 
-### 🔥 Streak & Contributions
+<!-- ✅ LIVE & AUTO-UPDATING DAILY -->
+<!-- Uses git.io/streak-stats — most reliable streak service, updates every day -->
+<img src="https://streak-stats.demolab.com/?user=A23894843&theme=transparent&background=0D1117&border=30363D&stroke=30363D&ring=39FF14&fire=FF6B35&currStreakNum=39FF14&sideNums=7FDBCA&currStreakLabel=39FF14&sideLabels=8B949E&dates=8B949E" width="49%" alt="GitHub Streak"/>
 
-![Total Contributions](https://img.shields.io/badge/Total%20Contributions-184-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
-![Current Streak](https://img.shields.io/badge/Current%20Streak-16%20Days-FF6B35?style=for-the-badge&labelColor=0D1117&logo=fire&logoColor=FF6B35)
-![Longest Streak](https://img.shields.io/badge/Longest%20Streak-16%20Days-7FDBCA?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=7FDBCA)
-![Active Since](https://img.shields.io/badge/Active%20Since-Jun%2021%2C%202024-8B949E?style=for-the-badge&labelColor=0D1117)
+<!-- ✅ LIVE — github-readme-stats self-deployable instance (more stable than shared) -->
+<img src="https://github-readme-stats.vercel.app/api?username=A23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true&hide_rank=false" width="49%" alt="GitHub Stats"/>
 
-<br/>
+<br/><br/>
 
-### 💻 Languages I Work With
+### 📅 Contribution Activity
 
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+<!-- ✅ LIVE — activity graph, updates with every push -->
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=A23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&radius=6&hide_border=false" width="100%" alt="Contribution Graph"/>
 
 <br/>
 
-### 📅 Contribution Heatmap
-
-<!-- ✅ RELIABLE: activity-graph by ashutosh00710 — well-maintained, rarely fails -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=A23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&hide_border=false&radius=6" width="100%" alt="Abhinandan's contribution activity graph"/>
-
-<br/>
-
-<!-- ✅ Profile view counter — reliable, self-hosted -->
+<!-- ✅ Profile view counter — updates on every visit -->
 ![Profile Views](https://komarev.com/ghpvc/?username=A23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
 
 </div>
@@ -226,6 +218,6 @@ GUI-based cryptographic password tool:
 
 ![Visitor Count](https://komarev.com/ghpvc/?username=A23894843&color=39FF14&style=flat-square&label=Profile+Views)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0D4F3C,0D1117&height=130&section=footer" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=150&section=footer&reversal=true" width="100%"/>
 
 </div>
