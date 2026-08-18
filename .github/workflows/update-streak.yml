@@ -1,1 +1,43 @@
+name: Update GitHub Contribution Streak
 
+on:
+  schedule:
+    # Run once every day at 00:15 UTC.
+    - cron: "15 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-streak:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout profile repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Update contribution streak
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: a23894843
+        run: python scripts/update_streak.py
+
+      - name: Commit updated streak
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if git diff --quiet -- README.md; then
+            echo "No streak change."
+            exit 0
+          fi
+
+          git add README.md
+          git commit -m "chore: update GitHub contribution streak"
+          git push
