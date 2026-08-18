@@ -10,7 +10,7 @@
 
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-0D1117?style=for-the-badge&logoColor=39FF14)](https://my-portfolio-abhinandan.vercel.app)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b)
-[![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/A23894843)
+[![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
 [![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
 
@@ -47,16 +47,16 @@ class Abhinandan:
 ### 🔥 Live GitHub Stats
 
 <!-- ✅ LIVE & AUTO-UPDATING DAILY -->
-<!-- Uses git.io/streak-stats — most reliable streak service, updates every day -->
-<img src="https://streak-stats.demolab.com/?user=A23894843&theme=transparent&background=0D1117&border=30363D&stroke=30363D&ring=39FF14&fire=FF6B35&currStreakNum=39FF14&sideNums=7FDBCA&currStreakLabel=39FF14&sideLabels=8B949E&dates=8B949E" width="70%" alt="GitHub Streak"/>
+<!-- nirzak-streak-stats — no PAT token required, uses public GraphQL -->
+[![GitHub Streak](https://nirzak-streak-stats.vercel.app/?user=a23894843&theme=dark&background=0D1117&border=30363D&ring=39FF14&fire=FF6B35&currStreakNum=39FF14&sideNums=39FF14&currStreakLabel=39FF14&sideLabels=8B949E&dates=8B949E)](https://github.com/a23894843)
 
 <br/>
 
 <!-- Stats card — using 3 fallback hosts; whichever loads first wins -->
-<a href="https://github.com/A23894843">
+<a href="https://github.com/a23894843">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-five.vercel.app/api?username=A23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true"/>
-    <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=A23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true" width="49%" alt="GitHub Stats" onerror="this.src='https://github-readme-stats.vercel.app/api?username=A23894843&show_icons=true&theme=dark&title_color=39FF14&icon_color=7FDBCA&border_color=30363D&count_private=true'"/>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-five.vercel.app/api?username=a23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true"/>
+    <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=a23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true" width="49%" alt="GitHub Stats" onerror="this.src='https://github-readme-stats.vercel.app/api?username=a23894843&show_icons=true&theme=dark&title_color=39FF14&icon_color=7FDBCA&border_color=30363D&count_private=true'"/>
   </picture>
 </a>
 
@@ -65,12 +65,12 @@ class Abhinandan:
 ### 📅 Contribution Activity
 
 <!-- ✅ LIVE — activity graph, updates with every push -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=A23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&radius=6&hide_border=false" width="100%" alt="Contribution Graph"/>
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=a23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&radius=6&hide_border=false" width="100%" alt="Contribution Graph"/>
 
 <br/>
 
 <!-- ✅ Profile view counter — updates on every visit -->
-![Profile Views](https://komarev.com/ghpvc/?username=A23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
+![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
 
 </div>
 
@@ -79,6 +79,29 @@ class Abhinandan:
 ## 🛡️ Featured Projects
 
 <table>
+<tr>
+<td colspan="2">
+
+### 🛡️ ZeroContext IDPS — Flagship Project
+**C++ · Python · PyTorch · scikit-learn · FastAPI · asyncio · MySQL · Kali Linux**
+
+Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
+- **Multi-threaded C++ sensor daemon** captures raw `/dev/input` mouse & keyboard events at kernel level; streams microsecond-precision telemetry via **Unix Domain Sockets**
+- **PyTorch Autoencoder** detects non-human mouse patterns via reconstruction loss on velocity/acceleration/delta-t vectors
+- **scikit-learn Isolation Forest** flags anomalous keystroke rhythms using dwell time + flight time dynamics
+- Full **async Python backend** (asyncio + aiomysql) handling both sensor streams concurrently — zero blocking I/O
+- **FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh), anomaly score colouring, light/dark theme
+
+![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
+![Kali](https://img.shields.io/badge/Kali_Linux-557C94?style=flat&logo=kalilinux&logoColor=white)
+
+</td>
+</tr>
 <tr>
 <td width="50%">
 
@@ -223,7 +246,7 @@ GUI-based cryptographic password tool:
 
 <br/>
 
-![Visitor Count](https://komarev.com/ghpvc/?username=A23894843&color=39FF14&style=flat-square&label=Profile+Views)
+![Visitor Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=150&section=footer&reversal=true" width="100%"/>
 
