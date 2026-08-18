@@ -50,10 +50,6 @@ class Abhinandan:
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=a23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&radius=6&hide_border=false" width="100%" alt="Contribution Graph"/>
 
 <br/>
-
-<!-- ✅ Profile view counter — updates on every visit -->
-![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
-
 </div>
 
 ---
@@ -227,8 +223,6 @@ GUI-based cryptographic password tool:
 [![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b)
 
 <br/>
-
-![Visitor Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=150&section=footer&reversal=true" width="100%"/>
 
