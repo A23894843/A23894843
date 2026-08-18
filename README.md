@@ -31,7 +31,6 @@ class Abhinandan:
         self.languages   = ["Python", "C++", "Java", "SQL"]
         self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
         self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
-        self.streak      = "16 days and counting 🔥"
         self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
 
     def current_goal(self) -> str:
@@ -43,8 +42,6 @@ class Abhinandan:
 ## 📊 GitHub Activity
 
 <div align="center">
-
-### 🔥 Live GitHub Stats
 
 <br/>
 
