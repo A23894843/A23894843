@@ -44,13 +44,7 @@ class Abhinandan:
 
 <div align="center">
 
-### 🔥 Live GitHub Stats
-
-<!-- ✅ LIVE & AUTO-UPDATING DAILY -->
-<!-- nirzak-streak-stats — no PAT token required, uses public GraphQL -->
-[![GitHub Streak](https://nirzak-streak-stats.vercel.app/?user=a23894843&theme=dark&background=0D1117&border=30363D&ring=39FF14&fire=FF6B35&currStreakNum=39FF14&sideNums=39FF14&currStreakLabel=39FF14&sideLabels=8B949E&dates=8B949E)](https://github.com/a23894843)
-
-<br/>
+### 📈 GitHub Statistics
 
 <!-- Stats card — using 3 fallback hosts; whichever loads first wins -->
 <a href="https://github.com/a23894843">
