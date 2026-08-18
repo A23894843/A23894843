@@ -44,18 +44,6 @@ class Abhinandan:
 
 <div align="center">
 
-### 📈 GitHub Statistics
-
-<!-- Stats card — using 3 fallback hosts; whichever loads first wins -->
-<a href="https://github.com/a23894843">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-five.vercel.app/api?username=a23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true"/>
-    <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=a23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true" width="49%" alt="GitHub Stats" onerror="this.src='https://github-readme-stats.vercel.app/api?username=a23894843&show_icons=true&theme=dark&title_color=39FF14&icon_color=7FDBCA&border_color=30363D&count_private=true'"/>
-  </picture>
-</a>
-
-<br/><br/>
-
 ### 📅 Contribution Activity
 
 <!-- ✅ LIVE — activity graph, updates with every push -->
