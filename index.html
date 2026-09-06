@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhinandan — Cybersecurity &amp; Software Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#05080d;
+    --panel:#0d141f;
+    --panel-2:rgba(8,12,20,0.82);
+    --line:#1c2836;
+    --ink:#e7edf5;
+    --dim:#7d8a9c;
+    --signal:#5eead4;
+    --signal-soft:rgba(94,234,212,0.12);
+    --alert:#fb7185;
+    --bg-glow-1:rgba(94,234,212,0.07);
+    --bg-glow-2:rgba(251,113,133,0.05);
+    color-scheme:dark;
+  }
+  html[data-theme="light"]{
+    --void:#f7f9fb;
+    --panel:#ffffff;
+    --panel-2:rgba(247,249,251,0.86);
+    --line:#dde3ea;
+    --ink:#131b24;
+    --dim:#5b6b7d;
+    --signal:#0f9488;
+    --signal-soft:rgba(15,148,136,0.09);
+    --alert:#e11d48;
+    --bg-glow-1:rgba(15,148,136,0.06);
+    --bg-glow-2:rgba(225,29,72,0.04);
+    color-scheme:light;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  #bg-canvas{
+    position:fixed; inset:0; width:100%; height:100%;
+    z-index:-2; pointer-events:none; display:block;
+  }
+  #bg-circuit{
+    position:fixed; inset:-6%;
+    width:112%; height:112%;
+    z-index:-1; pointer-events:none; display:block;
+    opacity:.34; transform:translate3d(0,0,0);
+    transition:opacity .35s ease; will-change:transform;
+  }
+  html[data-theme="light"] #bg-circuit{ opacity:.20; }
+  #bg-circuit .trace{ fill:none; stroke:var(--signal); stroke-opacity:.16; stroke-width:1.15; stroke-linecap:round; stroke-linejoin:round; }
+  #bg-circuit .trace.alert{ stroke:var(--alert); stroke-opacity:.10; }
+  #bg-circuit .node{ fill:var(--signal); fill-opacity:.22; }
+  #bg-circuit .node.alert{ fill:var(--alert); fill-opacity:.16; }
+
+  body{
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -5%, var(--bg-glow-1), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, var(--bg-glow-2), transparent 55%),
+      var(--void);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    transition:background-color .4s ease, color .4s ease;
+  }
+  ::selection{ background:var(--signal); color:#031014; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  a{ color:inherit; }
+
+  /* ---------- NAV ---------- */
+  .navbar{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:1.1rem 5%;
+    background:var(--panel-2); backdrop-filter:blur(14px);
+    position:sticky; top:0; z-index:1000;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.1rem; font-weight:700; letter-spacing:0.3px;
+    text-decoration:none; color:var(--ink);
+    display:flex; align-items:center; gap:2px;
+  }
+  .nav-logo .blink{ color:var(--signal); animation:blink 1.1s step-end infinite; }
+  .nav-links{ display:flex; align-items:center; gap:1.6rem; flex-wrap:wrap; }
+  .nav-links a{
+    color:var(--dim); text-decoration:none; font-size:0.9rem; font-weight:500;
+    font-family:'JetBrains Mono', monospace;
+    position:relative; padding-bottom:2px; transition:color .25s ease;
+  }
+  .nav-links a:not(.nav-btn)::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:1px;
+    background:var(--signal); transition:width .25s ease;
+  }
+  .nav-links a:not(.nav-btn):hover{ color:var(--ink); }
+  .nav-links a:not(.nav-btn):hover::after{ width:100%; }
+  .nav-btn{
+    background:var(--signal); color:#031014 !important;
+    padding:0.45rem 1.1rem; border-radius:3px; font-weight:700;
+    text-decoration:none; transition:all .25s ease;
+    box-shadow:0 0 0 0 rgba(94,234,212,0.4);
+  }
+  .nav-btn:hover{ box-shadow:0 0 22px 2px rgba(94,234,212,0.35); transform:translateY(-1px); }
+
+  /* ---------- LAYOUT ---------- */
+  .container{ max-width:980px; margin:0 auto; padding:0 2rem; }
+  section{ padding:5rem 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .reveal{ opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--signal); font-size:0.85rem; letter-spacing:0.5px;
+    margin-bottom:0.9rem; display:block;
+  }
+  h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:1.65rem; font-weight:600; margin-bottom:2.2rem;
+    color:var(--ink); display:flex; align-items:center; gap:1rem;
+    letter-spacing:-0.2px;
+  }
+  h2::after{ content:""; flex:1; height:1px; background:var(--line); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:5.5rem 0 4.5rem; overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-content{ position:relative; z-index:2; max-width:580px; }
+
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @keyframes blip{ 0%,100%{ opacity:.25; } 50%{ opacity:1; } }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:3.4rem; font-weight:700; letter-spacing:-1px; margin-bottom:0.6rem;
+  }
+  .hero h1 .cursor{ color:var(--signal); animation:blink 1.1s step-end infinite; }
+  .typed-line{
+    font-family:'JetBrains Mono', monospace;
+    font-size:1.05rem; color:var(--signal); min-height:1.6em; margin-bottom:1.6rem;
+  }
+  .typed-line .type-cursor{
+    display:inline-block; width:8px; height:1.1em; background:var(--signal);
+    margin-left:2px; vertical-align:-2px; animation:blink 0.9s step-end infinite;
+  }
+  .hero p.lead{ color:var(--dim); font-size:1.05rem; max-width:600px; margin-bottom:1.1rem; }
+  .hero .strengths{ color:var(--ink); font-size:0.98rem; margin-bottom:1.4rem; }
+  .hero .strengths .label{ color:var(--signal); font-weight:600; font-family:'JetBrains Mono', monospace; font-size:0.85rem; margin-right:0.5rem; }
+  .location-link{
+    color:var(--dim); text-decoration:none; border-bottom:1px dashed var(--dim);
+    transition:all .25s ease; font-size:0.95rem;
+  }
+  .location-link:hover{ color:var(--signal); border-color:var(--signal); }
+
+  /* ---------- TAGS ---------- */
+  .tags-container{ display:flex; flex-wrap:wrap; gap:0.7rem; }
+  .tag{
+    background:var(--signal-soft); color:var(--signal);
+    padding:0.4rem 0.95rem; border-radius:3px; font-size:0.85rem; font-weight:600;
+    font-family:'JetBrains Mono', monospace;
+    border:1px solid rgba(94,234,212,0.25); transition:all .25s ease;
+  }
+  .tag:hover{ background:var(--signal); color:#031014; transform:translateY(-2px); }
+
+  /* ---------- CARDS ---------- */
+  .grid-2{ display:grid; grid-template-columns:repeat(auto-fit, minmax(400px, 1fr)); gap:1.4rem; }
+  .card{
+    background:var(--panel); border:1px solid var(--line);
+    padding:1.9rem 2rem; border-radius:6px;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px); border-color:var(--signal);
+    box-shadow:0 16px 40px -18px rgba(0,0,0,0.6);
+  }
+  .card h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.25rem; color:var(--ink); margin-bottom:0.3rem; }
+  .card-meta{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:1.3rem; font-size:0.85rem; color:var(--signal); font-weight:600;
+    font-family:'JetBrains Mono', monospace;
+  }
+  .card-meta span.date{ color:var(--dim); font-weight:500; }
+  .card ul{ list-style:none; color:var(--dim); }
+  .card ul li{ margin-bottom:0.75rem; position:relative; padding-left:1.4rem; font-size:0.96rem; }
+  .card ul li::before{ content:"▹"; position:absolute; left:0; color:var(--signal); }
+  .card a.cred-link{ color:var(--signal); text-decoration:underline; text-decoration-color:rgba(94,234,212,0.4); }
+  .card a.cred-link:hover{ text-decoration-color:var(--signal); }
+
+  /* ---------- GITHUB CHART ---------- */
+  .github-chart-container{
+    overflow-x:auto; padding:0.5rem 0;
+    display:flex; justify-content:center;
+  }
+  .github-chart-img{
+    max-width:100%; height:auto; display:block;
+    border-radius:6px; transition:transform .3s ease;
+  }
+  .github-chart-img:hover{ transform:scale(1.01); }
+
+  /* ---------- LEETCODE SECTION ---------- */
+  .lc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:1rem;
+    margin-bottom:1.4rem;
+  }
+  .lc-stat{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:6px; padding:1.2rem 1.4rem;
+    text-align:center;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .lc-stat:hover{ border-color:var(--signal); transform:translateY(-3px); }
+  .lc-stat .lc-num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:2rem; font-weight:700; line-height:1;
+    margin-bottom:0.3rem;
+  }
+  .lc-stat .lc-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.75rem; color:var(--dim); letter-spacing:0.5px;
+  }
+  .lc-stat.total .lc-num{ color:var(--signal); }
+  .lc-stat.easy  .lc-num{ color:#4ade80; }
+  .lc-stat.med   .lc-num{ color:#fbbf24; }
+  .lc-stat.hard  .lc-num{ color:#fb7185; }
+
+  .lc-bar-wrap{ margin-bottom:1.4rem; }
+  .lc-bar-row{ display:flex; align-items:center; gap:0.8rem; margin-bottom:0.55rem; }
+  .lc-bar-label{ font-family:'JetBrains Mono', monospace; font-size:0.8rem; width:38px; flex-shrink:0; }
+  .lc-bar-label.easy{ color:#4ade80; }
+  .lc-bar-label.med { color:#fbbf24; }
+  .lc-bar-label.hard{ color:#fb7185; }
+  .lc-bar-track{
+    flex:1; height:7px; background:var(--line); border-radius:4px; overflow:hidden;
+  }
+  .lc-bar-fill{
+    height:100%; border-radius:4px;
+    transition:width 1.2s cubic-bezier(.4,0,.2,1);
+  }
+  .lc-bar-fill.easy{ background:#4ade80; }
+  .lc-bar-fill.med { background:#fbbf24; }
+  .lc-bar-fill.hard{ background:#fb7185; }
+  .lc-bar-count{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--dim); width:28px; text-align:right; flex-shrink:0; }
+
+  .lc-footer{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:0.5rem;
+  }
+  .lc-status{
+    font-family:'JetBrains Mono', monospace; font-size:0.75rem;
+    color:var(--dim); display:flex; align-items:center; gap:0.4rem;
+  }
+  .lc-dot{
+    width:7px; height:7px; border-radius:50%; background:#4ade80;
+    animation:pulse-dot 2s ease-in-out infinite;
+    display:inline-block;
+  }
+  @keyframes pulse-dot{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.5; transform:scale(0.7); }
+  }
+  .lc-link{
+    font-family:'JetBrains Mono', monospace; font-size:0.8rem;
+    color:var(--signal); text-decoration:none;
+    border-bottom:1px solid rgba(94,234,212,0.3);
+    transition:border-color .2s ease;
+  }
+  .lc-link:hover{ border-color:var(--signal); }
+
+  .lc-error{
+    text-align:center; padding:1.5rem;
+    font-family:'JetBrains Mono', monospace; font-size:0.85rem;
+    color:var(--dim); display:none;
+  }
+  .lc-loading{
+    text-align:center; padding:1.5rem;
+    font-family:'JetBrains Mono', monospace; font-size:0.85rem;
+    color:var(--dim);
+  }
+  .lc-loading::after{
+    content:''; display:inline-block; width:12px;
+    animation:dots 1.2s step-end infinite;
+  }
+  @keyframes dots{
+    0%{ content:'.'; } 33%{ content:'..'; } 66%{ content:'...'; }
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{ text-align:center; padding:3.5rem 0 3rem; color:var(--dim); font-size:0.92rem; }
+  footer .flinks{ display:flex; justify-content:center; gap:1.6rem; margin-bottom:1rem; flex-wrap:wrap; font-family:'JetBrains Mono', monospace; }
+  footer a{ color:var(--signal); text-decoration:none; }
+  footer a:hover{ text-decoration:underline; }
+  footer p.copyright{ margin-top:1.2rem; color:#334155; font-family:'JetBrains Mono', monospace; font-size:0.8rem; }
+
+  /* ---------- THEME TOGGLE ---------- */
+  .theme-toggle{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--line); background:transparent; cursor:pointer;
+    color:var(--dim); transition:all .3s ease; flex-shrink:0;
+  }
+  .theme-toggle:hover{ border-color:var(--signal); color:var(--signal); transform:rotate(15deg); }
+  .theme-toggle svg{ width:17px; height:17px; display:block; }
+  .theme-toggle .icon-moon{ display:block; }
+  .theme-toggle .icon-sun{ display:none; }
+  html[data-theme="light"] .theme-toggle .icon-moon{ display:none; }
+  html[data-theme="light"] .theme-toggle .icon-sun{ display:block; }
+
+  @media(max-width:768px){
+    .navbar{ flex-direction:column; gap:1rem; }
+    .nav-links{ justify-content:center; }
+    .hero h1{ font-size:2.2rem; }
+    .grid-2{ grid-template-columns:1fr; }
+    .lc-grid{ grid-template-columns:1fr 1fr; }
+    .lc-stat.total{ grid-column:1/-1; }
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{ animation:none !important; transition:none !important; }
+    .reveal{ opacity:1; transform:none; }
+  }
+
+  /* ---------- GITHUB STAT PILLS ---------- */
+  .gh-stat-pill{
+    flex:1; min-width:160px;
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:6px; padding:1.1rem 1.4rem;
+    display:flex; flex-direction:column; align-items:center;
+    text-align:center; gap:.2rem;
+    transition:border-color .3s ease, transform .3s ease;
+  }
+  .gh-stat-pill:hover{ border-color:var(--signal); transform:translateY(-3px); }
+  .gh-stat-pill.gh-streak{ border-color:rgba(251,113,133,.35); }
+  .gh-stat-pill.gh-streak:hover{ border-color:var(--alert); }
+  .gh-pill-icon{ font-size:1.4rem; line-height:1; }
+  .gh-pill-num{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:2rem; font-weight:700; color:var(--signal); line-height:1;
+  }
+  .gh-stat-pill.gh-streak .gh-pill-num{ color:var(--alert); }
+  .gh-pill-label{ font-family:'JetBrains Mono', monospace; font-size:.75rem; color:var(--dim); letter-spacing:.4px; }
+  .gh-pill-sub{ font-family:'JetBrains Mono', monospace; font-size:.7rem; color:var(--dim); opacity:.7; }
+
+  /* ---------- LEETCODE BADGE ---------- */
+  .badge-section{
+    display:flex; flex-wrap:wrap; gap:1rem;
+    margin-bottom:1.6rem; align-items:stretch;
+  }
+  .badge-card{
+    flex:1; min-width:220px;
+    background:linear-gradient(135deg,rgba(255,161,22,0.08),rgba(255,161,22,0.02));
+    border:1px solid rgba(255,161,22,0.35);
+    border-radius:6px; padding:1.4rem 1.6rem;
+    display:flex; flex-direction:column; gap:.6rem;
+    transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    position:relative; overflow:hidden;
+  }
+  .badge-card::before{
+    content:''; position:absolute; top:-40px; right:-40px;
+    width:120px; height:120px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,161,22,0.12), transparent 70%);
+    pointer-events:none;
+  }
+  .badge-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(255,161,22,0.7);
+    box-shadow:0 12px 32px -12px rgba(255,161,22,0.25);
+  }
+  .badge-icon{ font-size:2.2rem; line-height:1; }
+  .badge-title{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:1rem; font-weight:700; color:#fbbf24;
+  }
+  .badge-desc{
+    font-size:.875rem; color:var(--dim); line-height:1.6;
+  }
+  .badge-pill{
+    display:inline-flex; align-items:center; gap:.35rem;
+    background:rgba(255,161,22,0.12); border:1px solid rgba(255,161,22,0.3);
+    color:#fbbf24; font-family:'JetBrains Mono',monospace;
+    font-size:.72rem; font-weight:600; padding:.3rem .7rem;
+    border-radius:20px; width:fit-content; margin-top:.2rem;
+    letter-spacing:.3px;
+  }
+  .badge-pill .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:#fbbf24; display:inline-block;
+    animation:pulse-dot 2s ease-in-out infinite;
+  }
+
+  /* ---------- Zero_Context PROJECT CARD ---------- */
+  .zc-card{
+    background: linear-gradient(135deg, rgba(88,166,255,0.06), rgba(248,81,73,0.04));
+    border: 1px solid rgba(88,166,255,0.28);
+    position: relative; overflow: hidden;
+  }
+  .zc-card::before{
+    content:''; position:absolute; top:-60px; right:-60px;
+    width:180px; height:180px; border-radius:50%;
+    background: radial-gradient(circle, rgba(88,166,255,0.09), transparent 70%);
+    pointer-events:none;
+  }
+  .zc-card:hover{ border-color: rgba(88,166,255,0.6); }
+  .zc-tech-row{
+    display:flex; flex-wrap:wrap; gap:.45rem; margin: .6rem 0 .9rem;
+  }
+  .zc-tag{
+    background: rgba(88,166,255,0.1); border: 1px solid rgba(88,166,255,0.25);
+    color: #58a6ff; font-family:'JetBrains Mono',monospace;
+    font-size:.7rem; font-weight:600; padding:.25rem .6rem;
+    border-radius:3px; letter-spacing:.3px;
+  }
+  .zc-tag.red{ background:rgba(248,81,73,0.1); border-color:rgba(248,81,73,0.25); color:#f85149; }
+  .zc-tag.green{ background:rgba(35,134,54,0.12); border-color:rgba(46,160,67,0.3); color:#3fb950; }
+  .zc-tag.yellow{ background:rgba(210,153,34,0.1); border-color:rgba(210,153,34,0.25); color:#d29922; }
+  .zc-arch{
+    background: rgba(0,0,0,0.25); border: 1px solid var(--line);
+    border-radius:5px; padding:.75rem 1rem; margin-top:.8rem;
+    font-family:'JetBrains Mono',monospace; font-size:.75rem;
+    color: var(--dim); line-height:1.7;
+  }
+  html[data-theme="light"] .zc-arch{ background:rgba(0,0,0,0.04); }
+  .zc-arch .zc-flow{ color: var(--signal); font-weight:600; }
+  .zc-arch .zc-arrow{ color: var(--alert); }
+  .zc-gh-link{
+    display:inline-flex; align-items:center; gap:.4rem;
+    color: var(--signal); font-family:'JetBrains Mono',monospace;
+    font-size:.78rem; text-decoration:none;
+    border-bottom:1px solid rgba(94,234,212,.3);
+    margin-top:.8rem; transition: border-color .2s;
+  }
+  .zc-gh-link:hover{ border-color: var(--signal); }
+</style>
+</head>
+<body>
+
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<svg id="bg-circuit" aria-hidden="true" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <g>
+    <path class="trace" d="M80 140 H300 V220 H470 V120 H700 V240 H980 V170 H1210 V300 H1510"></path>
+    <path class="trace" d="M120 420 H360 V350 H540 V520 H760 V430 H980 V590 H1240 V470 H1500"></path>
+    <path class="trace" d="M70 760 H260 V680 H500 V820 H760 V700 H1020 V860 H1320 V740 H1540"></path>
+    <path class="trace" d="M220 80 V250 H420 V390 H620 V300 H850 V450 H1110 V360 H1390 V520"></path>
+    <path class="trace alert" d="M1380 90 H1160 V210 H920 V120 H690 V280 H420 V200 H150"></path>
+    <path class="trace alert" d="M1460 860 H1220 V760 H940 V900 H700 V780 H430 V880 H160"></path>
+    <path class="trace" d="M860 40 V180 H1040 V80 H1320 V210 H1500"></path>
+    <path class="trace" d="M980 1000 V820 H1160 V920 H1420"></path>
+    <circle class="node" cx="300" cy="140" r="4"></circle>
+    <circle class="node" cx="470" cy="220" r="4"></circle>
+    <circle class="node" cx="700" cy="240" r="4"></circle>
+    <circle class="node" cx="980" cy="170" r="4"></circle>
+    <circle class="node" cx="1210" cy="300" r="4"></circle>
+    <circle class="node" cx="540" cy="520" r="4"></circle>
+    <circle class="node" cx="980" cy="590" r="4"></circle>
+    <circle class="node" cx="260" cy="680" r="4"></circle>
+    <circle class="node" cx="760" cy="700" r="4"></circle>
+    <circle class="node" cx="1020" cy="860" r="4"></circle>
+    <circle class="node alert" cx="1160" cy="210" r="4"></circle>
+    <circle class="node alert" cx="690" cy="280" r="4"></circle>
+    <circle class="node alert" cx="940" cy="900" r="4"></circle>
+    <circle class="node alert" cx="430" cy="880" r="4"></circle>
+  </g>
+</svg>
+
+<nav class="navbar">
+  <a href="#" class="nav-logo">ABHINANDAN<span class="blink">_</span></a>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#security-domains">Security</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#github-activity">GitHub Activity</a>
+    <a href="#leetcode">LeetCode</a>
+    <a href="#academics">Academics</a>
+    <a href="mailto:a23894843@gmail.com">Email</a>
+    <a href="tel:+919528998232">Phone</a>
+    <a href="https://github.com/a23894843/" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/a23894843" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="assets/ABHINANDAN_CV.pdf" target="_blank" rel="noopener" class="nav-btn">Resume</a>
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+    </button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- HERO -->
+  <section class="hero">
+<div class="hero-content">
+      <span class="eyebrow">// whoami</span>
+      <h1>ABHINANDAN<span class="cursor">_</span></h1>
+      <p class="typed-line mono" id="typedLine"><span class="type-cursor"></span></p>
+      <p class="lead">Computer Science &amp; Engineering student specializing in cybersecurity, with hands-on experience building a hybrid C++/Python real-time network defense engine using unsupervised machine learning for anomaly detection. Proficient in Python, C++, and MySQL. Certified in IBM SkillsBuild Cybersecurity Fundamentals.</p>
+      <p class="strengths"><span class="label">STRENGTHS</span>Strong problem-solving ability, detail-oriented, quick learner, adaptable, and team-friendly.</p>
+      <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Alipur,+Ibrahimpur,+Bahadrabad,+Haridwar,+Uttarakhand" target="_blank" rel="noopener" class="location-link">Alipur, Ibrahimpur, Bahadrabad, Haridwar, U.K.</a></p>
+    </div>
+  </section>
+
+  <!-- TECH STACK -->
+  <section class="reveal" id="skills">
+    <h2><span class="mono">// tech_stack</span></h2>
+    <div class="tags-container">
+      <span class="tag">C++</span>
+      <span class="tag">Python</span>
+      <span class="tag">Java</span>
+      <span class="tag">SQL</span>
+      <span class="tag">MySQL</span>
+      <span class="tag">Kali Linux</span>
+      <span class="tag">Git / GitHub</span>
+      <span class="tag">VS Code</span>
+      <span class="tag">MySQL Workbench</span>
+      <span class="tag">NumPy</span>
+      <span class="tag">Matplotlib</span>
+      <span class="tag">Tkinter</span>
+    </div>
+  </section>
+
+  <!-- SECURITY DOMAINS -->
+  <section class="reveal" id="security-domains">
+    <h2><span class="mono">// security_domains</span></h2>
+    <div class="tags-container">
+      <span class="tag">Cryptography</span>
+      <span class="tag">Cyber Threat Analysis</span>
+      <span class="tag">Cyber Threat Intelligence</span>
+      <span class="tag">Incident Response</span>
+      <span class="tag">Vulnerability Management</span>
+      <span class="tag">Security Risk Management</span>
+      <span class="tag">Security Strategies</span>
+      <span class="tag">Social Engineering Awareness</span>
+      <span class="tag">Threat Detection</span>
+      <span class="tag">Information Security</span>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="reveal" id="experience">
+    <h2><span class="mono">// experience</span></h2>
+    <div class="card">
+      <h3>Python Intern</h3>
+      <div class="card-meta">
+        <span>CodSoft</span>
+        <span class="date">Aug 2025</span>
+      </div>
+      <ul>
+        <li>Built a Contact Management System (Python/Tkinter GUI + MySQL) supporting add, update, delete, and search operations.</li>
+        <li>Developed a secure password generator using randomization and string-handling techniques.</li>
+        <li>Built a GUI-based Rock-Paper-Scissors game applying control-flow and logic-building concepts.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="reveal" id="projects">
+    <h2><span class="mono">// projects</span></h2>
+
+    <!-- Zero_Context — featured full-width -->
+    <div class="card zc-card" style="margin-bottom:1.4rem;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+        <div>
+          <h3 style="font-size:1.35rem;margin-bottom:.2rem;">Zero_Context IDPS</h3>
+          <p style="color:var(--dim);font-size:.88rem;margin:0;">
+            Intelligent Intrusion Detection &amp; Prevention System with Behavioral Biometrics
+          </p>
+        </div>
+        <span style="background:rgba(248,81,73,0.12);border:1px solid rgba(248,81,73,0.3);
+              color:#f85149;font-family:'JetBrains Mono',monospace;font-size:.72rem;
+              font-weight:700;padding:.3rem .8rem;border-radius:20px;white-space:nowrap;
+              align-self:flex-start;">🛡️ FLAGSHIP PROJECT</span>
+      </div>
+
+      <div class="zc-tech-row">
+        <span class="zc-tag">Python</span>
+        <span class="zc-tag red">C++</span>
+        <span class="zc-tag green">PyTorch</span>
+        <span class="zc-tag green">scikit-learn</span>
+        <span class="zc-tag yellow">FastAPI</span>
+        <span class="zc-tag">asyncio</span>
+        <span class="zc-tag">MySQL</span>
+        <span class="zc-tag red">Kali Linux</span>
+        <span class="zc-tag">Unix UDS/IPC</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;">
+        <ul>
+          <li>Built a <b>multi-threaded C++ sensor daemon</b> that intercepts raw <code>/dev/input</code> mouse and keyboard events at kernel level, streaming telemetry via <b>Unix Domain Sockets</b> to Python at microsecond precision.</li>
+          <li>Engineered a <b>PyTorch Autoencoder</b> for mouse kinematics — reconstructs velocity, acceleration &amp; delta-t vectors; flags non-human movement patterns via reconstruction loss threshold.</li>
+          <li>Deployed a <b>scikit-learn Isolation Forest</b> on keystroke dynamics (dwell time + flight time) to detect anomalous typing rhythms — trained live on collected telemetry.</li>
+        </ul>
+        <ul>
+          <li>Designed a fully <b>async Python backend</b> (asyncio + aiomysql) with UDS servers handling both sensor streams concurrently — zero blocking I/O.</li>
+          <li>Built a <b>FastAPI SOC Dashboard</b> with live threat table (1.5s auto-refresh), anomaly score colouring, and light/dark theme — all served from a single HTML file.</li>
+          <li>Implemented a <b>complete ML training pipeline</b> that auto-runs post-session: parses JSONL telemetry ledger → normalises features → trains Autoencoder + Isolation Forest → saves models to disk.</li>
+        </ul>
+      </div>
+
+      <!-- Architecture flow -->
+      <div class="zc-arch">
+        <span class="zc-flow">C++ Sensor Daemon</span>
+        <span class="zc-arrow"> ──▶ </span>
+        <span class="zc-flow">Unix Domain Sockets</span>
+        <span class="zc-arrow"> ──▶ </span>
+        <span class="zc-flow">Python asyncio Engine</span>
+        <span class="zc-arrow"> ──▶ </span>
+        <span class="zc-flow">PyTorch AE + IsolationForest</span>
+        <span class="zc-arrow"> ──▶ </span>
+        <span class="zc-flow">MySQL ThreatDB</span>
+        <span class="zc-arrow"> ──▶ </span>
+        <span class="zc-flow">FastAPI SOC Dashboard</span>
+      </div>
+
+      <a href="https://github.com/A23894843/Zero_Context" target="_blank" rel="noopener" class="zc-gh-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        github.com/a23894843/Zero_Context ↗
+      </a>
+    </div>
+
+    <!-- Other projects grid -->
+    <div class="grid-2">
+      <div class="card">
+        <h3>Cyber Defensive Engine</h3>
+        <div class="card-meta"><span>C++ · Python · ML</span></div>
+        <ul>
+          <li>Designed a hybrid network security engine pairing a high-performance C++ packet sniffer with a Python ML core for real-time anomaly detection.</li>
+          <li>Built an unsupervised ML pipeline to monitor system logs and network traffic, detecting anomalies such as DDoS attacks and port scans.</li>
+          <li>Implemented real-time defensive actions and secure inter-process communication via Unix Domain Sockets (UDS/IPC).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Dr. Vaccine Antivirus</h3>
+        <div class="card-meta"><span>Java</span></div>
+        <ul>
+          <li>Built a signature-based file-scanning antivirus prototype in Java with pattern-matching detection logic.</li>
+          <li>Designed a simple UI for initiating and monitoring scan operations.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB ACTIVITY -->
+  <section class="reveal" id="github-activity">
+    <h2><span class="mono">// github_activity</span></h2>
+
+    <!-- Live stat pills -->
+    <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem;">
+      <div class="gh-stat-pill">
+        <span class="gh-pill-num" id="gh-total">—</span>
+        <span class="gh-pill-label">Total Contributions</span>
+        <span class="gh-pill-sub" id="gh-since">Since Jun 21, 2024</span>
+      </div>
+      <div class="gh-stat-pill gh-streak">
+        <span class="gh-pill-icon">🔥</span>
+        <span class="gh-pill-num" id="gh-streak">—</span>
+        <span class="gh-pill-label">Current Streak</span>
+        <span class="gh-pill-sub" id="gh-streak-dates">days</span>
+      </div>
+      <div class="gh-stat-pill">
+        <span class="gh-pill-num" id="gh-longest">—</span>
+        <span class="gh-pill-label">Longest Streak</span>
+        <span class="gh-pill-sub" id="gh-longest-dates">days</span>
+      </div>
+    </div>
+
+    <!-- Contribution bar chart + line overlay -->
+    <div class="card">
+      <div class="card-meta">
+        <span>a23894843 · Daily Contributions (Last 30 Days)</span>
+        <span class="date" id="gh-chart-status">Loading…</span>
+      </div>
+      <div id="gh-chart-loading" style="text-align:center;padding:2.5rem 1rem;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--dim);">
+        Fetching live data<span id="gh-dots">.</span>
+      </div>
+      <div id="gh-chart-wrap" style="display:none;position:relative;">
+        <canvas id="gh-chart" style="width:100%;border-radius:4px;" height="200"></canvas>
+        <div id="gh-tooltip" style="display:none;position:fixed;background:var(--panel);border:1px solid var(--signal);color:var(--ink);padding:.5rem .9rem;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:.75rem;pointer-events:none;z-index:9999;box-shadow:0 6px 24px rgba(0,0,0,.5);white-space:nowrap;"></div>
+      </div>
+      <div id="gh-chart-err" style="display:none;text-align:center;padding:2rem;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--dim);">
+        Could not load live data —
+        <a href="https://github.com/a23894843" target="_blank" rel="noopener" style="color:var(--signal);">view on GitHub ↗</a>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:1rem;flex-wrap:wrap;gap:.5rem;">
+        <span style="font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--dim);display:flex;align-items:center;gap:.5rem;">
+          <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#4ade80;animation:pulse-dot 2s ease-in-out infinite;"></span>
+          Live · auto-updates on page load
+        </span>
+        <a href="https://github.com/a23894843" target="_blank" rel="noopener" style="font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--signal);text-decoration:none;border-bottom:1px solid rgba(94,234,212,.3);">View on GitHub ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════ LEETCODE SECTION ══════ -->
+  <section class="reveal" id="leetcode">
+    <h2><span class="mono">// leetcode_stats</span></h2>
+
+    <!-- 🏆 Badges Row -->
+    <div class="badge-section">
+      <div class="badge-card">
+        <div class="badge-icon">🏅</div>
+        <div class="badge-title">50 Days Badge — 2026</div>
+        <div class="badge-desc">
+          Maintained an active problem-solving streak for <strong style="color:#fbbf24;">50+ consecutive days</strong>
+          on LeetCode in 2026 — tackling Data Structures &amp; Algorithms challenges in C++ and Python daily.
+        </div>
+        <span class="badge-pill"><span class="dot"></span>LeetCode · 2026 · Verified</span>
+      </div>
+      <div class="badge-card">
+        <div class="badge-icon">🔥</div>
+        <div class="badge-title">Daily Problem Solving</div>
+        <div class="badge-desc">
+          Consistent daily practice across Easy, Medium, and Hard problems — demonstrating
+          <strong style="color:#fbbf24;">discipline, algorithmic thinking</strong> and strong DSA fundamentals.
+        </div>
+        <span class="badge-pill"><span class="dot"></span>C++ · Python · DSA</span>
+      </div>
+    </div>
+
+    <!-- Live Stats Card -->
+    <div class="card">
+      <div class="card-meta">
+        <span>a23894843 · Live Problem Stats</span>
+        <span class="date" id="lc-last-updated">Fetching live…</span>
+      </div>
+
+      <!-- Loading state -->
+      <div class="lc-loading" id="lc-loading">Fetching LeetCode stats</div>
+
+      <!-- Error state -->
+      <div class="lc-error" id="lc-error">
+        Could not load live stats —
+        <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener" class="lc-link">view on LeetCode ↗</a>
+      </div>
+
+      <!-- Stats (hidden until loaded) -->
+      <div id="lc-content" style="display:none;">
+        <div class="lc-grid">
+          <div class="lc-stat total">
+            <div class="lc-num" id="lc-total">—</div>
+            <div class="lc-label">TOTAL SOLVED</div>
+          </div>
+          <div class="lc-stat easy">
+            <div class="lc-num" id="lc-easy">—</div>
+            <div class="lc-label">EASY</div>
+          </div>
+          <div class="lc-stat med">
+            <div class="lc-num" id="lc-med">—</div>
+            <div class="lc-label">MEDIUM</div>
+          </div>
+          <div class="lc-stat hard">
+            <div class="lc-num" id="lc-hard">—</div>
+            <div class="lc-label">HARD</div>
+          </div>
+        </div>
+
+        <!-- Progress bars -->
+        <div class="lc-bar-wrap">
+          <div class="lc-bar-row">
+            <span class="lc-bar-label easy">Easy</span>
+            <div class="lc-bar-track"><div class="lc-bar-fill easy" id="bar-easy" style="width:0%"></div></div>
+            <span class="lc-bar-count" id="cnt-easy">—</span>
+          </div>
+          <div class="lc-bar-row">
+            <span class="lc-bar-label med">Med</span>
+            <div class="lc-bar-track"><div class="lc-bar-fill med" id="bar-med" style="width:0%"></div></div>
+            <span class="lc-bar-count" id="cnt-med">—</span>
+          </div>
+          <div class="lc-bar-row">
+            <span class="lc-bar-label hard">Hard</span>
+            <div class="lc-bar-track"><div class="lc-bar-fill hard" id="bar-hard" style="width:0%"></div></div>
+            <span class="lc-bar-count" id="cnt-hard">—</span>
+          </div>
+        </div>
+
+        <div class="lc-footer">
+          <span class="lc-status"><span class="lc-dot"></span>Live · updates on every page load</span>
+          <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener" class="lc-link">View Full Profile ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMICS -->
+  <section class="reveal" id="academics">
+    <h2><span class="mono">// academic_history</span></h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Education</h3><br>
+        <p style="color:var(--ink);font-weight:600;margin-bottom:.2rem;">Gurukul Kangri Vishwavidyalaya</p>
+        <p style="color:var(--dim);margin-bottom:1rem;font-size:.9rem;">B.Tech in Computer Science &amp; Engineering | 2023 – Present</p>
+        <ul><li>CGPA (Till now): 7.755</li></ul>
+        <br>
+        <p style="color:var(--ink);font-weight:600;margin-bottom:.2rem;">S.B.N. International School, Laksar</p>
+        <p style="color:var(--dim);margin-bottom:1rem;font-size:.9rem;">CBSE Board — Secondary &amp; Higher Secondary</p>
+        <ul>
+          <li>12th Grade (2022) — Score: 67%</li>
+          <li>10th Grade (2020) — Score: 70%</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Certifications</h3><br>
+        <ul>
+          <li><strong>🏅 LeetCode 50 Days Badge</strong> — 50+ consecutive days of DSA problem-solving in C++ &amp; Python, 2026</li>
+          <li><strong>Cybersecurity Fundamentals</strong> — IBM SkillsBuild, Intermediate level (<a class="cred-link" href="https://www.credly.com/badges/8325b11f-6533-4d11-b5d5-2c29dcbd181c/public_url" target="_blank" rel="noopener">verified via Credly</a>, ID: PWID-B0454800), 2026</li>
+          <li><strong>Python Internship</strong> — CodSoft</li>
+          <li><strong>AI &amp; ML Workshop</strong> — Sofcon India Pvt. Ltd.</li>
+          <li><strong>Group Discussion on Technology and Innovation</strong> — NDLI Club</li>
+          <li><strong>Intelligent BMS: Leveraging AI for Accuracy, Safety and Sustainability</strong> — Mathworks</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="flinks">
+    <a href="mailto:a23894843@gmail.com">a23894843@gmail.com</a>
+    <a href="tel:+919528998232">+91-95289-98232</a>
+    <a href="https://github.com/a23894843/" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/a23894843" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener">LeetCode</a>
+  </div>
+  <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Alipur,+Ibrahimpur,+Bahadrabad,+Haridwar,+Uttarakhand" target="_blank" rel="noopener" class="location-link">Alipur, Ibrahimpur, Bahadrabad, Haridwar, U.K.</a></p>
+  <p class="copyright">© 2026 ABHINANDAN. All rights reserved.</p>
+</footer>
+
+<script>
+/* ── Theme toggle ── */
+(function(){
+  var root = document.documentElement;
+  var btn  = document.getElementById('themeToggle');
+  var stored; try{ stored = localStorage.getItem('theme'); }catch(e){}
+  var prefersLight = window.matchMedia('(prefers-color-scheme:light)').matches;
+  var initial = stored || (prefersLight ? 'light' : 'dark');
+  if(initial === 'light') root.setAttribute('data-theme','light');
+  btn.addEventListener('click', function(){
+    var isLight = root.getAttribute('data-theme') === 'light';
+    if(isLight){ root.removeAttribute('data-theme'); try{ localStorage.setItem('theme','dark'); }catch(e){} }
+    else{ root.setAttribute('data-theme','light'); try{ localStorage.setItem('theme','light'); }catch(e){} }
+    setTimeout(function(){ readThemeColors(); },50);
+  });
+})();
+
+/* ── LeetCode live stats — CORS proxy cascade ── */
+(function(){
+  var username = 'a23894843';
+  function cacheBust(){ return 'cb=' + Date.now() + '-' + Math.random().toString(36).slice(2); }
+  var totalEl  = document.getElementById('lc-total');
+  var easyEl   = document.getElementById('lc-easy');
+  var medEl    = document.getElementById('lc-med');
+  var hardEl   = document.getElementById('lc-hard');
+  var cntEasy  = document.getElementById('cnt-easy');
+  var cntMed   = document.getElementById('cnt-med');
+  var cntHard  = document.getElementById('cnt-hard');
+  var barEasy  = document.getElementById('bar-easy');
+  var barMed   = document.getElementById('bar-med');
+  var barHard  = document.getElementById('bar-hard');
+  var tsEl     = document.getElementById('lc-last-updated');
+  var loadEl   = document.getElementById('lc-loading');
+  var errEl    = document.getElementById('lc-error');
+  var contEl   = document.getElementById('lc-content');
+
+  function render(easy, med, hard) {
+    var total = easy + med + hard;
+    totalEl.textContent = total;
+    easyEl.textContent  = easy;
+    medEl.textContent   = med;
+    hardEl.textContent  = hard;
+    cntEasy.textContent = easy;
+    cntMed.textContent  = med;
+    cntHard.textContent = hard;
+    setTimeout(function(){
+      barEasy.style.width = Math.min(100,(easy/900)*100).toFixed(1)+'%';
+      barMed.style.width  = Math.min(100,(med/1900)*100).toFixed(1)+'%';
+      barHard.style.width = Math.min(100,(hard/820)*100).toFixed(1)+'%';
+    }, 150);
+    tsEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+    loadEl.style.display = 'none';
+    errEl.style.display  = 'none';
+    contEl.style.display = 'block';
+  }
+
+  function showError() {
+    loadEl.style.display = 'none';
+    errEl.style.display  = 'block';
+  }
+
+  function tFetch(url, ms) {
+    ms = ms || 8000;
+    return new Promise(function(resolve, reject) {
+      var done = false;
+      var timer = setTimeout(function(){
+        if(!done){ done=true; reject(new Error('timeout')); }
+      }, ms);
+      fetch(url,{cache:'no-store'})
+        .then(function(r){
+          clearTimeout(timer);
+          if(!done){ done=true; r.ok ? resolve(r.json()) : reject(new Error('HTTP '+r.status)); }
+        })
+        .catch(function(e){ clearTimeout(timer); if(!done){ done=true; reject(e); } });
+    });
+  }
+
+  /* ── API list — each returns Promise<{easy,med,hard}> ── */
+  var APIS = [
+    /* 1. allOrigins proxy wrapping alfa-leetcode-api */
+    function(){
+      var target = encodeURIComponent('https://alfa-leetcode-api.onrender.com/'+username+'/solved?'+cacheBust());
+      return tFetch('https://api.allorigins.win/get?url='+target+'&'+cacheBust())
+        .then(function(d){
+          var j = JSON.parse(d.contents);
+          if(typeof j.easySolved === 'undefined') throw new Error('bad');
+          return {easy:j.easySolved||0, med:j.mediumSolved||0, hard:j.hardSolved||0};
+        });
+    },
+    /* 2. Direct alfa-leetcode (works on some browsers/servers) */
+    function(){
+      return tFetch('https://alfa-leetcode-api.onrender.com/'+username+'/solved?'+cacheBust())
+        .then(function(d){
+          if(typeof d.easySolved === 'undefined') throw new Error('bad');
+          return {easy:d.easySolved||0, med:d.mediumSolved||0, hard:d.hardSolved||0};
+        });
+    },
+    /* 3. allOrigins proxy wrapping faisalshohag vercel */
+    function(){
+      var target = encodeURIComponent('https://leetcode-api-faisalshohag.vercel.app/'+username+'?'+cacheBust());
+      return tFetch('https://api.allorigins.win/get?url='+target)
+        .then(function(d){
+          var j = JSON.parse(d.contents);
+          if(typeof j.easySolved === 'undefined') throw new Error('bad');
+          return {easy:j.easySolved||0, med:j.mediumSolved||0, hard:j.hardSolved||0};
+        });
+    },
+    /* 4. corsproxy.io wrapping leetcode-stats-api */
+    function(){
+      var target = 'https://corsproxy.io/?https://leetcode-stats-api.herokuapp.com/'+username+'?'+cacheBust();
+      return tFetch(target)
+        .then(function(d){
+          if(d.status==='error') throw new Error('user not found');
+          return {easy:d.easySolved||0, med:d.mediumSolved||0, hard:d.hardSolved||0};
+        });
+    },
+    /* 5. cors.sh wrapping faisalshohag */
+    function(){
+      return tFetch('https://corsproxy.io/?https://leetcode-api-faisalshohag.vercel.app/'+username+'?'+cacheBust())
+        .then(function(d){
+          if(typeof d.easySolved === 'undefined') throw new Error('bad');
+          return {easy:d.easySolved||0, med:d.mediumSolved||0, hard:d.hardSolved||0};
+        });
+    }
+  ];
+
+  function tryNext(i) {
+    if(i >= APIS.length){ showError(); return; }
+    APIS[i]()
+      .then(function(r){ render(r.easy, r.med, r.hard); })
+      .catch(function(e){
+        console.warn('LC API '+(i+1)+' failed:', e.message||e);
+        tryNext(i+1);
+      });
+  }
+
+  tryNext(0);
+})();
+
+/* ── Matrix background canvas ── */
+(function(){
+  var canvas = document.getElementById('bg-canvas');
+  var ctx = canvas.getContext('2d');
+  var reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var W, H, dpr, columns=[], mouse={x:null,y:null,active:false};
+  var signalColor='94,234,212', alertColor='251,113,133', voidColor='5,8,13';
+  var colWidth=17, fontSize=14;
+  var CHARSET='01010101010101010101ABCDEF'.split('');
+  function randChar(){ return CHARSET[Math.floor(Math.random()*CHARSET.length)]; }
+  function hexToRgbStr(hex){
+    if(!hex) return null;
+    hex=hex.trim().replace('#','');
+    if(hex.length===3) hex=hex.split('').map(function(c){return c+c;}).join('');
+    if(hex.length!==6) return null;
+    return parseInt(hex.substring(0,2),16)+','+parseInt(hex.substring(2,4),16)+','+parseInt(hex.substring(4,6),16);
+  }
+  function readThemeColors(){
+    var cs=getComputedStyle(document.documentElement);
+    signalColor=hexToRgbStr(cs.getPropertyValue('--signal'))||signalColor;
+    alertColor=hexToRgbStr(cs.getPropertyValue('--alert'))||alertColor;
+    voidColor=hexToRgbStr(cs.getPropertyValue('--void'))||voidColor;
+  }
+  function buildColumns(){
+    var count=Math.ceil(W/colWidth)+1; columns=[];
+    for(var i=0;i<count;i++) columns.push({x:i*colWidth,y:Math.random()*-H,speed:.35+Math.random()*.55,ch:randChar(),switchEvery:6+Math.floor(Math.random()*14),tick:0});
+  }
+  function resize(){
+    dpr=Math.min(window.devicePixelRatio||1,2); W=window.innerWidth; H=window.innerHeight;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.font=fontSize+'px "JetBrains Mono",monospace'; ctx.textBaseline='middle';
+    buildColumns();
+  }
+  function step(){
+    ctx.fillStyle='rgba('+voidColor+',0.16)'; ctx.fillRect(0,0,W,H);
+    var scanRadius=150;
+    for(var i=0;i<columns.length;i++){
+      var c=columns[i]; c.tick++;
+      if(c.tick>=c.switchEvery){ c.ch=randChar(); c.tick=0; }
+      var flagged=false;
+      if(mouse.active){ var dx=c.x-mouse.x,dy=c.y-mouse.y; if(Math.sqrt(dx*dx+dy*dy)<scanRadius) flagged=true; }
+      ctx.fillStyle=flagged?'rgba('+alertColor+',0.95)':'rgba('+signalColor+',0.65)';
+      ctx.fillText(c.ch,c.x,c.y);
+      c.y+=flagged?c.speed*2.2:c.speed;
+      if(c.y>H+20){ c.y=-20-Math.random()*200; c.speed=.35+Math.random()*.55; }
+    }
+    if(mouse.active){
+      var grad=ctx.createRadialGradient(mouse.x,mouse.y,0,mouse.x,mouse.y,scanRadius);
+      grad.addColorStop(0,'rgba('+alertColor+',0.06)'); grad.addColorStop(1,'rgba('+alertColor+',0)');
+      ctx.fillStyle=grad; ctx.beginPath(); ctx.arc(mouse.x,mouse.y,scanRadius,0,Math.PI*2); ctx.fill();
+    }
+  }
+  var rafId=null;
+  function loop(){ step(); rafId=requestAnimationFrame(loop); }
+  readThemeColors(); resize();
+  window.addEventListener('resize',function(){ resize(); if(reduced) step(); });
+  window.addEventListener('mousemove',function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.active=true; if(reduced) step(); });
+  window.addEventListener('mouseleave',function(){ mouse.active=false; if(reduced) step(); });
+  document.addEventListener('visibilitychange',function(){ if(document.hidden){ if(rafId) cancelAnimationFrame(rafId); rafId=null; }else if(!reduced&&!rafId) loop(); });
+  document.getElementById('themeToggle').addEventListener('click',function(){ setTimeout(function(){ readThemeColors(); if(reduced) step(); },50); });
+  if(reduced) step(); else loop();
+})();
+
+/* ── Circuit parallax ── */
+(function(){
+  var bg=document.getElementById('bg-circuit');
+  if(!bg||window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  var tx=0,ty=0,cx=0,cy=0,raf=null,maxX=22,maxY=16;
+  function animate(){ cx+=(tx-cx)*.08; cy+=(ty-cy)*.08; bg.style.transform='translate3d('+cx.toFixed(2)+'px,'+cy.toFixed(2)+'px,0)'; raf=requestAnimationFrame(animate); }
+  window.addEventListener('mousemove',function(e){ tx=(e.clientX/window.innerWidth-.5)*maxX; ty=(e.clientY/window.innerHeight-.5)*maxY; if(!raf) animate(); });
+  window.addEventListener('mouseleave',function(){ tx=0;ty=0; if(!raf) animate(); });
+  animate();
+})();
+
+
+
+/* ── Typing effect ── */
+(function(){
+  var el=document.getElementById('typedLine');
+  var text='cybersecurity & software engineering student';
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){ el.textContent=text; return; }
+  var i=0;
+  function type(){ if(i<=text.length){ el.innerHTML=text.slice(0,i)+'<span class="type-cursor"></span>'; i++; setTimeout(type,38); } }
+  type();
+})();
+
+/* ── Scroll reveal ── */
+(function(){
+  var items=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ items.forEach(function(el){ el.classList.add('visible'); }); return; }
+  var obs=new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); },{ threshold:.12 });
+  items.forEach(function(el){ obs.observe(el); });
+})();
+
+/* ── GitHub Activity — Live stats + line chart ── */
+(function(){
+  var USER = 'a23894843';
+
+  /* DOM refs */
+  var elTotal    = document.getElementById('gh-total');
+  var elStreak   = document.getElementById('gh-streak');
+  var elSDates   = document.getElementById('gh-streak-dates');
+  var elLongest  = document.getElementById('gh-longest');
+  var elLDates   = document.getElementById('gh-longest-dates');
+  var elLoading  = document.getElementById('gh-chart-loading');
+  var elWrap     = document.getElementById('gh-chart-wrap');
+  var elErr      = document.getElementById('gh-chart-err');
+  var elStatus   = document.getElementById('gh-chart-status');
+  var elDots     = document.getElementById('gh-dots');
+  var canvas     = document.getElementById('gh-chart');
+  var tooltip    = document.getElementById('gh-tooltip');
+
+  var di = 0;
+  var dotsTmr = setInterval(function(){
+    if(elDots) elDots.textContent = ['.','..','...'][di++%3];
+  }, 400);
+
+  function cacheBust(){
+    return 'cb=' + Date.now() + '-' + Math.random().toString(36).slice(2);
+  }
+
+  function tFetch(url, ms){
+    ms = ms || 9000;
+    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    var timer = setTimeout(function(){ if(controller) controller.abort(); }, ms);
+    var opts = controller ? {signal:controller.signal, cache:'no-store'} : {cache:'no-store'};
+    return fetch(url, opts).then(function(r){
+      clearTimeout(timer);
+      if(!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    }).catch(function(e){
+      clearTimeout(timer);
+      throw e;
+    });
+  }
+
+  function normalize(days){
+    if(!Array.isArray(days) || !days.length) throw new Error('empty');
+    var map = {};
+    days.forEach(function(d){
+      var date = String(d.date || d.day || '').slice(0,10);
+      var count = Number(d.count);
+      if(/^\d{4}-\d{2}-\d{2}$/.test(date) && isFinite(count)){
+        map[date] = Math.max(0, count);
+      }
+    });
+    var out = Object.keys(map).map(function(date){
+      return {date:date, count:map[date]};
+    });
+    if(!out.length) throw new Error('invalid data');
+    out.sort(function(a,b){ return a.date < b.date ? -1 : (a.date > b.date ? 1 : 0); });
+    return out;
+  }
+
+  /* ── Contribution APIs ── */
+  function api1(){
+    return tFetch('https://github-contributions-api.jogruber.de/v4/'+USER+'?y=last&'+cacheBust())
+      .then(function(d){ return normalize(d && d.contributions); });
+  }
+  function api2(){
+    return tFetch('https://github-contributions-api.jogruber.de/v4/'+USER+'?'+cacheBust())
+      .then(function(d){ return normalize(d && d.contributions); });
+  }
+  function api3(){
+    return tFetch('https://ghcal.vercel.app/'+USER+'?'+cacheBust())
+      .then(function(d){ return normalize(d); });
+  }
+
+  function cascade(fns, idx){
+    if(idx >= fns.length) return Promise.reject(new Error('all failed'));
+    return fns[idx]().catch(function(e){
+      console.warn('GH API '+(idx+1)+' failed:', e.message||e);
+      return cascade(fns, idx+1);
+    });
+  }
+
+  function localDateFromISO(s){
+    var p = s.split('-');
+    return new Date(Number(p[0]), Number(p[1])-1, Number(p[2]));
+  }
+
+  function fmtDate(d){
+    return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+  }
+  function pad(n){ return n<10?'0'+n:String(n); }
+
+  function shortDate(s){
+    if(!s) return '';
+    return localDateFromISO(s).toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+  }
+
+  /* ── Compute streaks using the browser's LOCAL calendar date ── */
+  function computeStreaks(days){
+    var map = {};
+    var total = 0;
+    days.forEach(function(d){
+      map[d.date] = d.count;
+      total += d.count;
+    });
+
+    var today = new Date();
+    today.setHours(0,0,0,0);
+
+    function addDays(d,n){
+      var x = new Date(d);
+      x.setDate(x.getDate()+n);
+      return x;
+    }
+
+    /* Current streak: GitHub counts today if there is activity today;
+       otherwise a streak can still be active from yesterday. */
+    var todayStr = fmtDate(today);
+    var start = (map[todayStr] || 0) > 0 ? today : addDays(today,-1);
+    var cur = 0, curStart = '';
+
+    while(true){
+      var key = fmtDate(start);
+      if((map[key] || 0) <= 0) break;
+      cur++;
+      curStart = key;
+      start = addDays(start,-1);
+    }
+
+    /* Longest streak over all returned contribution data. */
+    var lon=0, lonStart='', lonEnd='', run=0, runStart='';
+    days.forEach(function(d){
+      if(d.count > 0){
+        if(run===0) runStart=d.date;
+        run++;
+        if(run>lon){
+          lon=run; lonStart=runStart; lonEnd=d.date;
+        }
+      }else{
+        run=0; runStart='';
+      }
+    });
+
+    return {
+      total:total,
+      cur:cur,
+      curStart:curStart,
+      lon:lon,
+      lonStart:lonStart,
+      lonEnd:lonEnd
+    };
+  }
+
+  /* ── Draw line-only chart (no contribution bars) ── */
+  function drawChart(days){
+    clearInterval(dotsTmr);
+    elLoading.style.display = 'none';
+    elWrap.style.display = 'block';
+    elStatus.textContent = 'Live · '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+
+    var last30 = days.slice(-30);
+
+    var dpr = Math.min(window.devicePixelRatio||1,2);
+    var W = canvas.parentElement.clientWidth||700;
+    var H = 200;
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
+
+    var ctx=canvas.getContext('2d');
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+
+    var cs=getComputedStyle(document.documentElement);
+    var SIG=(cs.getPropertyValue('--signal')||'#5eead4').trim();
+    var LIN=(cs.getPropertyValue('--line')||'#1c2836').trim();
+    var DIM=(cs.getPropertyValue('--dim')||'#7d8a9c').trim();
+
+    var PAD={top:20,right:16,bottom:42,left:36};
+    var cW=W-PAD.left-PAD.right;
+    var cH=H-PAD.top-PAD.bottom;
+    var maxV=Math.max.apply(null,last30.map(function(d){return d.count;}))||1;
+
+    ctx.clearRect(0,0,W,H);
+
+    /* Grid lines */
+    ctx.strokeStyle=LIN;
+    ctx.lineWidth=.6;
+    [0,.25,.5,.75,1].forEach(function(t){
+      var y=PAD.top+cH-t*cH;
+      ctx.beginPath();
+      ctx.moveTo(PAD.left,y);
+      ctx.lineTo(PAD.left+cW,y);
+      ctx.stroke();
+      ctx.fillStyle=DIM;
+      ctx.font='9px "JetBrains Mono",monospace';
+      ctx.textAlign='right';
+      ctx.fillText(Math.round(t*maxV),PAD.left-5,y+3);
+    });
+
+    var points=[];
+    last30.forEach(function(d,i){
+      var x=PAD.left+(i/(Math.max(1,last30.length-1)))*cW;
+      var y=PAD.top+cH-(d.count/maxV)*cH;
+      points.push({x:x,y:y,date:d.date,count:d.count});
+    });
+
+    /* Line */
+    if(points.length){
+      ctx.beginPath();
+      points.forEach(function(p,i){
+        if(i===0) ctx.moveTo(p.x,p.y);
+        else ctx.lineTo(p.x,p.y);
+      });
+      ctx.strokeStyle=SIG;
+      ctx.lineWidth=2.2;
+      ctx.lineJoin='round';
+      ctx.lineCap='round';
+      ctx.stroke();
+
+      /* Small points */
+      points.forEach(function(p){
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,2.5,0,Math.PI*2);
+        ctx.fillStyle=SIG;
+        ctx.fill();
+      });
+    }
+
+    /* X-axis labels */
+    ctx.fillStyle=DIM;
+    ctx.textAlign='center';
+    ctx.font='9px "JetBrains Mono",monospace';
+    last30.forEach(function(d,i){
+      if(i%5===0 || i===last30.length-1){
+        var x=PAD.left+(i/(Math.max(1,last30.length-1)))*cW;
+        ctx.fillText(shortDate(d.date),x,H-PAD.bottom+16);
+      }
+    });
+
+    /* Tooltip by nearest day */
+    canvas.onmousemove=function(e){
+      if(!points.length){ tooltip.style.display='none'; return; }
+      var rect=canvas.getBoundingClientRect();
+      var mx=e.clientX-rect.left;
+      var nearest=points.reduce(function(best,p){
+        return Math.abs(p.x-mx)<Math.abs(best.x-mx)?p:best;
+      },points[0]);
+      if(Math.abs(nearest.x-mx)<=Math.max(18,cW/last30.length)){
+        tooltip.style.display='block';
+        tooltip.style.left=(e.clientX+14)+'px';
+        tooltip.style.top=(e.clientY-36)+'px';
+        var dt=localDateFromISO(nearest.date);
+        tooltip.textContent=nearest.count+' commit'+(nearest.count!==1?'s':'')+' · '+
+          dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      }else{
+        tooltip.style.display='none';
+      }
+    };
+    canvas.onmouseleave=function(){ tooltip.style.display='none'; };
+  }
+
+  function updatePills(stats){
+    if(elTotal) elTotal.textContent=stats.total;
+    if(elStreak) elStreak.textContent=stats.cur;
+    if(elSDates) elSDates.textContent=stats.cur ? shortDate(stats.curStart)+' – Now' : 'No active streak';
+    if(elLongest) elLongest.textContent=stats.lon;
+    if(elLDates) elLDates.textContent=stats.lon ? shortDate(stats.lonStart)+' – '+shortDate(stats.lonEnd) : '—';
+  }
+
+  cascade([api1,api2,api3],0)
+    .then(function(days){
+      var stats=computeStreaks(days);
+      updatePills(stats);
+      drawChart(days);
+    })
+    .catch(function(e){
+      console.warn('GitHub activity unavailable:',e);
+      clearInterval(dotsTmr);
+      elLoading.style.display='none';
+      elErr.style.display='block';
+      elStatus.textContent='Unavailable';
+      /* Never display invented/fallback contribution numbers. */
+      if(elTotal) elTotal.textContent='—';
+      if(elStreak) elStreak.textContent='—';
+      if(elLongest) elLongest.textContent='—';
+      if(elSDates) elSDates.textContent='Live data unavailable';
+      if(elLDates) elLDates.textContent='Live data unavailable';
+    });
+})();
+
+</script>
