@@ -40,41 +40,6 @@ class Abhinandan:
 
 ---
 
-## 📊 GitHub Activity
-
-<div align="center">
-
-### 🔥 Live GitHub Stats
-
-<!-- ✅ LIVE & AUTO-UPDATING DAILY -->
-<!-- nirzak-streak-stats — no PAT token required, uses public GraphQL -->
-[![GitHub Streak](https://nirzak-streak-stats.vercel.app/?user=a23894843&theme=dark&background=0D1117&border=30363D&ring=39FF14&fire=FF6B35&currStreakNum=39FF14&sideNums=39FF14&currStreakLabel=39FF14&sideLabels=8B949E&dates=8B949E)](https://github.com/a23894843)
-
-<br/>
-
-<!-- Stats card — using 3 fallback hosts; whichever loads first wins -->
-<a href="https://github.com/a23894843">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-sigma-five.vercel.app/api?username=a23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true"/>
-    <img src="https://github-readme-stats-sigma-five.vercel.app/api?username=a23894843&show_icons=true&bg_color=0D1117&title_color=39FF14&icon_color=7FDBCA&text_color=C9D1D9&border_color=30363D&count_private=true&include_all_commits=true" width="49%" alt="GitHub Stats" onerror="this.src='https://github-readme-stats.vercel.app/api?username=a23894843&show_icons=true&theme=dark&title_color=39FF14&icon_color=7FDBCA&border_color=30363D&count_private=true'"/>
-  </picture>
-</a>
-
-<br/><br/>
-
-### 📅 Contribution Activity
-
-<!-- ✅ LIVE — activity graph, updates with every push -->
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=a23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&radius=6&hide_border=false" width="100%" alt="Contribution Graph"/>
-
-<br/>
-
-<!-- ✅ Profile view counter — updates on every visit -->
-![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
-
-</div>
-
----
 
 ## 🛡️ Featured Projects
 
