@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05080d" id="themeColorMeta">
 <title>Abhinandan — Cybersecurity &amp; Software Engineering</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -36,6 +37,14 @@
     color-scheme:light;
   }
   *{ margin:0; padding:0; box-sizing:border-box; }
+  body, nav, section, article, .card, .stat-card, .project-card,
+  .theme-toggle, .github-chart, .lc-card, .skill-card{
+    transition:
+      background-color .35s ease,
+      color .35s ease,
+      border-color .35s ease,
+      box-shadow .35s ease;
+  }
   html{ scroll-behavior:smooth; }
 
   #bg-canvas{
@@ -482,7 +491,7 @@
     <a href="https://github.com/a23894843/" target="_blank" rel="noopener">GitHub ↗</a>
     <a href="https://www.linkedin.com/in/abhinandan-29b66b28b/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf" target="_blank" rel="noopener" class="nav-btn">Resume</a>
-    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme">
+    <button type="button" class="theme-toggle" id="themeToggle" aria-label="Theme follows browser/system preference">
       <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
       <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
     </button>
@@ -497,7 +506,7 @@
       <span class="eyebrow">// whoami</span>
       <h1>ABHINANDAN<span class="cursor">_</span></h1>
       <p class="typed-line mono" id="typedLine"><span class="type-cursor"></span></p>
-      <p class="lead">Pre-final year B.Tech CSE student specialising in cybersecurity, with hands-on experience building production-grade intrusion detection systems. Flagship project: <strong>ZeroContext IDPS</strong> — a C++/Python/PyTorch system that detects non-human behaviour through kernel-level behavioral biometrics, serving a live SOC dashboard. IBM Cybersecurity Fundamentals certified (Credly). Consistent problem-solver: <strong><span id="lc-hero-solved">—</span> LeetCode problems</strong>, <strong><span id="gh-hero-streak">—</span>-day GitHub streak</strong>, <strong><span id="gh-hero-total">—</span> contributions</strong>.</p>
+      <p class="lead">Pre-final year B.Tech CSE student specialising in cybersecurity, with hands-on experience building production-grade intrusion detection systems. Flagship project: <strong>ZeroContext IDPS</strong> — a C++/Python/PyTorch system that detects non-human behaviour through kernel-level behavioral biometrics, serving a live SOC dashboard. IBM Cybersecurity Fundamentals certified (Credly). Consistent problem-solver: 141 LeetCode problems, 69-day GitHub streak, 441 contributions.</p>
       <p class="strengths"><span class="label">STRENGTHS</span>Strong problem-solving ability, detail-oriented, quick learner, adaptable, and team-friendly.</p>
       <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Alipur,+Ibrahimpur,+Bahadrabad,+Haridwar,+Uttarakhand" target="_blank" rel="noopener" class="location-link">Alipur, Ibrahimpur, Bahadrabad, Haridwar, U.K.</a></p>
     </div>
@@ -835,20 +844,69 @@
 </footer>
 
 <script>
-/* ── Theme toggle ── */
+/* ── Browser/System Theme Sync ──
+   Default follows the browser/OS prefers-color-scheme.
+   The button temporarily previews the opposite theme; nothing is
+   persisted, so a fresh page load always returns to system sync. */
 (function(){
   var root = document.documentElement;
   var btn  = document.getElementById('themeToggle');
-  var stored; try{ stored = localStorage.getItem('theme'); }catch(e){}
-  var prefersLight = window.matchMedia('(prefers-color-scheme:light)').matches;
-  var initial = stored || (prefersLight ? 'light' : 'dark');
-  if(initial === 'light') root.setAttribute('data-theme','light');
-  btn.addEventListener('click', function(){
-    var isLight = root.getAttribute('data-theme') === 'light';
-    if(isLight){ root.removeAttribute('data-theme'); try{ localStorage.setItem('theme','dark'); }catch(e){} }
-    else{ root.setAttribute('data-theme','light'); try{ localStorage.setItem('theme','light'); }catch(e){} }
-    
-  });
+  var meta = document.getElementById('themeColorMeta');
+  var media = window.matchMedia('(prefers-color-scheme: light)');
+  var manualOverride = false;
+
+  function applyTheme(isLight){
+    if(isLight){
+      root.setAttribute('data-theme','light');
+      if(meta) meta.setAttribute('content','#f7f9fb');
+    }else{
+      root.removeAttribute('data-theme');
+      if(meta) meta.setAttribute('content','#05080d');
+    }
+
+    if(btn){
+      btn.setAttribute(
+        'aria-label',
+        manualOverride
+          ? 'Return to browser/system theme'
+          : (isLight ? 'Preview dark theme' : 'Preview light theme')
+      );
+      btn.setAttribute(
+        'title',
+        manualOverride
+          ? 'Return to browser/system theme'
+          : 'Theme follows browser/system preference'
+      );
+    }
+  }
+
+  function syncWithSystem(){
+    if(!manualOverride) applyTheme(media.matches);
+  }
+
+  // Initial state always follows the browser/system theme.
+  applyTheme(media.matches);
+
+  // Automatically transition when the browser/OS theme changes.
+  if(media.addEventListener){
+    media.addEventListener('change', syncWithSystem);
+  }else if(media.addListener){
+    media.addListener(syncWithSystem);
+  }
+
+  // Keep the existing button useful without saving a stale preference.
+  if(btn){
+    btn.addEventListener('click', function(){
+      if(manualOverride){
+        manualOverride = false;
+        applyTheme(media.matches);
+      }else{
+        manualOverride = true;
+        applyTheme(!media.matches);
+      }
+      window.dispatchEvent(new Event('portfolio-theme-change'));
+    });
+  }
 })();
 
 /* ── LeetCode live stats — same-origin Vercel API ── */
@@ -876,8 +934,6 @@
     var total = easy + med + hard;
 
     totalEl.textContent = total;
-    var heroLC = document.getElementById('lc-hero-solved');
-    if(heroLC) heroLC.textContent = total;
     easyEl.textContent  = easy;
     medEl.textContent   = med;
     hardEl.textContent  = hard;
@@ -987,7 +1043,17 @@
   window.addEventListener('mousemove',function(e){ mouse.x=e.clientX; mouse.y=e.clientY; mouse.active=true; if(reduced) step(); });
   window.addEventListener('mouseleave',function(){ mouse.active=false; if(reduced) step(); });
   document.addEventListener('visibilitychange',function(){ if(document.hidden){ if(rafId) cancelAnimationFrame(rafId); rafId=null; }else if(!reduced&&!rafId) loop(); });
-  document.getElementById('themeToggle').addEventListener('click',function(){ setTimeout(function(){ readThemeColors(); if(reduced) step(); },50); });
+  window.addEventListener('portfolio-theme-change',function(){
+    readThemeColors();
+    if(reduced) step();
+  });
+  var themeMedia = window.matchMedia('(prefers-color-scheme: light)');
+  function handleSystemThemeChange(){
+    readThemeColors();
+    if(reduced) step();
+  }
+  if(themeMedia.addEventListener) themeMedia.addEventListener('change',handleSystemThemeChange);
+  else if(themeMedia.addListener) themeMedia.addListener(handleSystemThemeChange);
   if(reduced) step(); else loop();
 })();
 
@@ -1054,11 +1120,6 @@
     elTotal.textContent   = stats.total;
     elStreak.textContent  = stats.currentStreak;
     elLongest.textContent = stats.longestStreak;
-
-    var heroGHTotal = document.getElementById('gh-hero-total');
-    var heroGHStreak = document.getElementById('gh-hero-streak');
-    if(heroGHTotal) heroGHTotal.textContent = stats.total;
-    if(heroGHStreak) heroGHStreak.textContent = stats.currentStreak;
     if(stats.currentStart) elSDates.textContent = shortDate(stats.currentStart)+' – Now';
     if(stats.longestStart) elLDates.textContent = shortDate(stats.longestStart)+' – '+shortDate(stats.longestEnd);
   }
