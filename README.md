@@ -1,43 +1,35 @@
-::: {align="center"}
-```{=html}
+<div align="center">
+
 <!-- ANIMATED BANNER — cybersecurity terminal green palette -->
-```
-`<picture>`{=html} `<source media="(prefers-color-scheme: dark)"
-          srcset="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=39FF14&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=7FDBCA">`{=html}
-`<source media="(prefers-color-scheme: light)"
-          srcset="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=172033&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=008F8C">`{=html}
-`<img src="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=172033&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=008F8C"
-       width="100%"
-       alt="Abhinandan — Cybersecurity | Python | C++ | Java">`{=html}
-`</picture>`{=html}
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=39FF14&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=7FDBCA">
+  <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=172033&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=008F8C">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=172033&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=008F8C" width="100%" alt="Abhinandan — Cybersecurity | Python | C++ | Java">
+</picture>
 
-```{=html}
 <!-- TYPING ANIMATION — terminal green on dark -->
-```
-`<picture>`{=html} `<source media="(prefers-color-scheme: dark)"
-          srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=39FF14&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F">`{=html}
-`<source media="(prefers-color-scheme: light)"
-          srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=008F8C&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F">`{=html}
-`<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=008F8C&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F"
-       alt="Computer Science & Engineering Student — Cybersecurity">`{=html}
-`</picture>`{=html}
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=39FF14&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F">
+  <source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=008F8C&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=008F8C&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F" alt="Computer Science & Engineering Student — Cybersecurity">
+</picture>
 
-`<br/>`{=html}
+<br/>
 
 [![Portfolio](https://img.shields.io/badge/🌐_Portfolio-my--portfolio--abhinandan.vercel.app-0D1117?style=for-the-badge)](https://my-portfolio-abhinandan.vercel.app)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 [![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
 [![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf)
-[![IBM
-Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
-:::
+[![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
 
-------------------------------------------------------------------------
+</div>
+
+---
 
 ## 👨‍💻 About Me
 
-``` python
+```python
 class Abhinandan:
     def __init__(self):
         self.name        = "Abhinandan"
@@ -55,16 +47,16 @@ class Abhinandan:
         return "Build. Defend. Repeat. 🛡️"
 ```
 
-------------------------------------------------------------------------
+---
 
 ## 📊 GitHub Activity
 
-::: {align="center"}
+<div align="center">
+
 ### 📊 GitHub Stats & Activity
 
-```{=html}
 <!-- Snapshot badges: update these manually when you want the README numbers refreshed. -->
-```
+
 ![Contributions](https://img.shields.io/badge/Total_Contributions-441-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
 ![Streak](https://img.shields.io/badge/Current_Streak-69_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
 ![Longest](https://img.shields.io/badge/Longest_Streak-69_Days_(Jul_9–Sep_8)-7FDBCA?style=for-the-badge&labelColor=0D1117)
@@ -75,53 +67,38 @@ class Abhinandan:
 ![Medium](https://img.shields.io/badge/Medium-53-fbbf24?style=flat-square&labelColor=0D1117)
 ![Hard](https://img.shields.io/badge/Hard-7-fb7185?style=flat-square&labelColor=0D1117)
 
-`<br/>`{=html}
+<br/>
 
-```{=html}
-<!-- GitHub's own contribution graph is available directly on the profile. -->
-```
+<!-- GitHub's own live contribution graph -->
 ### 📈 Live Contribution Activity
 
-[![View GitHub Contribution
-Graph](https://img.shields.io/badge/View%20Live%20Contribution%20Graph-39FF14?style=for-the-badge&logo=github&logoColor=39FF14&labelColor=0D1117)](https://github.com/a23894843)
+[![View GitHub Contribution Graph](https://img.shields.io/badge/View%20Live%20Contribution%20Graph-39FF14?style=for-the-badge&logo=github&logoColor=39FF14&labelColor=0D1117)](https://github.com/a23894843)
 
 > GitHub maintains the live contribution calendar on the profile above.
 
-`<br/>`{=html}
+<br/>
 
-![Profile
-Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
-:::
+![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
 
-------------------------------------------------------------------------
+</div>
+
+---
 
 ## 🛡️ Featured Projects
 
-```{=html}
 <table>
-```
-```{=html}
 <tr>
-```
-```{=html}
 <td colspan="2">
-```
-### 🛡️ ZeroContext IDPS --- Flagship Project
 
-**C++ · Python · PyTorch · scikit-learn · FastAPI · asyncio · MySQL ·
-Kali Linux**
+### 🛡️ ZeroContext IDPS — Flagship Project
+**C++ · Python · PyTorch · scikit-learn · FastAPI · asyncio · MySQL · Kali Linux**
 
-Intelligent Intrusion Detection & Prevention System with Behavioral
-Biometrics: - **Multi-threaded C++ sensor daemon** captures raw
-`/dev/input` mouse & keyboard events at kernel level; streams
-microsecond-precision telemetry via **Unix Domain Sockets** - **PyTorch
-Autoencoder** detects non-human mouse patterns via reconstruction loss
-on velocity/acceleration/delta-t vectors - **scikit-learn Isolation
-Forest** flags anomalous keystroke rhythms using dwell time + flight
-time dynamics - Full **async Python backend** (asyncio + aiomysql)
-handling both sensor streams concurrently --- zero blocking I/O -
-**FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh),
-anomaly score colouring, light/dark theme
+Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
+- **Multi-threaded C++ sensor daemon** captures raw `/dev/input` mouse & keyboard events at kernel level; streams microsecond-precision telemetry via **Unix Domain Sockets**
+- **PyTorch Autoencoder** detects non-human mouse patterns via reconstruction loss on velocity/acceleration/delta-t vectors
+- **scikit-learn Isolation Forest** flags anomalous keystroke rhythms using dwell time + flight time dynamics
+- Full **async Python backend** (asyncio + aiomysql) handling both sensor streams concurrently — zero blocking I/O
+- **FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh), anomaly score colouring, light/dark theme
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
@@ -131,106 +108,82 @@ anomaly score colouring, light/dark theme
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![Kali](https://img.shields.io/badge/Kali_Linux-557C94?style=flat&logo=kalilinux&logoColor=white)
 
-```{=html}
 </td>
-```
-```{=html}
 </tr>
-```
-```{=html}
 <tr>
-```
-```{=html}
 <td width="50%">
-```
-### 🔐 Cyber Defensive Engine
 
+### 🔐 Cyber Defensive Engine
 **C++ · Python · ML · Unix IPC**
 
-Real-time hybrid network defence system: - **C++ packet sniffer** for
-high-speed raw capture - **Unsupervised ML pipeline** --- detects DDoS,
-port scans & anomalies - **Unix Domain Sockets (UDS/IPC)** for secure
-cross-process comms - Automated **real-time defensive responses**
+Real-time hybrid network defence system:
+- **C++ packet sniffer** for high-speed raw capture
+- **Unsupervised ML pipeline** — detects DDoS, port scans & anomalies
+- **Unix Domain Sockets (UDS/IPC)** for secure cross-process comms
+- Automated **real-time defensive responses**
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![ML](https://img.shields.io/badge/Unsupervised_ML-FF6F00?style=flat&logo=scikitlearn&logoColor=white)
 ![IPC](https://img.shields.io/badge/Unix_IPC-333333?style=flat&logo=linux&logoColor=white)
 
-```{=html}
 </td>
-```
-```{=html}
 <td width="50%">
-```
-### 🦠 Dr. Vaccine Antivirus
 
+### 🦠 Dr. Vaccine Antivirus
 **Java · OOP · Security**
 
-Signature-based antivirus prototype: - **Pattern-matching file scanner**
-using signature DBs - Clean Java UI for scan initiation & monitoring -
-Full OOP architecture --- encapsulation, abstraction, modularity -
-End-to-end software lifecycle execution
+Signature-based antivirus prototype:
+- **Pattern-matching file scanner** using signature DBs
+- Clean Java UI for scan initiation & monitoring
+- Full OOP architecture — encapsulation, abstraction, modularity
+- End-to-end software lifecycle execution
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
 ![Security](https://img.shields.io/badge/Security-C0392B?style=flat&logo=virustotal&logoColor=white)
 ![OOP](https://img.shields.io/badge/OOP-512BD4?style=flat)
 
-```{=html}
 </td>
-```
-```{=html}
 </tr>
-```
-```{=html}
 <tr>
-```
-```{=html}
 <td width="50%">
-```
-### 📋 Contact Management System
 
+### 📋 Contact Management System
 **Python · MySQL · Tkinter**
 
-Full-featured desktop CRUD app: - Tkinter GUI + optimised MySQL
-backend - Full **add / update / delete / search** operations - Built
-during internship at **CodSoft**
+Full-featured desktop CRUD app:
+- Tkinter GUI + optimised MySQL backend
+- Full **add / update / delete / search** operations
+- Built during internship at **CodSoft**
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-2ECC71?style=flat)
 
-```{=html}
 </td>
-```
-```{=html}
 <td width="50%">
-```
-### 🔑 Secure Password Generator
 
+### 🔑 Secure Password Generator
 **Python · String Handling**
 
-GUI-based cryptographic password tool: - Secure randomisation logic -
-Configurable length & complexity - Clean Tkinter interface
+GUI-based cryptographic password tool:
+- Secure randomisation logic
+- Configurable length & complexity
+- Clean Tkinter interface
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![Security](https://img.shields.io/badge/Cryptography-117A65?style=flat&logo=letsencrypt&logoColor=white)
 
-```{=html}
 </td>
-```
-```{=html}
 </tr>
-```
-```{=html}
 </table>
-```
 
-------------------------------------------------------------------------
+---
 
 ## 🧰 Tech Stack
 
-::: {align="center"}
+<div align="center">
+
 **Languages**
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
@@ -240,8 +193,7 @@ Configurable length & complexity - Clean Tkinter interface
 
 **Security & OS**
 
-![Kali
-Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
+![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Wireshark](https://img.shields.io/badge/Network_Security-1679A7?style=for-the-badge&logo=wireshark&logoColor=white)
 
@@ -251,75 +203,60 @@ Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=k
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-![VS
-Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-![MySQL
-Workbench](https://img.shields.io/badge/MySQL_Workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
+![MySQL Workbench](https://img.shields.io/badge/MySQL_Workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
-:::
 
-------------------------------------------------------------------------
+</div>
+
+---
 
 ## 🏅 Certifications
 
-  ------------------------------------------------------------------------
-       Certification                     Issuer             Year
-  ---- --------------------------------- ------------------ --------------
-  🏅   **LeetCode 50 Days Badge 2026**   LeetCode           2026
-       --- 141 solved (81E/53M/7H) ·                        
-       69-day streak                                        
+| | Certification | Issuer | Year |
+|--|--------------|--------|------|
+| 🏅 | **LeetCode 50 Days Badge 2026** — 141 solved (81E/53M/7H) · 69-day streak | LeetCode | 2026 |
+| 🛡️ | **Cybersecurity Fundamentals** *(verified via Credly)* | IBM SkillsBuild | 2026 |
+| 🐍 | Python Internship | CodSoft | 2025 |
+| 🤖 | AI & ML Workshop | Sofcon India Pvt. Ltd. | 2025 |
+| ⚡ | Intelligent BMS: Leveraging AI for Accuracy, Safety & Sustainability | MathWorks | 2025 |
+| 💬 | Group Discussion on Technology and Innovation | NDLI Club | 2024 |
 
-  🛡️   **Cybersecurity Fundamentals**    IBM SkillsBuild    2026
-       *(verified via Credly)*                              
-
-  🐍   Python Internship                 CodSoft            2025
-
-  🤖   AI & ML Workshop                  Sofcon India Pvt.  2025
-                                         Ltd.               
-
-  ⚡   Intelligent BMS: Leveraging AI    MathWorks          2025
-       for Accuracy, Safety &                               
-       Sustainability                                       
-
-  💬   Group Discussion on Technology    NDLI Club          2024
-       and Innovation                                       
-  ------------------------------------------------------------------------
-
-------------------------------------------------------------------------
+---
 
 ## 🎓 Education
 
-    🎓 B.Tech — Computer Science & Engineering (Cybersecurity)
-       Gurukul Kangri Vishwavidyalaya (Deemed University) | 2023 – Present | CGPA: 7.755
+```
+🎓 B.Tech — Computer Science & Engineering (Cybersecurity)
+   Gurukul Kangri Vishwavidyalaya (Deemed University) | 2023 – Present | CGPA: 7.755
 
-    🏫 12th Grade — CBSE, S.B.N. International School, Laksar | 2022 | 67%
-    🏫 10th Grade — CBSE, S.B.N. International School, Laksar | 2020 | 70%
+🏫 12th Grade — CBSE, S.B.N. International School, Laksar | 2022 | 67%
+🏫 10th Grade — CBSE, S.B.N. International School, Laksar | 2020 | 70%
+```
 
-------------------------------------------------------------------------
+---
 
 ## 💼 Internship
 
-**Python Intern --- CodSoft** *(August 2025)* \> Delivered 3
-production-quality Python applications in 1 month --- Contact Management
-System, Secure Password Generator, and a GUI-based game ---
-demonstrating rapid execution and clean code practices.
+**Python Intern — CodSoft** *(August 2025)*
+> Delivered 3 production-quality Python applications in 1 month — Contact Management System, Secure Password Generator, and a GUI-based game — demonstrating rapid execution and clean code practices.
 
-------------------------------------------------------------------------
+---
 
-::: {align="center"}
+<div align="center">
+
 ### 📬 Open to Opportunities
 
-*Cybersecurity internships · Open-source contributions · Security
-research collaborations*
+*Cybersecurity internships · Open-source contributions · Security research collaborations*
 
 [![Portfolio](https://img.shields.io/badge/🌐_Visit_My_Portfolio-0D1117?style=for-the-badge)](https://my-portfolio-abhinandan.vercel.app)
 [![Email](https://img.shields.io/badge/📧_Email_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 
-`<br/>`{=html}
+<br/>
 
-![Visitor
-Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
+![Visitor Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
 
-`<img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=150&section=footer&reversal=true" width="100%"/>`{=html}
-:::
+<img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=150&section=footer&reversal=true" width="100%"/>
+
+</div>
