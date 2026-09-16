@@ -1062,7 +1062,9 @@
     elWrap.style.display = 'block';
     elStatus.textContent = 'Live · '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
 
-    var sorted = days.slice().sort(function(a,b){ return a.date<b.date?-1:1; });
+    var today = new Date().toISOString().slice(0,10);
+    var sorted = days.filter(function(d){ return d && d.date && d.date <= today; })
+      .slice().sort(function(a,b){ return a.date<b.date?-1:1; });
     var last30 = sorted.slice(-30);
 
     var dpr  = Math.min(window.devicePixelRatio||1,2);
