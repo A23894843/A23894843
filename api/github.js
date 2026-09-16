@@ -112,8 +112,13 @@ export default async function handler(req, res) {
       throw new Error('Invalid public GitHub contributions response');
     }
 
+    const today = new Date().toISOString().slice(0, 10);
+
+    // The public calendar API can include the remaining days of the current
+    // year as zero-contribution placeholders. Never use future dates for the
+    // streak calculation or the last-30-days chart.
     return body.contributions
-      .filter(day => day.date >= '2024-06-21')
+      .filter(day => day.date >= '2024-06-21' && day.date <= today)
       .map(day => ({
         date: day.date,
         count: Number(day.count) || 0
