@@ -40,7 +40,7 @@ class Abhinandan:
         self.languages   = ["Python", "C++", "Java", "SQL"]
         self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
         self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
-        self.streak      = "Live on GitHub profile 🔥"
+        self.streak      = "69 days and counting 🔥"
         self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
 
     def current_goal(self) -> str:
@@ -55,11 +55,11 @@ class Abhinandan:
 
 ### 📊 GitHub Stats & Activity
 
-<!-- Snapshot badges: update these manually when you want the README numbers refreshed. -->
+<!-- Snapshot badges — update when refreshing numbers -->
 
 ![Contributions](https://img.shields.io/badge/Total_Contributions-441-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
 ![Streak](https://img.shields.io/badge/Current_Streak-69_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
-![Longest](https://img.shields.io/badge/Longest_Streak-69_Days_(Jul_9–Sep_8)-7FDBCA?style=for-the-badge&labelColor=0D1117)
+![Longest](https://img.shields.io/badge/Longest_Streak-69_Days_(Jul_9–Sep_15)-7FDBCA?style=for-the-badge&labelColor=0D1117)
 ![Since](https://img.shields.io/badge/Active_Since-Jun_21_2024-8B949E?style=for-the-badge&labelColor=0D1117)
 
 ![LeetCode](https://img.shields.io/badge/LeetCode-141_Solved_·_50_Days_Badge_2026-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
@@ -69,12 +69,11 @@ class Abhinandan:
 
 <br/>
 
-<!-- GitHub's own live contribution graph -->
 ### 📈 Live Contribution Activity
 
-[![View GitHub Contribution Graph](https://img.shields.io/badge/View%20Live%20Contribution%20Graph-39FF14?style=for-the-badge&logo=github&logoColor=39FF14&labelColor=0D1117)](https://github.com/a23894843)
+[![View GitHub Contribution Graph](https://img.shields.io/badge/View%20Live%20Contribution%20Graph-39FF14?style=for-the-badge&logo=github&logoColor=black&labelColor=0D1117)](https://github.com/a23894843)
 
-> GitHub maintains the live contribution calendar on the profile above.
+> 📌 GitHub's live contribution calendar is always up to date — click the badge above to view.
 
 <br/>
 
@@ -257,6 +256,11 @@ GUI-based cryptographic password tool:
 
 ![Visitor Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=timeAuto&height=150&section=footer&reversal=true" width="100%"/>
+<!-- FOOTER — theme aware -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=150&section=footer&reversal=true">
+  <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=150&section=footer&reversal=true">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=150&section=footer&reversal=true" width="100%"/>
+</picture>
 
 </div>
