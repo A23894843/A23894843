@@ -497,7 +497,7 @@
       <span class="eyebrow">// whoami</span>
       <h1>ABHINANDAN<span class="cursor">_</span></h1>
       <p class="typed-line mono" id="typedLine"><span class="type-cursor"></span></p>
-      <p class="lead">Pre-final year B.Tech CSE student specialising in cybersecurity, with hands-on experience building production-grade intrusion detection systems. Flagship project: <strong>ZeroContext IDPS</strong> — a C++/Python/PyTorch system that detects non-human behaviour through kernel-level behavioral biometrics, serving a live SOC dashboard. IBM Cybersecurity Fundamentals certified (Credly). Consistent problem-solver: 141 LeetCode problems, 69-day GitHub streak, 441 contributions.</p>
+      <p class="lead">Pre-final year B.Tech CSE student specialising in cybersecurity, with hands-on experience building production-grade intrusion detection systems. Flagship project: <strong>ZeroContext IDPS</strong> — a C++/Python/PyTorch system that detects non-human behaviour through kernel-level behavioral biometrics, serving a live SOC dashboard. IBM Cybersecurity Fundamentals certified (Credly). Consistent problem-solver: <strong><span id="lc-hero-solved">—</span> LeetCode problems</strong>, <strong><span id="gh-hero-streak">—</span>-day GitHub streak</strong>, <strong><span id="gh-hero-total">—</span> contributions</strong>.</p>
       <p class="strengths"><span class="label">STRENGTHS</span>Strong problem-solving ability, detail-oriented, quick learner, adaptable, and team-friendly.</p>
       <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Alipur,+Ibrahimpur,+Bahadrabad,+Haridwar,+Uttarakhand" target="_blank" rel="noopener" class="location-link">Alipur, Ibrahimpur, Bahadrabad, Haridwar, U.K.</a></p>
     </div>
@@ -876,6 +876,8 @@
     var total = easy + med + hard;
 
     totalEl.textContent = total;
+    var heroLC = document.getElementById('lc-hero-solved');
+    if(heroLC) heroLC.textContent = total;
     easyEl.textContent  = easy;
     medEl.textContent   = med;
     hardEl.textContent  = hard;
@@ -1052,6 +1054,11 @@
     elTotal.textContent   = stats.total;
     elStreak.textContent  = stats.currentStreak;
     elLongest.textContent = stats.longestStreak;
+
+    var heroGHTotal = document.getElementById('gh-hero-total');
+    var heroGHStreak = document.getElementById('gh-hero-streak');
+    if(heroGHTotal) heroGHTotal.textContent = stats.total;
+    if(heroGHStreak) heroGHStreak.textContent = stats.currentStreak;
     if(stats.currentStart) elSDates.textContent = shortDate(stats.currentStart)+' – Now';
     if(stats.longestStart) elLDates.textContent = shortDate(stats.longestStart)+' – '+shortDate(stats.longestEnd);
   }
