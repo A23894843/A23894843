@@ -654,18 +654,18 @@
     <!-- Live stat pills -->
     <div style="display:flex;flex-wrap:wrap;gap:1rem;margin-bottom:1.4rem;">
       <div class="gh-stat-pill">
-        <span class="gh-pill-num" id="gh-total'>419</span>
+        <span class="gh-pill-num" id="gh-total">419</span>
         <span class="gh-pill-label">Total Contributions</span>
         <span class="gh-pill-sub" id="gh-since">Since Jun 21, 2024</span>
       </div>
       <div class="gh-stat-pill gh-streak">
         <span class="gh-pill-icon">🔥</span>
-        <span class="gh-pill-num" id="gh-streak'>62</span>
+        <span class="gh-pill-num" id="gh-streak">62</span>
         <span class="gh-pill-label">Current Streak</span>
         <span class="gh-pill-sub" id="gh-streak-dates">Sep 15 – Now</span>
       </div>
       <div class="gh-stat-pill">
-        <span class="gh-pill-num" id="gh-longest'>62</span>
+        <span class="gh-pill-num" id="gh-longest">62</span>
         <span class="gh-pill-label">Longest Streak</span>
         <span class="gh-pill-sub" id="gh-longest-dates">Jul 9 – Sep 15</span>
       </div>
@@ -847,11 +847,11 @@
     var isLight = root.getAttribute('data-theme') === 'light';
     if(isLight){ root.removeAttribute('data-theme'); try{ localStorage.setItem('theme','dark'); }catch(e){} }
     else{ root.setAttribute('data-theme','light'); try{ localStorage.setItem('theme','light'); }catch(e){} }
-    setTimeout(function(){ readThemeColors(); },50);
+    
   });
 })();
 
-/* ── LeetCode live stats — CORS proxy cascade ── */
+/* ── LeetCode live stats — same-origin Vercel API ── */
 (function(){
   var username = 'a23894843';
   var totalEl  = document.getElementById('lc-total');
@@ -870,7 +870,11 @@
   var contEl   = document.getElementById('lc-content');
 
   function render(easy, med, hard) {
+    easy = Number(easy) || 0;
+    med  = Number(med) || 0;
+    hard = Number(hard) || 0;
     var total = easy + med + hard;
+
     totalEl.textContent = total;
     easyEl.textContent  = easy;
     medEl.textContent   = med;
@@ -878,99 +882,47 @@
     cntEasy.textContent = easy;
     cntMed.textContent  = med;
     cntHard.textContent = hard;
+
     setTimeout(function(){
       barEasy.style.width = Math.min(100,(easy/900)*100).toFixed(1)+'%';
       barMed.style.width  = Math.min(100,(med/1900)*100).toFixed(1)+'%';
       barHard.style.width = Math.min(100,(hard/820)*100).toFixed(1)+'%';
-    }, 150);
-    tsEl.textContent = 'Updated ' + new Date().toLocaleTimeString();
+    }, 100);
+
+    tsEl.textContent = 'Live · ' + new Date().toLocaleTimeString();
     loadEl.style.display = 'none';
     errEl.style.display  = 'none';
     contEl.style.display = 'block';
   }
 
-  function showError() {
+  function showError(){
     loadEl.style.display = 'none';
-    errEl.style.display  = 'block';
+    errEl.style.display = 'block';
+    tsEl.textContent = 'Unavailable';
   }
 
-  function tFetch(url, ms) {
-    ms = ms || 8000;
-    return new Promise(function(resolve, reject) {
-      var done = false;
-      var timer = setTimeout(function(){
-        if(!done){ done=true; reject(new Error('timeout')); }
-      }, ms);
-      fetch(url)
-        .then(function(r){
-          clearTimeout(timer);
-          if(!done){ done=true; r.ok ? resolve(r.json()) : reject(new Error('HTTP '+r.status)); }
-        })
-        .catch(function(e){ clearTimeout(timer); if(!done){ done=true; reject(e); } });
-    });
-  }
-
-  /* ── API list — each returns Promise<{easy,med,hard}> ── */
-  var APIS = [
-    /* 1. allOrigins proxy wrapping alfa-leetcode-api */
-    function(){
-      var target = encodeURIComponent('https://alfa-leetcode-api.onrender.com/'+username+'/solved');
-      return tFetch('https://api.allorigins.win/get?url='+target)
-        .then(function(d){
-          var j = JSON.parse(d.contents);
-          if(typeof j.easySolved === 'undefined') throw new Error('bad');
-          return {easy:j.easySolved||0, med:j.mediumSolved||0, hard:j.hardSolved||0};
-        });
-    },
-    /* 2. Direct alfa-leetcode (works on some browsers/servers) */
-    function(){
-      return tFetch('https://alfa-leetcode-api.onrender.com/'+username+'/solved')
-        .then(function(d){
-          if(typeof d.easySolved === 'undefined') throw new Error('bad');
-          return {easy:d.easySolved||0, med:d.mediumSolved||0, hard:d.hardSolved||0};
-        });
-    },
-    /* 3. allOrigins proxy wrapping faisalshohag vercel */
-    function(){
-      var target = encodeURIComponent('https://leetcode-api-faisalshohag.vercel.app/'+username);
-      return tFetch('https://api.allorigins.win/get?url='+target)
-        .then(function(d){
-          var j = JSON.parse(d.contents);
-          if(typeof j.easySolved === 'undefined') throw new Error('bad');
-          return {easy:j.easySolved||0, med:j.mediumSolved||0, hard:j.hardSolved||0};
-        });
-    },
-    /* 4. corsproxy.io wrapping leetcode-stats-api */
-    function(){
-      var target = 'https://corsproxy.io/?https://leetcode-stats-api.herokuapp.com/'+username;
-      return tFetch(target)
-        .then(function(d){
-          if(d.status==='error') throw new Error('user not found');
-          return {easy:d.easySolved||0, med:d.mediumSolved||0, hard:d.hardSolved||0};
-        });
-    },
-    /* 5. cors.sh wrapping faisalshohag */
-    function(){
-      return tFetch('https://corsproxy.io/?https://leetcode-api-faisalshohag.vercel.app/'+username)
-        .then(function(d){
-          if(typeof d.easySolved === 'undefined') throw new Error('bad');
-          return {easy:d.easySolved||0, med:d.mediumSolved||0, hard:d.hardSolved||0};
-        });
+  /* Cache-busting query ensures every page load asks our Vercel function
+     for fresh upstream data. The server itself uses no persistent cache. */
+  fetch('/api/leetcode?username='+encodeURIComponent(username)+'&_='+Date.now(), {
+    cache: 'no-store',
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(r){
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(function(d){
+    if(!d || !d.easySolved && !d.mediumSolved && !d.hardSolved){
+      throw new Error('Invalid LeetCode response');
     }
-  ];
-
-  function tryNext(i) {
-    if(i >= APIS.length){ showError(); return; }
-    APIS[i]()
-      .then(function(r){ render(r.easy, r.med, r.hard); })
-      .catch(function(e){
-        console.warn('LC API '+(i+1)+' failed:', e.message||e);
-        tryNext(i+1);
-      });
-  }
-
-  tryNext(0);
+    render(d.easySolved, d.mediumSolved, d.hardSolved);
+  })
+  .catch(function(e){
+    console.warn('LeetCode API failed:', e);
+    showError();
+  });
 })();
+
 
 /* ── Matrix background canvas ── */
 (function(){
@@ -1068,11 +1020,10 @@
   items.forEach(function(el){ obs.observe(el); });
 })();
 
-/* ── GitHub Activity — Live stats + bar/line chart, 3-API cascade ── */
+/* ── GitHub Activity — Live stats + bar/line chart ── */
 (function(){
   var USER = 'a23894843';
 
-  /* DOM refs */
   var elTotal    = document.getElementById('gh-total');
   var elStreak   = document.getElementById('gh-streak');
   var elSDates   = document.getElementById('gh-streak-dates');
@@ -1086,261 +1037,149 @@
   var canvas     = document.getElementById('gh-chart');
   var tooltip    = document.getElementById('gh-tooltip');
 
-  /* Animate loading dots */
   var di = 0;
-  var dotsTmr = setInterval(function(){ if(elDots) elDots.textContent = ['.','..','...'][di++%3]; }, 400);
+  var dotsTmr = setInterval(function(){
+    if(elDots) elDots.textContent = ['.','..','...'][di++%3];
+  }, 400);
 
-  function tFetch(url, ms){
-    ms = ms || 7000;
-    var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-    var timer = setTimeout(function(){ if(controller) controller.abort(); }, ms);
-    var opts = controller ? { signal: controller.signal } : {};
-    return fetch(url, opts).then(function(r){
-      clearTimeout(timer);
-      if(!r.ok) throw new Error('HTTP ' + r.status);
-      return r.json();
-    }).catch(function(e){ clearTimeout(timer); throw e; });
-  }
-
-  /* ── 3 contribution APIs ── */
-  function api1(){ /* jogruber — returns { contributions:[{date,count}] } */
-    return tFetch('https://github-contributions-api.jogruber.de/v4/'+USER+'?y=last')
-      .then(function(d){
-        if(!d||!Array.isArray(d.contributions)||!d.contributions.length) throw new Error('empty');
-        return d.contributions; /* [{date:'YYYY-MM-DD', count:N}] */
-      });
-  }
-  function api2(){ /* Blogging Workbook proxy — same shape */
-    return tFetch('https://github-contributions-api.jogruber.de/v4/'+USER)
-      .then(function(d){
-        /* aggregate all years */
-        if(!d||!Array.isArray(d.contributions)||!d.contributions.length) throw new Error('empty');
-        return d.contributions;
-      });
-  }
-  function api3(){ /* ghcal.vercel.app */
-    return tFetch('https://ghcal.vercel.app/'+USER)
-      .then(function(d){
-        if(!Array.isArray(d)||!d.length) throw new Error('empty');
-        return d.map(function(c){ return { date: c.date||c.day||'', count: c.count||c.level||0 }; });
-      });
-  }
-
-  function cascade(fns, idx){
-    if(idx >= fns.length) return Promise.reject(new Error('all failed'));
-    return fns[idx]().catch(function(e){
-      console.warn('GH API '+(idx+1)+' failed:', e.message||e);
-      return cascade(fns, idx+1);
-    });
-  }
-
-  /* ── Compute streaks from flat contribution array ── */
-  function computeStreaks(days){
-    /* Sort ascending */
-    var sorted = days.slice().sort(function(a,b){ return a.date < b.date ? -1 : 1; });
-    var total = 0;
-    sorted.forEach(function(d){ total += d.count; });
-
-    var today     = new Date(); today.setHours(0,0,0,0);
-    var yesterday = new Date(today); yesterday.setDate(today.getDate()-1);
-
-    var cur=0, curStart='', lon=0, lonStart='', lonEnd='';
-    var tmp=0, tmpStart='';
-
-    for(var i=0; i<sorted.length; i++){
-      var d = sorted[i];
-      if(d.count > 0){
-        if(tmp === 0) tmpStart = d.date;
-        tmp++;
-        if(tmp > lon){ lon=tmp; lonStart=tmpStart; lonEnd=d.date; }
-      } else {
-        tmp=0; tmpStart='';
-      }
-    }
-
-    /* current streak — walk backwards from today */
-    var checkDate = new Date(today);
-    /* if today has 0 contributions, start from yesterday */
-    var todayStr = fmtDate(today);
-    var todayEntry = sorted.filter(function(d){ return d.date===todayStr; })[0];
-    if(!todayEntry || todayEntry.count===0) checkDate = yesterday;
-
-    for(var j=sorted.length-1; j>=0; j--){
-      var dd = sorted[j];
-      var cd = fmtDate(checkDate);
-      if(dd.date === cd){
-        if(dd.count > 0){
-          if(cur===0) curStart = dd.date;
-          cur++;
-          checkDate = new Date(checkDate);
-          checkDate.setDate(checkDate.getDate()-1);
-        } else break;
-      } else if(dd.date < cd) break;
-    }
-
-    return { total:total, cur:cur, curStart:curStart, lon:lon, lonStart:lonStart, lonEnd:lonEnd };
-  }
-
-  function fmtDate(d){
-    var dd = new Date(d);
-    return dd.getFullYear()+'-'+pad(dd.getMonth()+1)+'-'+pad(dd.getDate());
-  }
-  function pad(n){ return n<10?'0'+n:String(n); }
   function shortDate(s){
     if(!s) return '';
     var d = new Date(s+'T00:00:00');
     return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
   }
 
-  /* ── Draw bar + line chart ── */
+  function updatePills(stats){
+    elTotal.textContent   = stats.total;
+    elStreak.textContent  = stats.currentStreak;
+    elLongest.textContent = stats.longestStreak;
+    if(stats.currentStart) elSDates.textContent = shortDate(stats.currentStart)+' – Now';
+    if(stats.longestStart) elLDates.textContent = shortDate(stats.longestStart)+' – '+shortDate(stats.longestEnd);
+  }
+
   function drawChart(days){
     clearInterval(dotsTmr);
     elLoading.style.display = 'none';
-    elWrap.style.display    = 'block';
-    elStatus.textContent    = 'Live · '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+    elWrap.style.display = 'block';
+    elStatus.textContent = 'Live · '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
 
-    /* Last 30 days */
     var sorted = days.slice().sort(function(a,b){ return a.date<b.date?-1:1; });
     var last30 = sorted.slice(-30);
 
     var dpr  = Math.min(window.devicePixelRatio||1,2);
     var W    = canvas.parentElement.clientWidth||700;
     var H    = 200;
-    canvas.width  = W*dpr; canvas.height = H*dpr;
-    canvas.style.width = W+'px'; canvas.style.height = H+'px';
+    canvas.width=W*dpr; canvas.height=H*dpr;
+    canvas.style.width=W+'px'; canvas.style.height=H+'px';
 
-    var ctx = canvas.getContext('2d');
+    var ctx=canvas.getContext('2d');
     ctx.scale(dpr,dpr);
 
-    var cs    = getComputedStyle(document.documentElement);
-    var SIG   = (cs.getPropertyValue('--signal')||'#5eead4').trim();
-    var ALT   = (cs.getPropertyValue('--alert')||'#fb7185').trim();
-    var LIN   = (cs.getPropertyValue('--line')||'#1c2836').trim();
-    var DIM   = (cs.getPropertyValue('--dim')||'#7d8a9c').trim();
-    var INK   = (cs.getPropertyValue('--ink')||'#e7edf5').trim();
-    var PAN   = (cs.getPropertyValue('--panel')||'#0d141f').trim();
+    var cs=getComputedStyle(document.documentElement);
+    var SIG=(cs.getPropertyValue('--signal')||'#5eead4').trim();
+    var ALT=(cs.getPropertyValue('--alert')||'#fb7185').trim();
+    var LIN=(cs.getPropertyValue('--line')||'#1c2836').trim();
+    var DIM=(cs.getPropertyValue('--dim')||'#7d8a9c').trim();
 
-    var PAD   = { top:20, right:16, bottom:42, left:36 };
-    var cW    = W - PAD.left - PAD.right;
-    var cH    = H - PAD.top  - PAD.bottom;
+    var PAD={top:20,right:16,bottom:42,left:36};
+    var cW=W-PAD.left-PAD.right;
+    var cH=H-PAD.top-PAD.bottom;
+    var maxV=Math.max.apply(null,last30.map(function(d){return d.count;}))||1;
 
-    var maxV  = Math.max.apply(null, last30.map(function(d){ return d.count; })) || 1;
-
-    /* Grid lines */
-    ctx.strokeStyle = LIN; ctx.lineWidth = 0.6;
+    ctx.strokeStyle=LIN; ctx.lineWidth=.6;
     [0,.25,.5,.75,1].forEach(function(t){
-      var y = PAD.top + cH - t*cH;
-      ctx.beginPath(); ctx.moveTo(PAD.left,y); ctx.lineTo(PAD.left+cW,y); ctx.stroke();
-      ctx.fillStyle=DIM; ctx.font='9px "JetBrains Mono",monospace'; ctx.textAlign='right';
-      ctx.fillText(Math.round(t*maxV), PAD.left-5, y+3);
+      var y=PAD.top+cH-t*cH;
+      ctx.beginPath();ctx.moveTo(PAD.left,y);ctx.lineTo(PAD.left+cW,y);ctx.stroke();
+      ctx.fillStyle=DIM;ctx.font='9px "JetBrains Mono",monospace';ctx.textAlign='right';
+      ctx.fillText(Math.round(t*maxV),PAD.left-5,y+3);
     });
 
-    var bW   = (cW/last30.length)*0.65;
-    var bGap = (cW - bW*last30.length)/(last30.length);
-    var barMeta = [];
+    var bW=(cW/last30.length)*.65;
+    var bGap=(cW-bW*last30.length)/last30.length;
+    var barMeta=[];
 
-    /* Bars */
     last30.forEach(function(d,i){
-      var x  = PAD.left + i*(bW+bGap) + bGap/2;
-      var h  = (d.count/maxV)*cH;
-      var y  = PAD.top + cH - h;
-      var t  = d.count/maxV;
-      /* gradient fill */
-      var grad = ctx.createLinearGradient(0,y,0,PAD.top+cH);
-      grad.addColorStop(0, SIG);
-      grad.addColorStop(1, 'rgba(94,234,212,0.08)');
-      ctx.globalAlpha = 0.18 + t*0.72;
-      ctx.fillStyle   = grad;
-      /* rounded top */
-      var r = Math.min(3, h/2);
+      var x=PAD.left+i*(bW+bGap)+bGap/2;
+      var h=(d.count/maxV)*cH;
+      var y=PAD.top+cH-h;
+      var t=d.count/maxV;
+      var grad=ctx.createLinearGradient(0,y,0,PAD.top+cH);
+      grad.addColorStop(0,SIG);
+      grad.addColorStop(1,'rgba(94,234,212,.08)');
+      ctx.globalAlpha=.18+t*.72;ctx.fillStyle=grad;
+      var r=Math.min(3,h/2);
       ctx.beginPath();
-      ctx.moveTo(x+r,y); ctx.lineTo(x+bW-r,y);
+      ctx.moveTo(x+r,y);ctx.lineTo(x+bW-r,y);
       ctx.quadraticCurveTo(x+bW,y,x+bW,y+r);
-      ctx.lineTo(x+bW,PAD.top+cH); ctx.lineTo(x,PAD.top+cH); ctx.lineTo(x,y+r);
-      ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
-      ctx.fill();
-      ctx.globalAlpha=1;
-      barMeta.push({ x:x, bW:bW, y:PAD.top, h:cH+PAD.top, count:d.count, date:d.date, cx:x+bW/2, cy:y===PAD.top+cH?y:y });
+      ctx.lineTo(x+bW,PAD.top+cH);ctx.lineTo(x,PAD.top+cH);ctx.lineTo(x,y+r);
+      ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill();ctx.globalAlpha=1;
+      barMeta.push({x:x,bW:bW,count:d.count,date:d.date});
     });
 
-    /* Line overlay */
     ctx.beginPath();
     last30.forEach(function(d,i){
-      var cx = PAD.left + i*(bW+bGap) + bGap/2 + bW/2;
-      var cy = PAD.top + cH - (d.count/maxV)*cH;
-      if(i===0) ctx.moveTo(cx,cy); else ctx.lineTo(cx,cy);
+      var cx=PAD.left+i*(bW+bGap)+bGap/2+bW/2;
+      var cy=PAD.top+cH-(d.count/maxV)*cH;
+      if(i===0)ctx.moveTo(cx,cy);else ctx.lineTo(cx,cy);
     });
-    ctx.strokeStyle=SIG; ctx.lineWidth=2; ctx.lineJoin='round'; ctx.stroke();
+    ctx.strokeStyle=SIG;ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
 
-    /* Dots on line */
     last30.forEach(function(d,i){
-      var cx = PAD.left + i*(bW+bGap) + bGap/2 + bW/2;
-      var cy = PAD.top + cH - (d.count/maxV)*cH;
-      ctx.beginPath(); ctx.arc(cx,cy,3,0,Math.PI*2);
-      ctx.fillStyle= d.count>0 ? ALT : LIN; ctx.fill();
-      barMeta[i].lx=cx; barMeta[i].ly=cy;
+      var cx=PAD.left+i*(bW+bGap)+bGap/2+bW/2;
+      var cy=PAD.top+cH-(d.count/maxV)*cH;
+      ctx.beginPath();ctx.arc(cx,cy,3,0,Math.PI*2);
+      ctx.fillStyle=d.count>0?ALT:LIN;ctx.fill();
+      barMeta[i].lx=cx;barMeta[i].ly=cy;
     });
 
-    /* X-axis labels — every 5th day */
-    ctx.fillStyle=DIM; ctx.textAlign='center'; ctx.font='9px "JetBrains Mono",monospace';
+    ctx.fillStyle=DIM;ctx.textAlign='center';ctx.font='9px "JetBrains Mono",monospace';
     last30.forEach(function(d,i){
       if(i%5===0||i===last30.length-1){
-        var cx = PAD.left + i*(bW+bGap) + bGap/2 + bW/2;
-        var dt = new Date(d.date+'T00:00:00');
-        ctx.fillText(dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'}), cx, H-PAD.bottom+16);
+        var cx=PAD.left+i*(bW+bGap)+bGap/2+bW/2;
+        var dt=new Date(d.date+'T00:00:00');
+        ctx.fillText(dt.toLocaleDateString('en-IN',{day:'numeric',month:'short'}),cx,H-PAD.bottom+16);
       }
     });
 
-    /* Axis labels */
-    ctx.save(); ctx.translate(10,PAD.top+cH/2); ctx.rotate(-Math.PI/2);
-    ctx.fillStyle=DIM; ctx.textAlign='center'; ctx.font='9px "JetBrains Mono",monospace';
-    ctx.fillText('Commits',0,0); ctx.restore();
+    ctx.save();ctx.translate(10,PAD.top+cH/2);ctx.rotate(-Math.PI/2);
+    ctx.fillStyle=DIM;ctx.textAlign='center';ctx.font='9px "JetBrains Mono",monospace';
+    ctx.fillText('Contributions',0,0);ctx.restore();
 
-    /* Tooltip */
-    canvas.onmousemove = function(e){
-      var rect=canvas.getBoundingClientRect(), mx=e.clientX-rect.left, my=e.clientY-rect.top;
-      var hit=null;
+    canvas.onmousemove=function(e){
+      var rect=canvas.getBoundingClientRect(),mx=e.clientX-rect.left,my=e.clientY-rect.top,hit=null;
       barMeta.forEach(function(b){
-        if(mx>=b.x&&mx<=b.x+b.bW&&my>=PAD.top&&my<=PAD.top+cH) hit=b;
+        if(mx>=b.x&&mx<=b.x+b.bW&&my>=PAD.top&&my<=PAD.top+cH)hit=b;
       });
       if(hit){
         tooltip.style.display='block';
         tooltip.style.left=(e.clientX+14)+'px';
         tooltip.style.top=(e.clientY-36)+'px';
         var dt=new Date(hit.date+'T00:00:00');
-        tooltip.textContent=hit.count+' commit'+(hit.count!==1?'s':'')+' · '+dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
-      } else tooltip.style.display='none';
+        tooltip.textContent=hit.count+' contribution'+(hit.count!==1?'s':'')+' · '+dt.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+      }else tooltip.style.display='none';
     };
-    canvas.onmouseleave=function(){ tooltip.style.display='none'; };
-    canvas.ontouchmove=canvas.onmousemove;
+    canvas.onmouseleave=function(){tooltip.style.display='none';};
   }
 
-  /* ── Update stat pills from real data ── */
-  function updatePills(days, stats){
-    if(elTotal)   elTotal.textContent   = stats.total;
-    if(elStreak)  elStreak.textContent  = stats.cur;
-    if(elSDates && stats.curStart) elSDates.textContent = shortDate(stats.curStart)+' – Now';
-    if(elLongest) elLongest.textContent = stats.lon;
-    if(elLDates && stats.lonStart) elLDates.textContent = shortDate(stats.lonStart)+' – '+shortDate(stats.lonEnd);
-  }
-
-  /* ── Boot ── */
-  cascade([api1, api2, api3], 0)
-    .then(function(days){
-      var stats = computeStreaks(days);
-      updatePills(days, stats);
-      drawChart(days);
-    })
-    .catch(function(){
-      clearInterval(dotsTmr);
-      elLoading.style.display = 'none';
-      elErr.style.display     = 'block';
-      elStatus.textContent    = 'Unavailable';
-      /* Pills fallback — known last values */
-      if(elTotal)  elTotal.textContent  = '441';
-      if(elStreak) elStreak.textContent = '69';
-      if(elLongest)elLongest.textContent= '69';
-    });
+  fetch('/api/github?username='+encodeURIComponent(USER)+'&_='+Date.now(), {
+    cache:'no-store',
+    headers:{'Accept':'application/json'}
+  })
+  .then(function(r){
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return r.json();
+  })
+  .then(function(data){
+    if(!data || !Array.isArray(data.days)) throw new Error('Invalid GitHub response');
+    updatePills(data.stats);
+    drawChart(data.days);
+  })
+  .catch(function(e){
+    clearInterval(dotsTmr);
+    elLoading.style.display='none';
+    elErr.style.display='block';
+    elStatus.textContent='Unavailable';
+    console.warn('GitHub API failed:',e);
+  });
 })();
 
 </script>
