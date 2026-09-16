@@ -8,10 +8,11 @@
 
 <br/>
 
-[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-0D1117?style=for-the-badge&logoColor=39FF14)](https://my-portfolio-abhinandan.vercel.app)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b)
+[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-my--portfolio--abhinandan.vercel.app-0D1117?style=for-the-badge)](https://my-portfolio-abhinandan.vercel.app)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 [![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
+[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf)
 [![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
 
 </div>
@@ -31,7 +32,7 @@ class Abhinandan:
         self.languages   = ["Python", "C++", "Java", "SQL"]
         self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
         self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
-        self.streak      = "62 days and counting 🔥"
+        self.streak      = "69 days and counting 🔥"
         self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
 
     def current_goal(self) -> str:
@@ -40,6 +41,36 @@ class Abhinandan:
 
 ---
 
+## 📊 GitHub Activity
+
+<div align="center">
+
+### 📊 GitHub Stats & Activity
+
+<!-- ✅ All badges below are static shields.io — zero external API, always loads -->
+
+![Contributions](https://img.shields.io/badge/Total_Contributions-441-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
+![Streak](https://img.shields.io/badge/Current_Streak-69_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
+![Longest](https://img.shields.io/badge/Longest_Streak-69_Days_(Jul_9–Sep_8)-7FDBCA?style=for-the-badge&labelColor=0D1117)
+![Since](https://img.shields.io/badge/Active_Since-Jun_21_2024-8B949E?style=for-the-badge&labelColor=0D1117)
+
+![LeetCode](https://img.shields.io/badge/LeetCode-141_Solved_·_50_Days_Badge_2026-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
+![Easy](https://img.shields.io/badge/Easy-81-4ade80?style=flat-square&labelColor=0D1117)
+![Medium](https://img.shields.io/badge/Medium-53-fbbf24?style=flat-square&labelColor=0D1117)
+![Hard](https://img.shields.io/badge/Hard-7-fb7185?style=flat-square&labelColor=0D1117)
+
+<br/>
+
+<!-- ✅ Activity graph — reliable, no token -->
+[![Contribution Graph](https://github-readme-activity-graph.vercel.app/graph?username=a23894843&bg_color=0D1117&color=39FF14&line=39FF14&point=7FDBCA&area=true&area_color=0D4F3C&border_color=30363D&radius=6)](https://github.com/a23894843)
+
+<br/>
+
+![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
+
+</div>
+
+---
 
 ## 🛡️ Featured Projects
 
@@ -172,7 +203,7 @@ GUI-based cryptographic password tool:
 
 | | Certification | Issuer | Year |
 |--|--------------|--------|------|
-| 🏅 | **LeetCode 50 Days Badge 2026** — 133 solved (80E/47M/6H) · 62-day streak | LeetCode | 2026 |
+| 🏅 | **LeetCode 50 Days Badge 2026** — 141 solved (81E/53M/7H) · 69-day streak | LeetCode | 2026 |
 | 🛡️ | **Cybersecurity Fundamentals** *(verified via Credly)* | IBM SkillsBuild | 2026 |
 | 🐍 | Python Internship | CodSoft | 2025 |
 | 🤖 | AI & ML Workshop | Sofcon India Pvt. Ltd. | 2025 |
@@ -208,7 +239,7 @@ GUI-based cryptographic password tool:
 
 [![Portfolio](https://img.shields.io/badge/🌐_Visit_My_Portfolio-0D1117?style=for-the-badge)](https://my-portfolio-abhinandan.vercel.app)
 [![Email](https://img.shields.io/badge/📧_Email_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b)
+[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 
 <br/>
 
