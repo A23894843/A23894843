@@ -348,6 +348,8 @@
   .gh-stat-pill.gh-streak:hover{ border-color:var(--alert); }
   .gh-pill-icon{ font-size:1.4rem; line-height:1; }
   .gh-pill-num{
+    display:block;
+    min-height:2rem;
     font-family:'Space Grotesk', sans-serif;
     font-size:2rem; font-weight:700; color:var(--signal); line-height:1;
   }
@@ -1116,12 +1118,22 @@
     return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
   }
 
+  function safeNumber(value){
+    var n = Number(value);
+    return Number.isFinite(n) ? String(n) : '0';
+  }
+
   function updatePills(stats){
-    elTotal.textContent   = stats.total;
-    elStreak.textContent  = stats.currentStreak;
-    elLongest.textContent = stats.longestStreak;
+    stats = stats || {};
+    // Always render an actual string so the stat cannot appear blank even if
+    // an upstream response omits a field temporarily.
+    elTotal.textContent   = safeNumber(stats.total);
+    elStreak.textContent  = safeNumber(stats.currentStreak);
+    elLongest.textContent = safeNumber(stats.longestStreak);
     if(stats.currentStart) elSDates.textContent = shortDate(stats.currentStart)+' – Now';
+    else elSDates.textContent = 'No active streak';
     if(stats.longestStart) elLDates.textContent = shortDate(stats.longestStart)+' – '+shortDate(stats.longestEnd);
+    else elLDates.textContent = 'No streak recorded';
   }
 
   function drawChart(days){
@@ -1131,9 +1143,17 @@
     elStatus.textContent = 'Live · '+new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
 
     var today = new Date().toISOString().slice(0,10);
-    var sorted = days.filter(function(d){ return d && d.date && d.date <= today; })
-      .slice().sort(function(a,b){ return a.date<b.date?-1:1; });
+    var sorted = days.filter(function(d){
+      return d && d.date && d.date <= today && /^\d{4}-\d{2}-\d{2}$/.test(d.date);
+    }).slice().sort(function(a,b){ return a.date.localeCompare(b.date); });
     var last30 = sorted.slice(-30);
+
+    if(!last30.length){
+      elWrap.style.display='none';
+      elErr.style.display='block';
+      elStatus.textContent='No contribution data';
+      return;
+    }
 
     var dpr  = Math.min(window.devicePixelRatio||1,2);
     var W    = canvas.parentElement.clientWidth||700;
