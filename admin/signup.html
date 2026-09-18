@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Signup | Abhinandan</title>
+
+    <style>
+        /* =========================================================
+           ROOT VARIABLES
+        ========================================================= */
+
+        :root {
+            --bg: #080b10;
+            --panel: #10151c;
+            --input-bg: #080b10;
+
+            --text: #eef4f5;
+            --muted: #8b97a7;
+            --border: #27323e;
+
+            --accent: #42e3c4;
+            --accent-dark: #03120f;
+
+            --error: #ff7777;
+            --success: #42e3c4;
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        /* =========================================================
+           BODY
+        ========================================================= */
+
+        body {
+            min-height: 100vh;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--bg);
+            color: var(--text);
+
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* =========================================================
+           PAGE WRAPPER
+        ========================================================= */
+
+        .wrapper {
+            width: min(100% - 30px, 500px);
+        }
+
+
+        /* =========================================================
+           TOP NAVIGATION
+        ========================================================= */
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+        }
+
+        .brand {
+            color: var(--text);
+
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        .signin-link {
+            color: var(--text);
+
+            text-decoration: none;
+
+            transition: color 0.2s ease;
+        }
+
+        .signin-link:hover {
+            color: var(--accent);
+        }
+
+
+        /* =========================================================
+           CARD
+        ========================================================= */
+
+        .card {
+            padding: 30px;
+
+            background: var(--panel);
+
+            border: 1px solid var(--border);
+            border-radius: 20px;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .eyebrow {
+            margin-bottom: 8px;
+
+            color: var(--muted);
+
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+        }
+
+        h1 {
+            margin: 10px 0;
+
+            color: var(--text);
+
+            font-family: Arial, sans-serif;
+            font-size: 40px;
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .subtitle {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           FORM
+        ========================================================= */
+
+        .form-group {
+            margin-top: 16px;
+        }
+
+        .form-group label {
+            display: block;
+
+            margin-bottom: 5px;
+
+            color: var(--muted);
+
+            font-family: monospace;
+            font-size: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+
+            padding: 12px;
+
+            background: var(--input-bg);
+            color: var(--text);
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            outline: none;
+
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus {
+            border-color: var(--accent);
+
+            box-shadow: 0 0 0 2px rgba(66, 227, 196, 0.08);
+        }
+
+
+        /* =========================================================
+           ACTIONS
+        ========================================================= */
+
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 8px;
+
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 11px 14px;
+
+            background: var(--panel);
+            color: var(--text);
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-family: monospace;
+            font-size: 11px;
+
+            text-decoration: none;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .button:hover {
+            border-color: var(--accent);
+        }
+
+        .button:active {
+            transform: translateY(1px);
+        }
+
+        .button-primary {
+            background: var(--accent);
+            color: var(--accent-dark);
+
+            border-color: var(--accent);
+        }
+
+        .button-primary:hover {
+            background: #5aecd1;
+            border-color: #5aecd1;
+        }
+
+        .button-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+
+        /* =========================================================
+           MESSAGE
+        ========================================================= */
+
+        .message {
+            min-height: 20px;
+
+            margin-top: 10px;
+
+            color: var(--error);
+
+            font-size: 12px;
+        }
+
+        .message.success {
+            color: var(--success);
+        }
+
+
+        /* =========================================================
+           FOOTER NOTE
+        ========================================================= */
+
+        .fine-print {
+            margin-top: 17px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 520px) {
+
+            .card {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =========================================================
+         PAGE WRAPPER
+    ========================================================== -->
+
+    <main class="wrapper">
+
+        <!-- =====================================================
+             TOP BAR
+        ====================================================== -->
+
+        <nav class="topbar">
+
+            <a href="/" class="brand">
+                ABHINANDAN<span>_</span>
+            </a>
+
+            <a href="/admin/login.html" class="signin-link">
+                Sign in
+            </a>
+
+        </nav>
+
+
+        <!-- =====================================================
+             SIGNUP CARD
+        ====================================================== -->
+
+        <section class="card">
+
+            <!-- Header -->
+
+            <div class="eyebrow">
+                PRIVATE / REGISTRATION
+            </div>
+
+            <h1>
+                Create account.
+            </h1>
+
+            <p class="subtitle">
+                Registration requests admin access; it does not grant
+                access automatically.
+            </p>
+
+
+            <!-- =================================================
+                 SIGNUP FORM
+            ================================================== -->
+
+            <form id="signupForm">
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="nameInput">
+                        NAME
+                    </label>
+
+                    <input
+                        id="nameInput"
+                        type="text"
+                        autocomplete="name"
+                        maxlength="80"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="emailInput">
+                        EMAIL
+                    </label>
+
+                    <input
+                        id="emailInput"
+                        type="email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="passwordInput">
+                        PASSWORD
+                    </label>
+
+                    <input
+                        id="passwordInput"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="15"
+                        maxlength="128"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Confirm Password -->
+
+                <div class="form-group">
+
+                    <label for="confirmPasswordInput">
+                        CONFIRM PASSWORD
+                    </label>
+
+                    <input
+                        id="confirmPasswordInput"
+                        type="password"
+                        autocomplete="new-password"
+                        minlength="15"
+                        maxlength="128"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="actions">
+
+                    <button
+                        type="submit"
+                        id="signupButton"
+                        class="button button-primary"
+                    >
+                        REQUEST ACCESS →
+                    </button>
+
+                    <a
+                        href="/admin/login.html"
+                        class="button"
+                    >
+                        LOGIN
+                    </a>
+
+                </div>
+
+
+                <!-- Status message -->
+
+                <div
+                    id="message"
+                    class="message"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+
+            <!-- Security note -->
+
+            <div class="fine-print">
+                Use a long passphrase. Passwords are managed by
+                Supabase Auth, not stored in this website.
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         SUPABASE
+    ========================================================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- =========================================================
+         CONFIGURATION
+    ========================================================== -->
+
+    <script src="/admin/config.js"></script>
+
+    <!-- =========================================================
+         AUTHENTICATION LOGIC
+    ========================================================== -->
+
+    <script src="/admin/auth.js"></script>
+
+
+    <!-- =========================================================
+         SIGNUP FORM HANDLER
+    ========================================================== -->
+
+    <script>
+        const signupForm = document.getElementById("signupForm");
+
+        const nameInput =
+            document.getElementById("nameInput");
+
+        const emailInput =
+            document.getElementById("emailInput");
+
+        const passwordInput =
+            document.getElementById("passwordInput");
+
+        const confirmPasswordInput =
+            document.getElementById("confirmPasswordInput");
+
+        const message =
+            document.getElementById("message");
+
+        const signupButton =
+            document.getElementById("signupButton");
+
+
+        signupForm.addEventListener("submit", async function (event) {
+
+            event.preventDefault();
+
+
+            /* -----------------------------------------------
+               Get input values
+            ------------------------------------------------ */
+
+            const name =
+                nameInput.value.trim();
+
+            const email =
+                emailInput.value.trim();
+
+            const password =
+                passwordInput.value;
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            /* -----------------------------------------------
+               Clear previous message
+            ------------------------------------------------ */
+
+            message.textContent = "";
+            message.classList.remove("success");
+
+
+            /* -----------------------------------------------
+               Validate passwords
+            ------------------------------------------------ */
+
+            if (password !== confirmPassword) {
+
+                message.textContent =
+                    "Passwords do not match.";
+
+                confirmPasswordInput.focus();
+
+                return;
+            }
+
+
+            /* -----------------------------------------------
+               Validate password length
+            ------------------------------------------------ */
+
+            if (password.length < 15) {
+
+                message.textContent =
+                    "Use at least 15 characters.";
+
+                passwordInput.focus();
+
+                return;
+            }
+
+
+            /* -----------------------------------------------
+               Disable button
+            ------------------------------------------------ */
+
+            signupButton.disabled = true;
+
+            signupButton.textContent =
+                "SUBMITTING...";
+
+
+            try {
+
+                /*
+                 * auth.js signup() handles:
+                 *
+                 * 1. Supabase authentication
+                 * 2. Profile creation
+                 * 3. Pending admin status
+                 */
+
+                await signup(
+                    name,
+                    email,
+                    password,
+                    confirmPassword
+                );
+
+
+            } catch (error) {
+
+                message.textContent =
+                    error.message ||
+                    "Unable to create account.";
+
+            } finally {
+
+                signupButton.disabled = false;
+
+                signupButton.textContent =
+                    "REQUEST ACCESS →";
+            }
+
+        });
+    </script>
+
+</body>
+</html>

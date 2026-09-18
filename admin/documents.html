@@ -1456,24 +1456,8 @@
                     to provide an accessible URL when available.
                 */
 
-                if (doc.url) {
-                    preview.href =
-                        doc.url;
-                } else {
-                    preview.href =
-                        "#";
-
-                    preview.addEventListener(
-                        "click",
-                        event => {
-                            event.preventDefault();
-
-                            alert(
-                                "Preview URL is not available for this document."
-                            );
-                        }
-                    );
-                }
+                preview.href =
+                    `/api/documents?id=${encodeURIComponent(doc.id)}&mode=preview`;
 
                 actions.appendChild(
                     preview
