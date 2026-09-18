@@ -195,7 +195,6 @@ async function signup(
     password,
     confirmPassword
 ) {
-
     if (!init()) {
         return;
     }
@@ -237,9 +236,7 @@ async function signup(
 
         const result =
             await sb.auth.signUp({
-
                 email: email,
-
                 password: password,
 
                 options: {
@@ -250,17 +247,12 @@ async function signup(
             });
 
 
-        /* -------------------------------------------------
-           Check signup result
-        ------------------------------------------------- */
-
         if (result.error) {
             throw result.error;
         }
 
 
         if (!result.data.user) {
-
             throw new Error(
                 "Account could not be created."
             );
@@ -268,28 +260,13 @@ async function signup(
 
 
         /* -------------------------------------------------
-           Create pending admin profile
+           Profile is created automatically by PostgreSQL
+           trigger with:
+           
+           role   = admin
+           status = pending
         ------------------------------------------------- */
 
-        const profile =
-            await sb
-                .from("profiles")
-                .upsert({
-                    id: result.data.user.id,
-                    display_name: name,
-                    role: "admin",
-                    status: "pending"
-                });
-
-
-        if (profile.error) {
-            throw profile.error;
-        }
-
-
-        /* -------------------------------------------------
-           Registration successful
-        ------------------------------------------------- */
 
         setMessage(
             "Registration submitted. Verify your email if required, then wait for admin approval.",
@@ -302,7 +279,9 @@ async function signup(
         ------------------------------------------------- */
 
         const passwordInput =
-            document.getElementById("passwordInput");
+            document.getElementById(
+                "passwordInput"
+            );
 
         const confirmPasswordInput =
             document.getElementById(
@@ -318,9 +297,7 @@ async function signup(
             confirmPasswordInput.value = "";
         }
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         setMessage(
             error.message ||
