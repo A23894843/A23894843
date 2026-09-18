@@ -692,6 +692,7 @@
             }
         }
     </style>
+    <link rel="stylesheet" href="/assets/theme-system.css">
 </head>
 
 <body>
@@ -906,30 +907,31 @@
 
                             <label
                                 class="form-label"
-                                for="download"
+                                for="accessMode"
                             >
-                                ACCESS
+                                GUEST ACCESS
                             </label>
 
                             <select
-                                id="download"
-                                name="download"
+                                id="accessMode"
+                                name="accessMode"
                                 class="select"
                             >
-
-                                <option value="false">
-                                    Preview only
+                                <option value="preview">
+                                    Preview
                                 </option>
 
-                                <option value="true">
-                                    Preview + download
+                                <option value="download">
+                                    Download
                                 </option>
 
+                                <option value="private">
+                                    Private — Admin only
+                                </option>
                             </select>
 
                             <div class="help-text">
-                                Controls whether guests can download
-                                the document.
+                                Choose exactly one guest access mode. Private documents are hidden from recruiters and remain accessible to approved admins.
                             </div>
 
                         </div>
@@ -1054,6 +1056,21 @@
 
                         </div>
 
+                        <div class="stat">
+
+                            <div class="stat-label">
+                                PRIVATE
+                            </div>
+
+                            <div
+                                id="privateCount"
+                                class="stat-value"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
                     </div>
 
 
@@ -1144,8 +1161,8 @@
         const fileInput =
             document.getElementById("file");
 
-        const downloadInput =
-            document.getElementById("download");
+        const accessModeInput =
+            document.getElementById("accessMode");
 
         const publishBtn =
             document.getElementById("publishBtn");
@@ -1176,6 +1193,9 @@
 
         const previewCount =
             document.getElementById("previewCount");
+
+        const privateCount =
+            document.getElementById("privateCount");
 
 
         /* =========================================================
@@ -1320,23 +1340,18 @@
 
             const downloadable =
                 documents.filter(
-                    doc =>
-                        Boolean(
-                            doc.download_allowed
-                        )
+                    doc => doc.access_mode === "download" ||
+                        (doc.access_mode == null && Boolean(doc.download_allowed))
                 ).length;
 
             const previewOnly =
-                total - downloadable;
+                documents.filter(
+                    doc => (doc.access_mode || (doc.download_allowed ? "download" : "preview")) === "preview"
+                ).length;
 
-            totalCount.textContent =
-                total;
-
-            downloadCount.textContent =
-                downloadable;
-
-            previewCount.textContent =
-                previewOnly;
+            totalCount.textContent = total;
+            downloadCount.textContent = downloadable;
+            previewCount.textContent = previewOnly;
         }
 
 
@@ -1398,17 +1413,9 @@
             const access =
                 document.createElement("span");
 
-            access.className =
-                `badge ${
-                    doc.download_allowed
-                        ? "public"
-                        : "private"
-                }`;
-
-            access.textContent =
-                doc.download_allowed
-                    ? "DOWNLOAD"
-                    : "PREVIEW";
+            const mode = doc.access_mode || (doc.download_allowed ? "download" : "preview");
+            access.className = `badge ${mode === "private" ? "private" : "public"}`;
+            access.textContent = mode.toUpperCase();
 
 
             meta.append(
@@ -1456,14 +1463,92 @@
                     to provide an accessible URL when available.
                 */
 
-                preview.href =
-                    `/api/documents?id=${encodeURIComponent(doc.id)}&mode=preview`;
+                preview.href = "#";
+
+                preview.addEventListener(
+                    "click",
+                    async event => {
+                        event.preventDefault();
+                        const popup = window.open("about:blank", "_blank");
+                        try {
+                            const result = await getDocumentUrl(doc.id, "preview");
+                            if (popup) {
+                                popup.location.href = result.url;
+                            } else {
+                                window.location.href = result.url;
+                            }
+                        } catch (error) {
+                            if (popup) popup.close();
+                            setMessage(error?.message || "Unable to preview document.", "error");
+                        }
+                    }
+                );
 
                 actions.appendChild(
                     preview
                 );
             }
 
+
+            /* ACCESS MODE */
+
+            const accessSelect = document.createElement("select");
+            accessSelect.className = "select small";
+            accessSelect.setAttribute("aria-label", `Access mode for ${doc.title || "document"}`);
+            accessSelect.innerHTML = `
+                <option value="preview">PREVIEW</option>
+                <option value="download">DOWNLOAD</option>
+                <option value="private">PRIVATE — ADMIN</option>
+            `;
+            accessSelect.value = mode;
+
+            accessSelect.addEventListener("change", async () => {
+                const nextMode = accessSelect.value;
+                accessSelect.disabled = true;
+                try {
+                    await updateDocAccess(doc.id, nextMode);
+                    setMessage(
+                        nextMode === "private"
+                            ? "Document is now private and hidden from guests."
+                            : `Guest access changed to ${nextMode}.`,
+                        "success"
+                    );
+                    await loadDocuments();
+                } catch (error) {
+                    accessSelect.value = mode;
+                    setMessage(error?.message || "Unable to update document access.", "error");
+                } finally {
+                    accessSelect.disabled = false;
+                }
+            });
+
+            actions.appendChild(accessSelect);
+
+            /* ADMIN DOWNLOAD */
+
+            const downloadButton = document.createElement("button");
+            downloadButton.type = "button";
+            downloadButton.className = "btn small";
+            downloadButton.textContent = "DOWNLOAD";
+            downloadButton.addEventListener("click", async () => {
+                downloadButton.disabled = true;
+                downloadButton.textContent = "PREPARING...";
+                try {
+                    const result = await getDocumentUrl(doc.id, "download");
+                    const link = document.createElement("a");
+                    link.href = result.url;
+                    link.download = "";
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                } catch (error) {
+                    setMessage(error?.message || "Unable to download document.", "error");
+                } finally {
+                    downloadButton.disabled = false;
+                    downloadButton.textContent = "DOWNLOAD";
+                }
+            });
+            actions.appendChild(downloadButton);
 
             /* DELETE */
 
@@ -1754,7 +1839,7 @@
                         title,
                         typeInput.value,
                         file,
-                        downloadInput.value === "true"
+                        accessModeInput.value
                     );
 
 
@@ -1959,5 +2044,6 @@
         boot();
     </script>
 
+    <script src="/assets/theme-system.js"></script>
 </body>
 </html>
