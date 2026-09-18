@@ -1,10 +1,5 @@
 /* =========================================================
-   SUPABASE AUTHENTICATION & DOCUMENT MANAGEMENT
-   ========================================================= */
-
-
-/* =========================================================
-   SUPABASE CLIENT
+   SUPABASE AUTH + DOCUMENT MANAGEMENT
    ========================================================= */
 
 let sb = null;
@@ -14,13 +9,6 @@ let sb = null;
    MESSAGE HANDLER
    ========================================================= */
 
-/**
- * Displays a message on the current page.
- *
- * Supports:
- * - #message  → new structured signup/login pages
- * - #msg      → compatibility with older pages
- */
 function setMessage(text, type = "error") {
 
     const element =
@@ -33,36 +21,22 @@ function setMessage(text, type = "error") {
 
     element.textContent = text;
 
-    /* Reset classes */
-
     element.classList.remove("success");
-
-    /* Success message */
 
     if (type === "success") {
         element.classList.add("success");
-
-        /* Also support older CSS */
         element.style.color = "var(--t)";
-    }
-
-    /* Error message */
-
-    else {
+    } else {
         element.style.color = "var(--r)";
     }
 }
 
 
 /* =========================================================
-   INITIALIZE SUPABASE
+   SUPABASE INITIALIZATION
    ========================================================= */
 
 function init() {
-
-    /* -----------------------------------------------------
-       Check Supabase library
-    ----------------------------------------------------- */
 
     if (!window.supabase) {
 
@@ -73,10 +47,6 @@ function init() {
         return false;
     }
 
-
-    /* -----------------------------------------------------
-       Check configuration
-    ----------------------------------------------------- */
 
     if (
         typeof SUPABASE_URL === "undefined" ||
@@ -94,10 +64,6 @@ function init() {
     }
 
 
-    /* -----------------------------------------------------
-       Create client only once
-    ----------------------------------------------------- */
-
     if (!sb) {
 
         sb = window.supabase.createClient(
@@ -105,6 +71,7 @@ function init() {
             SUPABASE_ANON_KEY
         );
     }
+
 
     return true;
 }
@@ -117,20 +84,16 @@ function init() {
 async function login(email, password) {
 
     if (!init()) {
-        return;
+        return false;
     }
 
 
     try {
 
-        /* -------------------------------------------------
-           Sign in using Supabase Auth
-        ------------------------------------------------- */
-
         const result =
             await sb.auth.signInWithPassword({
-                email: email,
-                password: password
+                email,
+                password
             });
 
 
@@ -139,21 +102,35 @@ async function login(email, password) {
         }
 
 
-        /* -------------------------------------------------
-           Verify admin profile
-        ------------------------------------------------- */
+        const user =
+            result.data.user;
+
+
+        if (!user) {
+            throw new Error(
+                "Unable to retrieve user account."
+            );
+        }
+
+
+        /* -----------------------------------------------
+           Check admin authorization
+        ------------------------------------------------ */
 
         const profile =
             await sb
                 .from("profiles")
-                .select("role, status")
-                .eq("id", result.data.user.id)
+                .select("role,status")
+                .eq("id", user.id)
                 .single();
 
 
+        if (profile.error) {
+            throw profile.error;
+        }
+
+
         if (
-            profile.error ||
-            !profile.data ||
             profile.data.role !== "admin" ||
             profile.data.status !== "approved"
         ) {
@@ -166,21 +143,20 @@ async function login(email, password) {
         }
 
 
-        /* -------------------------------------------------
-           Login successful
-        ------------------------------------------------- */
-
         window.location.href =
             "/admin/documents.html";
 
-    }
 
-    catch (error) {
+        return true;
+
+    } catch (error) {
 
         setMessage(
             error.message ||
             "Unable to sign in."
         );
+
+        return false;
     }
 }
 
@@ -195,14 +171,15 @@ async function signup(
     password,
     confirmPassword
 ) {
+
     if (!init()) {
-        return;
+        return false;
     }
 
 
-    /* -----------------------------------------------------
-       Validate password confirmation
-    ----------------------------------------------------- */
+    /* -----------------------------------------------
+       Validate password
+    ------------------------------------------------ */
 
     if (password !== confirmPassword) {
 
@@ -210,13 +187,9 @@ async function signup(
             "Passwords do not match."
         );
 
-        return;
+        return false;
     }
 
-
-    /* -----------------------------------------------------
-       Validate password length
-    ----------------------------------------------------- */
 
     if (password.length < 15) {
 
@@ -224,20 +197,22 @@ async function signup(
             "Use at least 15 characters."
         );
 
-        return;
+        return false;
     }
 
 
     try {
 
-        /* -------------------------------------------------
-           Create Supabase Auth account
-        ------------------------------------------------- */
+        /* -------------------------------------------
+           Create Auth account
+        -------------------------------------------- */
 
         const result =
             await sb.auth.signUp({
-                email: email,
-                password: password,
+
+                email,
+
+                password,
 
                 options: {
                     data: {
@@ -253,19 +228,25 @@ async function signup(
 
 
         if (!result.data.user) {
+
             throw new Error(
                 "Account could not be created."
             );
         }
 
 
-        /* -------------------------------------------------
-           Profile is created automatically by PostgreSQL
-           trigger with:
-           
-           role   = admin
-           status = pending
-        ------------------------------------------------- */
+        /*
+         * IMPORTANT:
+         *
+         * We DO NOT insert into public.profiles here.
+         *
+         * A PostgreSQL trigger should create:
+         *
+         * role   = admin
+         * status = pending
+         *
+         * automatically.
+         */
 
 
         setMessage(
@@ -274,9 +255,9 @@ async function signup(
         );
 
 
-        /* -------------------------------------------------
+        /* -------------------------------------------
            Clear password fields
-        ------------------------------------------------- */
+        -------------------------------------------- */
 
         const passwordInput =
             document.getElementById(
@@ -293,9 +274,13 @@ async function signup(
             passwordInput.value = "";
         }
 
+
         if (confirmPasswordInput) {
             confirmPasswordInput.value = "";
         }
+
+
+        return true;
 
     } catch (error) {
 
@@ -303,6 +288,8 @@ async function signup(
             error.message ||
             "Unable to create account."
         );
+
+        return false;
     }
 }
 
@@ -310,15 +297,6 @@ async function signup(
 /* =========================================================
    ADMIN GUARD
    ========================================================= */
-
-/**
- * Protects private admin pages.
- *
- * The user must:
- * 1. Be authenticated
- * 2. Have role = admin
- * 3. Have status = approved
- */
 
 async function guard() {
 
@@ -328,10 +306,6 @@ async function guard() {
 
 
     try {
-
-        /* -------------------------------------------------
-           Get currently authenticated user
-        ------------------------------------------------- */
 
         const result =
             await sb.auth.getUser();
@@ -354,14 +328,10 @@ async function guard() {
             result.data.user;
 
 
-        /* -------------------------------------------------
-           Check profile authorization
-        ------------------------------------------------- */
-
         const profile =
             await sb
                 .from("profiles")
-                .select("role, status")
+                .select("role,status")
                 .eq("id", user.id)
                 .single();
 
@@ -384,12 +354,10 @@ async function guard() {
 
         return true;
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
-            "Authentication guard error:",
+            "Admin guard error:",
             error
         );
 
@@ -418,18 +386,14 @@ async function logout() {
             await sb.auth.signOut();
         }
 
-    }
-
-    catch (error) {
+    } catch (error) {
 
         console.error(
             "Logout error:",
             error
         );
 
-    }
-
-    finally {
+    } finally {
 
         window.location.href =
             "/admin/login.html";
@@ -479,12 +443,19 @@ async function uploadDoc(
     title,
     type,
     file,
-    downloadAllowed
+    downloadAllowed = false
 ) {
 
     if (!init()) {
         throw new Error(
             "Supabase is not configured."
+        );
+    }
+
+
+    if (!title.trim()) {
+        throw new Error(
+            "Document title is required."
         );
     }
 
@@ -496,9 +467,24 @@ async function uploadDoc(
     }
 
 
-    /* -----------------------------------------------------
-       Generate unique storage path
-    ----------------------------------------------------- */
+    const allowedTypes = [
+        "cv",
+        "report",
+        "certificate"
+    ];
+
+
+    if (!allowedTypes.includes(type)) {
+
+        throw new Error(
+            "Invalid document type."
+        );
+    }
+
+
+    /* -----------------------------------------------
+       Safe filename
+    ------------------------------------------------ */
 
     const safeFileName =
         file.name.replace(
@@ -513,9 +499,9 @@ async function uploadDoc(
         safeFileName;
 
 
-    /* -----------------------------------------------------
-       Upload file to private Storage bucket
-    ----------------------------------------------------- */
+    /* -----------------------------------------------
+       Upload to private Storage
+    ------------------------------------------------ */
 
     const upload =
         await sb
@@ -526,6 +512,7 @@ async function uploadDoc(
                 file,
                 {
                     upsert: false,
+
                     contentType:
                         file.type ||
                         "application/octet-stream"
@@ -540,18 +527,17 @@ async function uploadDoc(
 
     try {
 
-        /* -------------------------------------------------
-           Get authenticated admin
-        ------------------------------------------------- */
+        /* -------------------------------------------
+           Current admin
+        -------------------------------------------- */
 
-        const currentUser =
+        const userResult =
             await sb.auth.getUser();
 
 
         if (
-            currentUser.error ||
-            !currentUser.data ||
-            !currentUser.data.user
+            userResult.error ||
+            !userResult.data.user
         ) {
 
             throw new Error(
@@ -560,21 +546,28 @@ async function uploadDoc(
         }
 
 
-        /* -------------------------------------------------
-           Save document metadata
-        ------------------------------------------------- */
+        /* -------------------------------------------
+           Save metadata
+        -------------------------------------------- */
 
         const document =
             await sb
                 .from("documents")
                 .insert({
-                    title: title,
-                    type: type,
-                    storage_path: path,
+
+                    title:
+                        title.trim(),
+
+                    type,
+
+                    storage_path:
+                        path,
+
                     download_allowed:
                         Boolean(downloadAllowed),
+
                     created_by:
-                        currentUser.data.user.id
+                        userResult.data.user.id
                 });
 
 
@@ -582,13 +575,14 @@ async function uploadDoc(
             throw document.error;
         }
 
-    }
 
-    catch (error) {
+        return true;
 
-        /* -------------------------------------------------
-           Roll back uploaded file if DB insert fails
-        ------------------------------------------------- */
+    } catch (error) {
+
+        /* -------------------------------------------
+           Roll back storage upload
+        -------------------------------------------- */
 
         await sb
             .storage
@@ -598,6 +592,49 @@ async function uploadDoc(
 
         throw error;
     }
+}
+
+
+/* =========================================================
+   UPDATE DOCUMENT ACCESS
+   ========================================================= */
+
+/*
+ * Controls whether recruiters are allowed to download
+ * the document.
+ *
+ * Preview access is handled by the server-side
+ * /api/documents endpoint.
+ */
+
+async function updateDocAccess(
+    id,
+    downloadAllowed
+) {
+
+    if (!init()) {
+        throw new Error(
+            "Supabase is not configured."
+        );
+    }
+
+
+    const result =
+        await sb
+            .from("documents")
+            .update({
+                download_allowed:
+                    Boolean(downloadAllowed)
+            })
+            .eq("id", id);
+
+
+    if (result.error) {
+        throw result.error;
+    }
+
+
+    return true;
 }
 
 
@@ -617,9 +654,9 @@ async function deleteDoc(
     }
 
 
-    /* -----------------------------------------------------
+    /* -----------------------------------------------
        Delete database record
-    ----------------------------------------------------- */
+    ------------------------------------------------ */
 
     const databaseResult =
         await sb
@@ -633,9 +670,9 @@ async function deleteDoc(
     }
 
 
-    /* -----------------------------------------------------
+    /* -----------------------------------------------
        Delete storage object
-    ----------------------------------------------------- */
+    ------------------------------------------------ */
 
     if (path) {
 
@@ -656,4 +693,7 @@ async function deleteDoc(
             throw storageResult.error;
         }
     }
+
+
+    return true;
 }
