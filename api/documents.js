@@ -10,7 +10,7 @@
      SUPABASE_SECRET_KEY must ONLY exist on the server.
 ========================================================= */
 
-const { createClient } = require("@supabase/supabase-js");
+import { createClient } from "@supabase/supabase-js";
 
 /* =========================================================
    SUPABASE SERVER CLIENT
@@ -138,7 +138,7 @@ async function getDocument(supabase, id, mode) {
    MAIN VERCEL HANDLER
 ========================================================= */
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
     setHeaders(res);
 
     if (req.method !== "GET") {
@@ -169,4 +169,4 @@ module.exports = async function handler(req, res) {
             error: status === 500 ? "Document service error." : error.message
         });
     }
-};
+}
