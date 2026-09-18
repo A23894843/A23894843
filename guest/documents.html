@@ -799,7 +799,6 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="/assets/theme-system.css">
 </head>
 
 <body>
@@ -974,9 +973,6 @@
     </footer>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="/admin/config.js"></script>
-
     <script>
         "use strict";
 
@@ -1057,12 +1053,29 @@
 
         function createDocumentCard(document) {
 
-            const card = documentTemplate();
-            const title = escapeHTML(document.title || "Untitled document");
-            const type = escapeHTML(getTypeLabel(document.type));
-            const mode = document.access_mode || document.accessMode ||
-                (document.download ? "download" : "preview");
-            const id = encodeURIComponent(document.id);
+            const card =
+                documentTemplate();
+
+            const title =
+                escapeHTML(
+                    document.title ||
+                    "Untitled document"
+                );
+
+            const type =
+                getTypeLabel(
+                    document.type
+                );
+
+            const id =
+                encodeURIComponent(
+                    document.id
+                );
+
+            const canDownload =
+                Boolean(
+                    document.download
+                );
 
             card.innerHTML = `
                 <div class="document-status">
@@ -1070,35 +1083,68 @@
                     AVAILABLE
                 </div>
 
-                <h3 class="document-title">${title}</h3>
+                <h3 class="document-title">
+                    ${title}
+                </h3>
 
                 <div class="document-meta">
-                    <span class="badge">${type}</span>
-                    <span class="badge ${mode === "download" ? "download" : "preview"}">
-                        ${mode === "download" ? "DOWNLOAD" : "PREVIEW"}
+
+                    <span class="badge">
+                        ${escapeHTML(type)}
                     </span>
+
+                    <span class="badge ${
+                        canDownload
+                            ? "download"
+                            : "preview"
+                    }">
+                        ${
+                            canDownload
+                                ? "PREVIEW + DOWNLOAD"
+                                : "PREVIEW ONLY"
+                        }
+                    </span>
+
                 </div>
 
                 <p class="document-description">
-                    ${mode === "download"
-                        ? "Download this document."
-                        : "Preview this document in your browser."}
+                    ${
+                        canDownload
+                            ? "This document can be previewed in the browser and downloaded."
+                            : "This document can be previewed in the browser. Download is disabled."
+                    }
                 </p>
 
                 <div class="document-actions">
-                    <button
-                        class="btn primary document-action"
-                        type="button"
-                        data-id="${id}"
-                        data-mode="${mode}"
+
+                    <a
+                        class="btn primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="/api/documents?id=${id}&mode=preview"
                     >
-                        ${mode === "download" ? "DOWNLOAD ↓" : "PREVIEW ↗"}
-                    </button>
+                        PREVIEW ↗
+                    </a>
+
+                    ${
+                        canDownload
+                            ? `
+                                <a
+                                    class="btn"
+                                    href="/api/documents?id=${id}&mode=download"
+                                >
+                                    DOWNLOAD ↓
+                                </a>
+                            `
+                            : ""
+                    }
+
                 </div>
             `;
 
             return card;
         }
+
 
         /* =========================================================
            TEMPLATE
@@ -1261,47 +1307,77 @@
                 "Fetching the public document library..."
             );
 
+
             try {
-                if (!window.supabase ||
-                    typeof SUPABASE_URL === "undefined" ||
-                    typeof SUPABASE_ANON_KEY === "undefined" ||
-                    !SUPABASE_URL || !SUPABASE_ANON_KEY) {
-                    throw new Error("Supabase public configuration is missing.");
+
+                const response =
+                    await fetch(
+                        "/api/documents",
+                        {
+                            method: "GET",
+                            cache: "no-store",
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `Document service returned HTTP ${response.status}.`
+                    );
                 }
 
-                const client = window.supabase.createClient(
-                    SUPABASE_URL,
-                    SUPABASE_ANON_KEY,
-                    { auth: { persistSession: false } }
-                );
 
-                const result = await client
-                    .from("documents")
-                    .select("id,title,type,storage_path,access_mode,created_at")
-                    .in("access_mode", ["preview", "download"])
-                    .order("created_at", { ascending: false });
+                const data =
+                    await response.json();
 
-                if (result.error) throw result.error;
 
-                documents = (result.data || []).filter(
-                    item => item && item.id && item.title &&
-                        ["preview", "download"].includes(item.access_mode)
-                );
+                if (!Array.isArray(data)) {
 
-                window.__guestSupabase = client;
+                    throw new Error(
+                        "Invalid document service response."
+                    );
+                }
+
+
+                documents =
+                    data.filter(
+                        item =>
+                            item &&
+                            item.id &&
+                            item.title
+                    );
+
+
                 updateCount();
+
                 renderDocuments();
 
             } catch (error) {
-                console.error("Document loading error:", error);
-                documentCount.textContent = "Unable to load library";
+
+                console.error(
+                    "Document loading error:",
+                    error
+                );
+
+
+                documentCount.textContent =
+                    "Unable to load library";
+
+
                 renderState(
-                    "Document library unavailable",
-                    error?.message || "Please try again later.",
+                    "Document service unavailable",
+                    error?.message ||
+                    "Please try again later.",
                     true
                 );
             }
         }
+
 
         /* =========================================================
            COUNT
@@ -1331,78 +1407,6 @@
 
 
         /* =========================================================
-           DOCUMENT ACTIONS
-        ========================================================= */
-
-        docsContainer.addEventListener(
-            "click",
-            async event => {
-                const button = event.target.closest(".document-action");
-                if (!button) return;
-
-                const id = decodeURIComponent(button.dataset.id || "");
-                const mode = button.dataset.mode || "preview";
-                if (!id || !["preview", "download"].includes(mode)) return;
-
-                const originalText = button.textContent;
-                button.disabled = true;
-                button.textContent = mode === "download" ? "PREPARING..." : "OPENING...";
-
-                try {
-                    const client = window.__guestSupabase;
-                    if (!client) throw new Error("Document service is not initialized.");
-
-                    const result = await client
-                        .from("documents")
-                        .select("id,title,type,storage_path,access_mode")
-                        .eq("id", id)
-                        .single();
-
-                    if (result.error) throw result.error;
-                    const doc = result.data;
-
-                    if (!doc || doc.access_mode !== mode) {
-                        throw new Error(
-                            mode === "download"
-                                ? "Downloads are disabled for this document."
-                                : "Preview is disabled for this document."
-                        );
-                    }
-
-                    const signed = await client
-                        .storage
-                        .from("documents")
-                        .createSignedUrl(
-                            doc.storage_path,
-                            600,
-                            mode === "download" ? { download: true } : undefined
-                        );
-
-                    if (signed.error || !signed.data?.signedUrl) {
-                        throw signed.error || new Error("Unable to create document URL.");
-                    }
-
-                    if (mode === "preview") {
-                        window.open(signed.data.signedUrl, "_blank", "noopener,noreferrer");
-                    } else {
-                        const link = document.createElement("a");
-                        link.href = signed.data.signedUrl;
-                        link.download = "";
-                        document.body.appendChild(link);
-                        link.click();
-                        link.remove();
-                    }
-                } catch (error) {
-                    console.error("Document action error:", error);
-                    alert(error?.message || "Unable to open document.");
-                } finally {
-                    button.disabled = false;
-                    button.textContent = originalText;
-                }
-            }
-        );
-
-        /* =========================================================
            SEARCH EVENT
         ========================================================= */
 
@@ -1419,6 +1423,5 @@
         loadDocuments();
     </script>
 
-    <script src="/assets/theme-system.js"></script>
 </body>
 </html>
