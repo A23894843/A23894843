@@ -1,39 +1,54 @@
 /* =========================================================
-   PUBLIC DOCUMENT API
+   DOCUMENT API
    ---------------------------------------------------------
-   This endpoint is optional for the document room. It uses
-   server-side Supabase credentials and NEVER exposes them.
+   Public:
+     GET /api/documents
+     GET /api/documents?id=DOCUMENT_ID&mode=preview
+     GET /api/documents?id=DOCUMENT_ID&mode=download
 
-   Access modes:
-     preview  -> guests may preview only
-     download -> guests may download only
-     private  -> admins only
+   Admin:
+     Admin upload/delete/update is handled through the
+     authenticated Supabase client in admin/auth.js.
+
+   IMPORTANT:
+     SUPABASE_SECRET_KEY must ONLY exist on the server.
 ========================================================= */
 
 import { createClient } from "@supabase/supabase-js";
 
+
+/* =========================================================
+   SUPABASE SERVER CLIENT
+========================================================= */
+
 const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY =
-    process.env.SUPABASE_SECRET_KEY ||
-    process.env.SUPABASE_SERVICE_ROLE_KEY;
+const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY;
+
+/* =========================================================
+   VALIDATE SERVER CONFIGURATION
+========================================================= */
 
 function getAdminClient() {
-    if (!SUPABASE_URL || !SUPABASE_KEY) {
-        const error = new Error(
-            "Supabase server environment variables are missing. Add SUPABASE_URL and SUPABASE_SECRET_KEY in Vercel, then redeploy."
-        );
-        error.statusCode = 500;
-        throw error;
+    if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
+        throw new Error("Supabase server configuration is missing.");
     }
 
-    return createClient(SUPABASE_URL, SUPABASE_KEY, {
-        auth: {
-            persistSession: false,
-            autoRefreshToken: false,
-            detectSessionInUrl: false
+    return createClient(
+        SUPABASE_URL,
+        SUPABASE_SECRET_KEY,
+        {
+            auth: {
+                persistSession: false,
+                autoRefreshToken: false,
+                detectSessionInUrl: false
+            }
         }
-    });
+    );
 }
+
+/* =========================================================
+   CORS / SECURITY HEADERS
+========================================================= */
 
 function setHeaders(res) {
     res.setHeader("Cache-Control", "no-store, max-age=0");
@@ -43,34 +58,47 @@ function setHeaders(res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
 }
 
+/* =========================================================
+   GET DOCUMENT LIST
+========================================================= */
+
+/*
+ * Returns only metadata.
+ * The actual private Storage path is NOT exposed.
+ */
 async function listDocuments(supabase) {
     const { data, error } = await supabase
         .from("documents")
-        .select("id,title,type,access_mode,created_at")
-        .in("access_mode", ["preview", "download"])
+        .select("id,title,type,download_allowed,created_at")
         .order("created_at", { ascending: false });
 
-    if (error) throw error;
+    if (error) {
+        throw error;
+    }
 
     return (data || []).map(document => ({
         id: document.id,
         title: document.title,
         type: document.type,
-        accessMode: document.access_mode,
-        preview: document.access_mode === "preview",
-        download: document.access_mode === "download",
+        preview: true,
+        download: Boolean(document.download_allowed),
         createdAt: document.created_at
     }));
 }
 
+/* =========================================================
+   GET SINGLE DOCUMENT
+========================================================= */
+
 async function getDocument(supabase, id, mode) {
+
     if (!id) {
         const error = new Error("Document ID is required.");
         error.statusCode = 400;
         throw error;
     }
 
-    if (!["preview", "download"].includes(mode)) {
+    if (mode !== "preview" && mode !== "download") {
         const error = new Error("Invalid document mode.");
         error.statusCode = 400;
         throw error;
@@ -78,33 +106,29 @@ async function getDocument(supabase, id, mode) {
 
     const { data: document, error } = await supabase
         .from("documents")
-        .select("id,title,type,storage_path,access_mode")
+        .select("id,title,type,storage_path,download_allowed")
         .eq("id", id)
         .maybeSingle();
 
-    if (error) throw error;
+    if (error) {
+        throw error;
+    }
+
     if (!document) {
-        const error404 = new Error("Document not found.");
-        error404.statusCode = 404;
-        throw error404;
+        const notFound = new Error("Document not found.");
+        notFound.statusCode = 404;
+        throw notFound;
     }
 
-    if (document.access_mode === "private") {
-        const error403 = new Error("This document is private.");
-        error403.statusCode = 403;
-        throw error403;
+    if (mode === "download" && !document.download_allowed) {
+        const forbidden = new Error("Downloads are disabled for this document.");
+        forbidden.statusCode = 403;
+        throw forbidden;
     }
 
-    if (document.access_mode !== mode) {
-        const error403 = new Error(
-            mode === "download"
-                ? "Downloads are disabled for this document."
-                : "Preview is disabled for this document."
-        );
-        error403.statusCode = 403;
-        throw error403;
-    }
-
+    /* 
+       Create short-lived signed URL (10 minutes)
+    */
     const { data: signed, error: signError } = await supabase
         .storage
         .from("documents")
@@ -114,21 +138,25 @@ async function getDocument(supabase, id, mode) {
             mode === "download" ? { download: true } : undefined
         );
 
-    if (signError) throw signError;
-    if (!signed?.signedUrl) throw new Error("Unable to create document URL.");
+    if (signError) {
+        throw signError;
+    }
+
+    if (!signed?.signedUrl) {
+        throw new Error("Unable to create document URL.");
+    }
 
     return {
-        id: document.id,
-        title: document.title,
-        type: document.type,
-        accessMode: document.access_mode,
-        mode,
-        url: signed.signedUrl,
-        expiresIn: 600
+        url: signed.signedUrl
     };
 }
 
+/* =========================================================
+   MAIN VERCEL HANDLER
+========================================================= */
+
 export default async function handler(req, res) {
+
     setHeaders(res);
 
     if (req.method !== "GET") {
@@ -138,21 +166,33 @@ export default async function handler(req, res) {
 
     try {
         const supabase = getAdminClient();
+        
         const id = typeof req.query.id === "string" ? req.query.id : "";
         const mode = typeof req.query.mode === "string" ? req.query.mode : "";
 
+        /* -------------------------------------------------
+           No ID → return public document list (JSON)
+        ------------------------------------------------- */
         if (!id) {
-            return res.status(200).json(await listDocuments(supabase));
+            const documents = await listDocuments(supabase);
+            return res.status(200).json(documents);
         }
 
-        return res.status(200).json(
-            await getDocument(supabase, id, mode || "preview")
-        );
+        /* -------------------------------------------------
+           ID supplied → Redirect to signed URL
+        ------------------------------------------------- */
+        const document = await getDocument(supabase, id, mode || "preview");
+        
+        // BUG FIX: Perform a 307 Temporary Redirect instead of returning JSON
+        // This ensures the <a> tags on your frontend properly open/download the file.
+        return res.redirect(307, document.url);
+
     } catch (error) {
         console.error("Document API error:", error);
-        const status = Number(error?.statusCode) >= 400 ? error.statusCode : 500;
+
+        const status = Number(error.statusCode) >= 400 ? error.statusCode : 500;
         return res.status(status).json({
-            error: error?.message || "Document service error."
+            error: status === 500 ? "Document service error." : error.message
         });
     }
 }
