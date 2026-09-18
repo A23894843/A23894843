@@ -1,0 +1,1427 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Recruiter Documents | Abhinandan</title>
+
+    <meta
+        name="description"
+        content="Public recruiter document room for Abhinandan."
+    >
+
+    <style>
+        /* =========================================================
+           DESIGN TOKENS
+        ========================================================= */
+
+        :root {
+            --bg: #080b10;
+            --panel: #10151c;
+            --panel-hover: #141b23;
+
+            --text: #eef4f5;
+            --muted: #8b97a7;
+
+            --border: #27323e;
+            --border-light: #33404d;
+
+            --primary: #42e3c4;
+            --primary-dark: #03120f;
+
+            --danger: #ff7777;
+            --warning: #ffd166;
+
+            --radius-sm: 9px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+
+            --transition: 160ms ease;
+
+            --shadow:
+                0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+
+            background: var(--bg);
+            color: var(--text);
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* =========================================================
+           PAGE
+        ========================================================= */
+
+        .page {
+            width: min(
+                calc(100% - 30px),
+                1100px
+            );
+
+            margin: 0 auto;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .topbar {
+            min-height: 76px;
+
+            border-bottom:
+                1px solid var(--border);
+
+            display: flex;
+            align-items: center;
+        }
+
+        .topbar-inner {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .brand {
+            display: inline-block;
+
+            font-family: monospace;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .brand-mark {
+            color: var(--primary);
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn {
+            min-height: 40px;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 9px 14px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius-sm);
+
+            background:
+                var(--panel);
+
+            color:
+                var(--text);
+
+            font-family:
+                monospace;
+
+            font-size: 10px;
+
+            transition:
+                background var(--transition),
+                border-color var(--transition),
+                transform var(--transition);
+        }
+
+        .btn:hover {
+            background:
+                var(--panel-hover);
+
+            border-color:
+                var(--border-light);
+        }
+
+        .btn:active {
+            transform:
+                translateY(1px);
+        }
+
+        .btn.primary {
+            background:
+                var(--primary);
+
+            border-color:
+                var(--primary);
+
+            color:
+                var(--primary-dark);
+
+            font-weight:
+                700;
+        }
+
+        .btn.primary:hover {
+            background:
+                #62ecd2;
+
+            border-color:
+                #62ecd2;
+        }
+
+        .btn.secondary {
+            background:
+                transparent;
+        }
+
+        .btn.disabled {
+            opacity: .5;
+            pointer-events: none;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            padding:
+                70px 0 40px;
+        }
+
+        .eyebrow {
+            color:
+                var(--muted);
+
+            font-family:
+                monospace;
+
+            font-size:
+                10px;
+
+            letter-spacing:
+                .15em;
+
+            text-transform:
+                uppercase;
+        }
+
+        .hero h1 {
+            max-width:
+                850px;
+
+            margin:
+                12px 0;
+
+            font-size:
+                clamp(48px, 8vw, 88px);
+
+            line-height:
+                .91;
+
+            font-weight:
+                600;
+
+            letter-spacing:
+                -.055em;
+        }
+
+        .hero-description {
+            max-width:
+                650px;
+
+            margin:
+                20px 0 0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                15px;
+        }
+
+        /* =========================================================
+           NOTICE
+        ========================================================= */
+
+        .notice {
+            max-width:
+                760px;
+
+            margin-top:
+                25px;
+
+            padding:
+                14px 16px;
+
+            border:
+                1px dashed var(--border);
+
+            border-radius:
+                var(--radius-md);
+
+            background:
+                rgba(16, 21, 28, .45);
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+        }
+
+        .notice strong {
+            color:
+                var(--text);
+
+            font-weight:
+                500;
+        }
+
+        /* =========================================================
+           TOOLBAR
+        ========================================================= */
+
+        .toolbar {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin:
+                10px 0 18px;
+        }
+
+        .toolbar-title {
+            margin:
+                0;
+
+            font-size:
+                20px;
+
+            font-weight:
+                600;
+        }
+
+        .toolbar-meta {
+            color:
+                var(--muted);
+
+            font-family:
+                monospace;
+
+            font-size:
+                10px;
+        }
+
+        .search-wrap {
+            position:
+                relative;
+
+            width:
+                min(100%, 300px);
+        }
+
+        .search {
+            width:
+                100%;
+
+            padding:
+                11px 13px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius-sm);
+
+            background:
+                var(--panel);
+
+            color:
+                var(--text);
+
+            outline:
+                none;
+        }
+
+        .search:focus {
+            border-color:
+                var(--primary);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(66, 227, 196, .08);
+        }
+
+        .search::placeholder {
+            color:
+                #657181;
+        }
+
+        /* =========================================================
+           DOCUMENT GRID
+        ========================================================= */
+
+        .document-grid {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap:
+                16px;
+
+            padding-bottom:
+                90px;
+        }
+
+        /* =========================================================
+           DOCUMENT CARD
+        ========================================================= */
+
+        .document-card {
+            position:
+                relative;
+
+            min-width:
+                0;
+
+            padding:
+                25px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius-lg);
+
+            background:
+                var(--panel);
+
+            box-shadow:
+                var(--shadow);
+
+            transition:
+                transform var(--transition),
+                border-color var(--transition),
+                background var(--transition);
+        }
+
+        .document-card:hover {
+            transform:
+                translateY(-3px);
+
+            border-color:
+                var(--border-light);
+
+            background:
+                var(--panel-hover);
+        }
+
+        .document-status {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            color:
+                var(--primary);
+
+            font-family:
+                monospace;
+
+            font-size:
+                9px;
+
+            letter-spacing:
+                .08em;
+        }
+
+        .status-dot {
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--primary);
+
+            box-shadow:
+                0 0 12px
+                rgba(66, 227, 196, .65);
+        }
+
+        .document-title {
+            margin:
+                13px 0 7px;
+
+            font-size:
+                24px;
+
+            line-height:
+                1.15;
+
+            font-weight:
+                600;
+
+            word-break:
+                break-word;
+        }
+
+        .document-meta {
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                7px;
+
+            color:
+                var(--muted);
+
+            font-family:
+                monospace;
+
+            font-size:
+                10px;
+        }
+
+        .badge {
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            padding:
+                4px 8px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                999px;
+        }
+
+        .badge.download {
+            color:
+                var(--primary);
+
+            border-color:
+                rgba(66, 227, 196, .3);
+        }
+
+        .badge.preview {
+            color:
+                var(--warning);
+
+            border-color:
+                rgba(255, 209, 102, .3);
+        }
+
+        .document-description {
+            margin:
+                16px 0 0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+        }
+
+        .document-actions {
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+            margin-top:
+                22px;
+        }
+
+        /* =========================================================
+           STATE
+        ========================================================= */
+
+        .state {
+            grid-column:
+                1 / -1;
+
+            padding:
+                45px 20px;
+
+            border:
+                1px dashed var(--border);
+
+            border-radius:
+                var(--radius-lg);
+
+            text-align:
+                center;
+        }
+
+        .state-title {
+            margin:
+                0 0 5px;
+
+            font-size:
+                17px;
+
+            font-weight:
+                600;
+        }
+
+        .state-text {
+            margin:
+                0;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+        }
+
+        .loading {
+            color:
+                var(--muted);
+
+            font-family:
+                monospace;
+
+            font-size:
+                11px;
+        }
+
+        .error {
+            color:
+                var(--danger);
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .footer {
+            padding:
+                25px 0 45px;
+
+            border-top:
+                1px solid var(--border);
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            color:
+                var(--muted);
+
+            font-family:
+                monospace;
+
+            font-size:
+                10px;
+        }
+
+        .footer-links {
+            display:
+                flex;
+
+            gap:
+                14px;
+        }
+
+        .footer-links a:hover {
+            color:
+                var(--text);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 760px) {
+
+            .document-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .toolbar {
+                align-items:
+                    stretch;
+
+                flex-direction:
+                    column;
+            }
+
+            .search-wrap {
+                width:
+                    100%;
+            }
+        }
+
+        @media (max-width: 560px) {
+
+            .page {
+                width:
+                    min(
+                        calc(100% - 20px),
+                        1100px
+                    );
+            }
+
+            .topbar {
+                min-height:
+                    68px;
+            }
+
+            .topbar-inner {
+                flex-wrap:
+                    wrap;
+
+                padding:
+                    12px 0;
+            }
+
+            .hero {
+                padding:
+                    50px 0 30px;
+            }
+
+            .hero h1 {
+                font-size:
+                    52px;
+            }
+
+            .document-card {
+                padding:
+                    20px;
+            }
+
+            .document-actions {
+                flex-direction:
+                    column;
+            }
+
+            .document-actions .btn {
+                width:
+                    100%;
+            }
+
+            .footer {
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================================
+         HEADER
+    ========================================================== -->
+
+    <header class="topbar">
+
+        <div class="page topbar-inner">
+
+            <a
+                class="brand"
+                href="/"
+                aria-label="Return to Abhinandan portfolio"
+            >
+                ABHINANDAN<span class="brand-mark">_</span>
+            </a>
+
+            <nav
+                class="top-actions"
+                aria-label="Portfolio navigation"
+            >
+                <a
+                    class="btn secondary"
+                    href="/"
+                >
+                    ← PORTFOLIO
+                </a>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="page">
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                PUBLIC / RECRUITER DOCUMENT ROOM
+            </div>
+
+            <h1>
+                Professional<br>
+                Documents.
+            </h1>
+
+            <p class="hero-description">
+                CVs, project reports and certificates
+                available for recruiters and professional review.
+                No account is required.
+            </p>
+
+
+            <div class="notice">
+
+                <strong>Access policy.</strong>
+
+                Preview and download availability is controlled
+                by the document service. Browser-based document
+                preview cannot provide absolute DRM protection.
+                Documents marked as preview-only are not presented
+                with a download action.
+
+            </div>
+
+        </section>
+
+
+        <!-- TOOLBAR -->
+
+        <section>
+
+            <div class="toolbar">
+
+                <div>
+                    <h2 class="toolbar-title">
+                        Available documents
+                    </h2>
+
+                    <div
+                        id="documentCount"
+                        class="toolbar-meta"
+                    >
+                        Loading library...
+                    </div>
+                </div>
+
+
+                <div class="search-wrap">
+
+                    <label
+                        for="search"
+                        class="sr-only"
+                    >
+                        Search documents
+                    </label>
+
+                    <input
+                        id="search"
+                        class="search"
+                        type="search"
+                        placeholder="Search documents..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- DOCUMENTS -->
+
+            <div
+                id="docs"
+                class="document-grid"
+                aria-live="polite"
+            >
+
+                <div class="state">
+                    <div class="loading">
+                        Loading document library...
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================================================
+         FOOTER
+    ========================================================== -->
+
+    <footer class="page footer">
+
+        <span>
+            © 2026 ABHINANDAN · PUBLIC DOCUMENT ROOM
+        </span>
+
+        <div class="footer-links">
+
+            <a
+                href="https://github.com/A23894843"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GITHUB
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/abhinandan-29b66b28b/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                LINKEDIN
+            </a>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+        "use strict";
+
+
+        /* =========================================================
+           DOM
+        ========================================================= */
+
+        const docsContainer =
+            document.getElementById("docs");
+
+        const searchInput =
+            document.getElementById("search");
+
+        const documentCount =
+            document.getElementById("documentCount");
+
+
+        /* =========================================================
+           STATE
+        ========================================================= */
+
+        let documents = [];
+
+
+        /* =========================================================
+           LABELS
+        ========================================================= */
+
+        const TYPE_LABELS = {
+            cv: "CV / RESUME",
+            report: "PROJECT REPORT",
+            certificate: "CERTIFICATE"
+        };
+
+
+        /* =========================================================
+           HTML ESCAPE
+        ========================================================= */
+
+        function escapeHTML(value) {
+
+            return String(value)
+                .replace(
+                    /[&<>"']/g,
+                    character => ({
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#039;"
+                    })[character]
+                );
+        }
+
+
+        /* =========================================================
+           TYPE LABEL
+        ========================================================= */
+
+        function getTypeLabel(type) {
+
+            const normalized =
+                String(type || "")
+                    .toLowerCase();
+
+            return (
+                TYPE_LABELS[normalized] ||
+                normalized.toUpperCase() ||
+                "DOCUMENT"
+            );
+        }
+
+
+        /* =========================================================
+           DOCUMENT CARD
+        ========================================================= */
+
+        function createDocumentCard(document) {
+
+            const card =
+                documentTemplate();
+
+            const title =
+                escapeHTML(
+                    document.title ||
+                    "Untitled document"
+                );
+
+            const type =
+                getTypeLabel(
+                    document.type
+                );
+
+            const id =
+                encodeURIComponent(
+                    document.id
+                );
+
+            const canDownload =
+                Boolean(
+                    document.download
+                );
+
+            card.innerHTML = `
+                <div class="document-status">
+                    <span class="status-dot"></span>
+                    AVAILABLE
+                </div>
+
+                <h3 class="document-title">
+                    ${title}
+                </h3>
+
+                <div class="document-meta">
+
+                    <span class="badge">
+                        ${escapeHTML(type)}
+                    </span>
+
+                    <span class="badge ${
+                        canDownload
+                            ? "download"
+                            : "preview"
+                    }">
+                        ${
+                            canDownload
+                                ? "PREVIEW + DOWNLOAD"
+                                : "PREVIEW ONLY"
+                        }
+                    </span>
+
+                </div>
+
+                <p class="document-description">
+                    ${
+                        canDownload
+                            ? "This document can be previewed in the browser and downloaded."
+                            : "This document can be previewed in the browser. Download is disabled."
+                    }
+                </p>
+
+                <div class="document-actions">
+
+                    <a
+                        class="btn primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href="/api/documents?id=${id}&mode=preview"
+                    >
+                        PREVIEW ↗
+                    </a>
+
+                    ${
+                        canDownload
+                            ? `
+                                <a
+                                    class="btn"
+                                    href="/api/documents?id=${id}&mode=download"
+                                >
+                                    DOWNLOAD ↓
+                                </a>
+                            `
+                            : ""
+                    }
+
+                </div>
+            `;
+
+            return card;
+        }
+
+
+        /* =========================================================
+           TEMPLATE
+        ========================================================= */
+
+        function documentTemplate() {
+
+            const template =
+                document.createElement("article");
+
+            template.className =
+                "document-card";
+
+            return template;
+        }
+
+
+        /* =========================================================
+           STATE RENDERING
+        ========================================================= */
+
+        function renderState(
+            title,
+            text,
+            error = false
+        ) {
+
+            docsContainer.innerHTML = "";
+
+            const state =
+                document.createElement("div");
+
+            state.className =
+                "state";
+
+            state.innerHTML = `
+                <h3 class="state-title">
+                    ${escapeHTML(title)}
+                </h3>
+
+                <p class="state-text ${
+                    error ? "error" : ""
+                }">
+                    ${escapeHTML(text)}
+                </p>
+            `;
+
+            docsContainer.appendChild(state);
+        }
+
+
+        /* =========================================================
+           RENDER DOCUMENTS
+        ========================================================= */
+
+        function renderDocuments(
+            source = documents
+        ) {
+
+            docsContainer.innerHTML = "";
+
+            if (
+                source.length === 0
+            ) {
+
+                const isSearching =
+                    searchInput.value.trim()
+                        .length > 0;
+
+                renderState(
+                    isSearching
+                        ? "No matching documents"
+                        : "No public documents",
+                    isSearching
+                        ? "Try a different search term."
+                        : "No recruiter documents have been published yet."
+                );
+
+                return;
+            }
+
+
+            const fragment =
+                document.createDocumentFragment();
+
+
+            source.forEach(
+                item => {
+
+                    fragment.appendChild(
+                        createDocumentCard(item)
+                    );
+
+                }
+            );
+
+
+            docsContainer.appendChild(
+                fragment
+            );
+        }
+
+
+        /* =========================================================
+           SEARCH
+        ========================================================= */
+
+        function filterDocuments() {
+
+            const query =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            if (!query) {
+
+                renderDocuments();
+
+                return;
+            }
+
+
+            const filtered =
+                documents.filter(
+                    document => {
+
+                        const title =
+                            String(
+                                document.title || ""
+                            ).toLowerCase();
+
+                        const type =
+                            String(
+                                document.type || ""
+                            ).toLowerCase();
+
+                        return (
+                            title.includes(query) ||
+                            type.includes(query)
+                        );
+                    }
+                );
+
+
+            renderDocuments(
+                filtered
+            );
+        }
+
+
+        /* =========================================================
+           LOAD DOCUMENTS
+        ========================================================= */
+
+        async function loadDocuments() {
+
+            renderState(
+                "Loading documents",
+                "Fetching the public document library..."
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "/api/documents",
+                        {
+                            method: "GET",
+                            cache: "no-store",
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            }
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `Document service returned HTTP ${response.status}.`
+                    );
+                }
+
+
+                const data =
+                    await response.json();
+
+
+                if (!Array.isArray(data)) {
+
+                    throw new Error(
+                        "Invalid document service response."
+                    );
+                }
+
+
+                documents =
+                    data.filter(
+                        item =>
+                            item &&
+                            item.id &&
+                            item.title
+                    );
+
+
+                updateCount();
+
+                renderDocuments();
+
+            } catch (error) {
+
+                console.error(
+                    "Document loading error:",
+                    error
+                );
+
+
+                documentCount.textContent =
+                    "Unable to load library";
+
+
+                renderState(
+                    "Document service unavailable",
+                    error?.message ||
+                    "Please try again later.",
+                    true
+                );
+            }
+        }
+
+
+        /* =========================================================
+           COUNT
+        ========================================================= */
+
+        function updateCount() {
+
+            const total =
+                documents.length;
+
+            if (total === 0) {
+
+                documentCount.textContent =
+                    "No documents published";
+
+                return;
+            }
+
+
+            documentCount.textContent =
+                `${total} document${
+                    total === 1
+                        ? ""
+                        : "s"
+                } available`;
+        }
+
+
+        /* =========================================================
+           SEARCH EVENT
+        ========================================================= */
+
+        searchInput.addEventListener(
+            "input",
+            filterDocuments
+        );
+
+
+        /* =========================================================
+           LOAD
+        ========================================================= */
+
+        loadDocuments();
+    </script>
+
+</body>
+</html>
