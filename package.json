@@ -1,0 +1,7 @@
+{
+  "name": "abhinandan-portfolio",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.57.0"
+  }
+}
