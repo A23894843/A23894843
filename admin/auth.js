@@ -443,7 +443,7 @@ async function uploadDoc(
     title,
     type,
     file,
-    accessMode = "preview"
+    downloadAllowed = false
 ) {
 
     if (!init()) {
@@ -470,19 +470,15 @@ async function uploadDoc(
     const allowedTypes = [
         "cv",
         "report",
-        "certificate",
-        "academic",
-        "project",
-        "other"
+        "certificate"
     ];
 
 
     if (!allowedTypes.includes(type)) {
-        throw new Error("Invalid document type.");
-    }
 
-    if (!["preview", "download", "private"].includes(accessMode)) {
-        throw new Error("Invalid document access mode.");
+        throw new Error(
+            "Invalid document type."
+        );
     }
 
 
@@ -567,8 +563,8 @@ async function uploadDoc(
                     storage_path:
                         path,
 
-                    access_mode:
-                        accessMode,
+                    download_allowed:
+                        Boolean(downloadAllowed),
 
                     created_by:
                         userResult.data.user.id
@@ -613,28 +609,34 @@ async function uploadDoc(
 
 async function updateDocAccess(
     id,
-    accessMode
+    downloadAllowed
 ) {
 
     if (!init()) {
-        throw new Error("Supabase is not configured.");
+        throw new Error(
+            "Supabase is not configured."
+        );
     }
 
-    if (!["preview", "download", "private"].includes(accessMode)) {
-        throw new Error("Invalid document access mode.");
-    }
 
-    const result = await sb
-        .from("documents")
-        .update({ access_mode: accessMode, download_allowed: accessMode === "download" })
-        .eq("id", id);
+    const result =
+        await sb
+            .from("documents")
+            .update({
+                download_allowed:
+                    Boolean(downloadAllowed)
+            })
+            .eq("id", id);
+
 
     if (result.error) {
         throw result.error;
     }
 
+
     return true;
 }
+
 
 /* =========================================================
    DELETE DOCUMENT
@@ -694,127 +696,4 @@ async function deleteDoc(
 
 
     return true;
-}
-
-
-/* =========================================================
-   PASSWORD RESET REQUEST
-   ========================================================= */
-
-async function requestPasswordReset(email) {
-
-    if (!init()) {
-        return false;
-    }
-
-    const normalizedEmail = String(email || "").trim();
-
-    if (!normalizedEmail) {
-        setMessage("Enter your email address.");
-        return false;
-    }
-
-    try {
-        const redirectTo =
-            `${window.location.origin}/reset-password.html`;
-
-        const result =
-            await sb.auth.resetPasswordForEmail(
-                normalizedEmail,
-                { redirectTo }
-            );
-
-        if (result.error) {
-            throw result.error;
-        }
-
-        setMessage(
-            "If an account exists for that email, a password reset link has been sent.",
-            "success"
-        );
-
-        return true;
-
-    } catch (error) {
-        setMessage(
-            error.message ||
-            "Unable to send password reset email."
-        );
-        return false;
-    }
-}
-
-
-/* =========================================================
-   GET SECURE DOCUMENT URL
-   ========================================================= */
-
-async function getDocumentUrl(id, mode = "preview") {
-
-    if (!init()) {
-        throw new Error("Supabase is not configured.");
-    }
-
-    if (!["preview", "download"].includes(mode)) {
-        throw new Error("Invalid document mode.");
-    }
-
-    const result = await sb
-        .from("documents")
-        .select("id,title,type,storage_path,access_mode")
-        .eq("id", id)
-        .single();
-
-    if (result.error) {
-        throw result.error;
-    }
-
-    const document = result.data;
-    if (!document) {
-        throw new Error("Document not found.");
-    }
-
-    // Admins can open private files; public files are limited to their selected mode.
-    if (document.access_mode === "private") {
-        const adminCheck = await sb
-            .from("profiles")
-            .select("id")
-            .eq("id", (await sb.auth.getUser()).data.user?.id || "")
-            .eq("role", "admin")
-            .eq("status", "approved")
-            .maybeSingle();
-
-        if (adminCheck.error || !adminCheck.data) {
-            throw new Error("This document is private.");
-        }
-    } else if (document.access_mode !== mode) {
-        throw new Error(
-            mode === "download"
-                ? "Downloads are disabled for this document."
-                : "Preview is disabled for this document."
-        );
-    }
-
-    const signed = await sb
-        .storage
-        .from("documents")
-        .createSignedUrl(
-            document.storage_path,
-            600,
-            mode === "download" ? { download: true } : undefined
-        );
-
-    if (signed.error || !signed.data?.signedUrl) {
-        throw signed.error || new Error("Unable to create document URL.");
-    }
-
-    return {
-        id: document.id,
-        title: document.title,
-        type: document.type,
-        accessMode: document.access_mode,
-        mode,
-        url: signed.data.signedUrl,
-        expiresIn: 600
-    };
 }
