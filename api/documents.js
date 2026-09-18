@@ -6,16 +6,11 @@
      GET /api/documents?id=DOCUMENT_ID&mode=preview
      GET /api/documents?id=DOCUMENT_ID&mode=download
 
-   Admin:
-     Admin upload/delete/update is handled through the
-     authenticated Supabase client in admin/auth.js.
-
    IMPORTANT:
      SUPABASE_SECRET_KEY must ONLY exist on the server.
 ========================================================= */
 
-import { createClient } from "@supabase/supabase-js";
-
+const { createClient } = require("@supabase/supabase-js");
 
 /* =========================================================
    SUPABASE SERVER CLIENT
@@ -23,10 +18,6 @@ import { createClient } from "@supabase/supabase-js";
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_SECRET_KEY = process.env.SUPABASE_SECRET_KEY;
-
-/* =========================================================
-   VALIDATE SERVER CONFIGURATION
-========================================================= */
 
 function getAdminClient() {
     if (!SUPABASE_URL || !SUPABASE_SECRET_KEY) {
@@ -62,10 +53,6 @@ function setHeaders(res) {
    GET DOCUMENT LIST
 ========================================================= */
 
-/*
- * Returns only metadata.
- * The actual private Storage path is NOT exposed.
- */
 async function listDocuments(supabase) {
     const { data, error } = await supabase
         .from("documents")
@@ -91,7 +78,6 @@ async function listDocuments(supabase) {
 ========================================================= */
 
 async function getDocument(supabase, id, mode) {
-
     if (!id) {
         const error = new Error("Document ID is required.");
         error.statusCode = 400;
@@ -126,9 +112,6 @@ async function getDocument(supabase, id, mode) {
         throw forbidden;
     }
 
-    /* 
-       Create short-lived signed URL (10 minutes)
-    */
     const { data: signed, error: signError } = await supabase
         .storage
         .from("documents")
@@ -155,8 +138,7 @@ async function getDocument(supabase, id, mode) {
    MAIN VERCEL HANDLER
 ========================================================= */
 
-export default async function handler(req, res) {
-
+module.exports = async function handler(req, res) {
     setHeaders(res);
 
     if (req.method !== "GET") {
@@ -170,21 +152,13 @@ export default async function handler(req, res) {
         const id = typeof req.query.id === "string" ? req.query.id : "";
         const mode = typeof req.query.mode === "string" ? req.query.mode : "";
 
-        /* -------------------------------------------------
-           No ID → return public document list (JSON)
-        ------------------------------------------------- */
         if (!id) {
             const documents = await listDocuments(supabase);
             return res.status(200).json(documents);
         }
 
-        /* -------------------------------------------------
-           ID supplied → Redirect to signed URL
-        ------------------------------------------------- */
         const document = await getDocument(supabase, id, mode || "preview");
         
-        // BUG FIX: Perform a 307 Temporary Redirect instead of returning JSON
-        // This ensures the <a> tags on your frontend properly open/download the file.
         return res.redirect(307, document.url);
 
     } catch (error) {
@@ -195,4 +169,4 @@ export default async function handler(req, res) {
             error: status === 500 ? "Document service error." : error.message
         });
     }
-}
+};
