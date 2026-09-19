@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b10" id="themeColorMeta">
-<meta name="description" content="Abhinandan — cybersecurity, systems and machine learning portfolio.">
+<meta name="description" content="Abhinandan — cybersecurity, systems, machine learning and full-stack engineering portfolio.">
 <title>Abhinandan — Security / Systems</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,143 +12,196 @@
 <style>
 :root{--bg:#080b10;--panel:#0f141b;--panel2:#151b23;--ink:#eef4f5;--muted:#8b97a7;--line:#26313d;--teal:#42e3c4;--violet:#9b8cff;--amber:#f2bd69;--max:1200px;--mx:0px;--my:0px}
 html[data-theme=light]{--bg:#f5f6f4;--panel:#fff;--panel2:#edf0ee;--ink:#11171b;--muted:#68737e;--line:#d8dfdc;--teal:#087e6e;--violet:#5b4fbd;--amber:#9b630a}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,sans-serif;overflow-x:hidden;transition:.35s}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,sans-serif;overflow-x:hidden;transition:.3s}
 a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(calc(100% - 42px),var(--max));margin:auto}.mono{font-family:"DM Mono",monospace}.eyebrow{font:500 11px "DM Mono";letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .bg-grid{position:fixed;inset:0;z-index:-5;opacity:.28;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(#000,transparent 82%)}
-.glow{position:fixed;width:480px;height:480px;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:-4;opacity:.10;transform:translate3d(calc(var(--mx)*.35),calc(var(--my)*.35),0);background:var(--violet);top:-190px;right:-120px}.glow2{background:var(--teal);left:-250px;top:55%;transform:translate3d(calc(var(--mx)*-.18),calc(var(--my)*-.18),0);opacity:.07}
+.glow{position:fixed;width:480px;height:480px;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:-4;opacity:.1;transform:translate3d(calc(var(--mx)*.35),calc(var(--my)*.35),0);background:var(--violet);top:-190px;right:-120px}.glow2{background:var(--teal);left:-250px;top:55%;transform:translate3d(calc(var(--mx)*-.18),calc(var(--my)*-.18),0);opacity:.07}
 nav{position:sticky;top:0;z-index:50;height:74px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(18px)}
-.navin{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:600 14px "DM Mono";letter-spacing:.08em}.brand b{color:var(--teal)}.links{display:flex;gap:26px;color:var(--muted);font-size:13px}.links a:hover{color:var(--ink)}.actions{display:flex;gap:9px;align-items:center}.theme,.adminlink{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:9px 11px;cursor:pointer;font:500 11px "DM Mono"}.adminlink:hover{border-color:var(--teal)}.theme{position:relative;display:inline-flex;align-items:center;width:72px;height:38px;padding:0 6px;border-radius:999px;overflow:hidden;background:#1b2433;border-color:#354155;box-shadow:inset 0 1px 2px rgba(255,255,255,.06),0 5px 16px rgba(0,0,0,.16);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .2s ease}.theme:hover{border-color:#53627a;transform:translateY(-1px);box-shadow:inset 0 1px 2px rgba(255,255,255,.08),0 7px 20px rgba(0,0,0,.2)}.theme:active{transform:translateY(0) scale(.97)}.theme::before{content:"";position:absolute;inset:3px;border-radius:999px;border:1px solid rgba(255,255,255,.07);pointer-events:none}.theme .theme-icon{position:absolute;left:7px;top:5px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#42a5ff 0%,#6f55e8 100%);box-shadow:0 2px 8px rgba(62,119,255,.3);font-size:0;line-height:1;transition:left .35s cubic-bezier(.4,0,.2,1),background .35s ease,box-shadow .35s ease}.theme .theme-icon::after{content:"☾";font-size:16px;color:#ffd978;transform:translateY(-.5px);transition:color .25s ease}.theme.is-light .theme-icon{left:37px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.14)}.theme.is-light .theme-icon::after{content:"☀";font-size:15px;color:#d28b18}.theme.is-light{background:#e9edf2;border-color:#cbd3dc}.theme.is-light:hover{border-color:#aeb9c6}
-.contact-head{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 11px;border:1px solid var(--line);border-radius:10px;background:color-mix(in srgb,var(--panel) 88%,transparent);color:var(--muted);font:500 10px "DM Mono";letter-spacing:.04em;transition:transform .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;white-space:nowrap}.contact-head:hover{transform:translateY(-2px);border-color:var(--teal);color:var(--ink);box-shadow:0 8px 22px color-mix(in srgb,var(--teal) 12%,transparent)}.linkedin-head{font-weight:700;font-size:11px}.social-head{font-weight:700;font-size:10px}.github-head{--social-accent:#8b5cf6}.leetcode-head{--social-accent:#f0a500}.social-head:hover{border-color:var(--social-accent);box-shadow:0 8px 22px color-mix(in srgb,var(--social-accent) 14%,transparent)}.social-head span{font-size:9px;font-weight:500}.linkedin-head span,.phone-head span{font-size:9px;font-weight:500}.cursor-glow{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(520px circle at var(--mouse-x,50%) var(--mouse-y,50%),color-mix(in srgb,var(--teal) 8%,transparent),transparent 65%)}.aurora{position:fixed;z-index:-6;pointer-events:none;border-radius:50%;filter:blur(80px);opacity:.16;will-change:transform}.aurora.a1{width:420px;height:420px;left:-120px;top:18%;background:radial-gradient(circle,var(--teal),transparent 68%);transform:translate3d(calc(var(--mx)*-.22),calc(var(--my)*-.22),0)}.aurora.a2{width:500px;height:500px;right:-180px;top:12%;background:radial-gradient(circle,var(--violet),transparent 68%);transform:translate3d(calc(var(--mx)*.28),calc(var(--my)*.28),0)}.aurora.a3{width:380px;height:380px;left:38%;bottom:-180px;background:radial-gradient(circle,var(--amber),transparent 68%);opacity:.08;transform:translate3d(calc(var(--mx)*.12),calc(var(--my)*-.12),0)}.hero .btn,.project .btn,.card .btn,.contact .btn{will-change:transform}.hero-copy{transition:transform .18s ease-out;transform:translate3d(calc(var(--mx)*.012),calc(var(--my)*.012),0)}
-.hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.08fr .92fr;gap:65px;align-items:center;padding:90px 0 75px}.hero h1{font:700 clamp(56px,8vw,110px)/.87 "Space Grotesk";letter-spacing:-.075em;margin:18px 0 28px}.hero h1 em{font-style:normal;color:var(--teal)}.hero p{max-width:680px;color:var(--muted);font-size:17px}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 16px;border:1px solid var(--line);background:var(--panel);border-radius:10px;font:500 11px "DM Mono";transition:.2s}.btn:hover{transform:translateY(-3px);border-color:var(--teal)}.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.visual{position:relative;min-height:500px;display:grid;place-items:center;perspective:900px}.visual-card{width:min(100%,520px);aspect-ratio:1/1;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 88%,transparent),color-mix(in srgb,var(--panel2) 75%,transparent));box-shadow:0 35px 100px rgba(0,0,0,.25);position:relative;overflow:hidden;transform:rotateX(calc(var(--my)*-.035deg)) rotateY(calc(var(--mx)*.035deg));transition:transform .12s ease-out}.visual-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--teal) 18%,transparent),transparent 42%)}.rings{position:absolute;inset:12%;border:1px solid var(--line);border-radius:50%;transform:rotate(18deg)}.rings:before,.rings:after{content:"";position:absolute;inset:12%;border:1px dashed var(--line);border-radius:50%}.rings:after{inset:24%;border-style:solid}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:105px;height:105px;border-radius:50%;border:1px solid var(--teal);display:grid;place-items:center;font:500 12px "DM Mono";color:var(--teal);box-shadow:0 0 45px color-mix(in srgb,var(--teal) 24%,transparent)}.orbit{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--amber);box-shadow:0 0 22px var(--amber);left:25%;top:34%;animation:float 4s ease-in-out infinite}.orbit.o2{left:auto;right:23%;top:auto;bottom:30%;background:var(--violet);box-shadow:0 0 22px var(--violet);animation-delay:-2s}.visual-label{position:absolute;font:500 10px "DM Mono";color:var(--muted);letter-spacing:.12em}.v1{top:28px;left:28px}.v2{right:28px;top:44%}.v3{left:28px;bottom:28px}@keyframes float{50%{transform:translate3d(16px,-12px,0)}} 
+.navin{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:600 14px "DM Mono";letter-spacing:.08em}.brand b{color:var(--teal)}.links{display:flex;gap:25px;color:var(--muted);font-size:13px}.links a:hover{color:var(--ink)}.actions{display:flex;gap:9px;align-items:center}
+.adminlink,.theme{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:9px 11px;cursor:pointer;font:500 11px "DM Mono"}.adminlink:hover{border-color:var(--teal)}
+.theme{position:relative;width:72px;height:38px;padding:0;border-radius:999px;overflow:hidden;background:#1b2433;border-color:#354155}.theme:before{content:"";position:absolute;inset:3px;border-radius:999px;border:1px solid rgba(255,255,255,.07)}.theme-icon{position:absolute;left:7px;top:5px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#42a5ff,#6f55e8);color:#ffd978;transition:.35s}.theme-icon:after{content:"☾"}.theme.is-light{background:#e9edf2;border-color:#cbd3dc}.theme.is-light .theme-icon{left:37px;background:#fff;color:#d28b18}.theme.is-light .theme-icon:after{content:"☀"}
+.hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.08fr .92fr;gap:65px;align-items:center;padding:90px 0 75px}.hero h1{font:700 clamp(56px,8vw,110px)/.87 "Space Grotesk";letter-spacing:-.075em;margin:18px 0 28px}.hero h1 em{font-style:normal;color:var(--teal)}.hero p{max-width:680px;color:var(--muted);font-size:17px}
+.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 16px;border:1px solid var(--line);background:var(--panel);border-radius:10px;font:500 11px "DM Mono";transition:.2s}.btn:hover{transform:translateY(-3px);border-color:var(--teal)}.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.visual{position:relative;min-height:500px;display:grid;place-items:center;perspective:900px}.visual-card{width:min(100%,520px);aspect-ratio:1;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 88%,transparent),color-mix(in srgb,var(--panel2) 75%,transparent));box-shadow:0 35px 100px rgba(0,0,0,.25);position:relative;overflow:hidden;transform:rotateX(calc(var(--my)*-.035deg)) rotateY(calc(var(--mx)*.035deg));transition:transform .12s}
+.visual-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--teal) 18%,transparent),transparent 42%)}.rings{position:absolute;inset:12%;border:1px solid var(--line);border-radius:50%;transform:rotate(18deg)}.rings:before,.rings:after{content:"";position:absolute;inset:12%;border:1px dashed var(--line);border-radius:50%}.rings:after{inset:24%;border-style:solid}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:105px;height:105px;border-radius:50%;border:1px solid var(--teal);display:grid;place-items:center;text-align:center;font:500 12px "DM Mono";color:var(--teal);box-shadow:0 0 45px color-mix(in srgb,var(--teal) 24%,transparent)}.orbit{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--amber);box-shadow:0 0 22px var(--amber);left:25%;top:34%;animation:float 4s ease-in-out infinite}.orbit.o2{left:auto;right:23%;top:auto;bottom:30%;background:var(--violet);box-shadow:0 0 22px var(--violet);animation-delay:-2s}.visual-label{position:absolute;font:500 10px "DM Mono";color:var(--muted);letter-spacing:.12em}.v1{top:28px;left:28px}.v2{right:28px;top:44%}.v3{left:28px;bottom:28px}@keyframes float{50%{transform:translate3d(16px,-12px,0)}}
 .signal{border-block:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr)}.signal>div{padding:24px 20px;border-right:1px solid var(--line)}.signal>div:last-child{border:0}.num{font:600 31px "Space Grotesk"}.label{font:10px "DM Mono";color:var(--muted);letter-spacing:.1em}
 section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:38px}.head h2{font:600 clamp(38px,5vw,65px)/.95 "Space Grotesk";letter-spacing:-.06em;margin:9px 0 0}.note{max-width:410px;color:var(--muted);font-size:14px}
-.project{display:grid;grid-template-columns:70px 1fr 270px;gap:30px;padding:40px 0;border-top:1px solid var(--line)}.project:last-child{border-bottom:1px solid var(--line)}.pno{font:500 11px "DM Mono";color:var(--muted)}.project h3{font:600 clamp(31px,4vw,57px)/.95 "Space Grotesk";letter-spacing:-.055em;margin:7px 0 16px}.project h3 span{color:var(--teal)}.project p{max-width:700px;color:var(--muted)}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:21px}.tag{padding:6px 9px;border:1px solid var(--line);border-radius:999px;font:10px "DM Mono";color:var(--muted)}.side{font:11px "DM Mono";color:var(--muted)}.side div{padding:10px 0;border-bottom:1px solid var(--line)}.side strong{color:var(--ink);font-weight:500}.arch{margin-top:30px;border:1px solid var(--line);border-radius:17px;padding:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;background:var(--panel)}.node{border:1px dashed var(--line);border-radius:12px;padding:18px 10px;text-align:center;color:var(--muted);font:10px "DM Mono"}.node b{display:block;color:var(--ink);margin-bottom:4px;font-size:11px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:29px}.card h3{font:600 27px "Space Grotesk";margin:0 0 9px}.card p{color:var(--muted);font-size:14px}.skills{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}.skill{padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}.skill b{font:500 10px "DM Mono";color:var(--teal);text-transform:uppercase}.skill div{margin-top:5px;color:var(--muted);font-size:12px}
-.activity{display:grid;grid-template-columns:1fr 1fr;gap:18px}.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{border:1px solid var(--line);border-radius:12px;padding:17px}.big{font:600 29px "Space Grotesk"}.bars{margin-top:25px}.bar{height:7px;background:var(--panel2);border-radius:20px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--violet));transition:1s}.mini-chart{height:120px;display:flex;gap:2px;align-items:end;margin-top:25px}.mini-chart i{flex:1;min-height:2px;background:var(--teal);opacity:.72;border-radius:2px 2px 0 0}.muted{color:var(--muted)}
-.docs{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.doc-card{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:28px}.doc-list{display:grid;gap:10px;margin-top:18px}.doc{display:flex;align-items:center;justify-content:space-between;gap:15px;border:1px solid var(--line);padding:15px;border-radius:12px;background:var(--panel2)}.doc small{display:block;color:var(--muted);font:10px "DM Mono";margin-top:3px}
+.project{display:grid;grid-template-columns:70px 1fr 270px;gap:30px;padding:40px 0;border-top:1px solid var(--line)}.project:last-child{border-bottom:1px solid var(--line)}.pno{font:500 11px "DM Mono";color:var(--muted)}.project h3{font:600 clamp(31px,4vw,57px)/.95 "Space Grotesk";letter-spacing:-.055em;margin:7px 0 16px}.project h3 span{color:var(--teal)}.project p{max-width:700px;color:var(--muted)}.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:21px}.tag{padding:6px 9px;border:1px solid var(--line);border-radius:999px;font:10px "DM Mono";color:var(--muted)}.side{font:11px "DM Mono";color:var(--muted)}.side div{padding:10px 0;border-bottom:1px solid var(--line)}.side strong{color:var(--ink);font-weight:500}
+.grid2,.activity{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:29px}.card h3{font:600 27px "Space Grotesk";margin:0 0 9px}.card p{color:var(--muted);font-size:14px}.skills{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}.skill{padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--panel2)}.skill b{font:500 10px "DM Mono";color:var(--teal);text-transform:uppercase}.skill div{margin-top:5px;color:var(--muted);font-size:12px}
+.statrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}.stat{border:1px solid var(--line);border-radius:12px;padding:17px}.big{font:600 29px "Space Grotesk"}.bars{margin-top:25px}.bar{height:7px;background:var(--panel2);border-radius:20px;overflow:hidden;margin-top:8px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--violet));transition:1s}.mini-chart{height:120px;display:flex;gap:2px;align-items:end;margin-top:25px}.mini-chart i{flex:1;min-height:2px;background:var(--teal);opacity:.72;border-radius:2px 2px 0 0}
+.doc-list{display:grid;gap:10px;margin-top:18px}.doc{display:flex;align-items:center;justify-content:space-between;gap:15px;border:1px solid var(--line);padding:15px;border-radius:12px;background:var(--panel2)}.doc small{display:block;color:var(--muted);font:10px "DM Mono";margin-top:3px}
+.badge{display:inline-flex;align-items:center;gap:7px;color:var(--teal);font:10px "DM Mono"}.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal)}.muted{color:var(--muted)}
 .contact{border:1px solid var(--line);border-radius:24px;padding:52px;background:linear-gradient(135deg,var(--panel),transparent);display:flex;justify-content:space-between;align-items:end;gap:30px}.contact h2{font:600 clamp(44px,6vw,78px)/.9 "Space Grotesk";letter-spacing:-.06em;margin:12px 0 0}.footer{padding:30px 0 55px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font:10px "DM Mono"}
-.reveal{opacity:0;transform:translateY(18px);transition:.7s}.reveal.show{opacity:1;transform:none}.badge{display:inline-flex;align-items:center;gap:7px;color:var(--teal);font:10px "DM Mono"}.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal)}
-@media(max-width:850px){.links{display:none}.contact-head span{display:none}.contact-head{width:38px;justify-content:center;padding:0}.hero{grid-template-columns:1fr;padding-top:70px}.visual{min-height:390px}.signal{grid-template-columns:1fr 1fr}.signal>div:nth-child(2){border-right:0}.project{grid-template-columns:40px 1fr}.side{grid-column:2}.grid2,.activity,.docs{grid-template-columns:1fr}.arch{grid-template-columns:1fr 1fr}.contact{display:block}}
-@media(max-width:560px){.wrap{width:min(calc(100% - 26px),var(--max))}.hero h1{font-size:52px}.visual{min-height:330px}.visual-card{width:100%}.signal .num{font-size:25px}.signal>div{padding:18px 12px}.project{grid-template-columns:1fr;gap:12px}.side{grid-column:auto}.arch,.skills,.statrow{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.aurora,.cursor-glow{display:none}.visual-card,.hero-copy{transform:none!important}}
-
-/* Cybersecurity classic visual layer */
-:root{
-  --cyber-cyan:#39e6c1;
-  --cyber-blue:#4da3ff;
-  --cyber-violet:#8b7cff;
-  --cyber-amber:#d9b56c;
-  --cyber-red:#ff5c70;
-  --cyber-ink:#071018;
-  --cyber-panel:rgba(10,18,27,.72);
-}
-body{
-  background:
-    radial-gradient(circle at 12% 18%, rgba(57,230,193,.075), transparent 28%),
-    radial-gradient(circle at 88% 22%, rgba(77,163,255,.065), transparent 30%),
-    radial-gradient(circle at 70% 82%, rgba(139,124,255,.055), transparent 32%),
-    var(--bg);
-}
-body::before{
-  background:
-    linear-gradient(rgba(57,230,193,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(57,230,193,.018) 1px, transparent 1px);
-  background-size:44px 44px;
-  mask-image:linear-gradient(to bottom, rgba(0,0,0,.8), transparent 82%);
-  pointer-events:none;
-}
-a,button{transition:color .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease,transform .22s ease}
-.contact-head,.adminlink{
-  border-color:rgba(57,230,193,.18);
-  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
-  box-shadow:0 5px 18px rgba(0,0,0,.12), inset 0 1px rgba(255,255,255,.035);
-  backdrop-filter:blur(10px);
-}
-.contact-head:hover,.adminlink:hover{
-  border-color:rgba(57,230,193,.52);
-  box-shadow:0 8px 24px rgba(57,230,193,.10), inset 0 1px rgba(255,255,255,.06);
-  transform:translateY(-1px);
-}
-.hero h1,.hero-title,.title{
-  text-shadow:0 0 30px rgba(57,230,193,.08);
-}
-.cyber-accent{
-  color:var(--cyber-cyan);
-}
-.cyber-status{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  color:var(--cyber-cyan);
-  letter-spacing:.12em;
-  text-transform:uppercase;
-}
-.cyber-status::before{
-  content:"";
-  width:6px;height:6px;border-radius:50%;
-  background:var(--cyber-cyan);
-  box-shadow:0 0 0 4px rgba(57,230,193,.08),0 0 14px rgba(57,230,193,.65);
-}
-
+.reveal{opacity:0;transform:translateY(18px);transition:.7s}.reveal.show{opacity:1;transform:none}
+@media(max-width:850px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:70px}.visual{min-height:390px}.signal{grid-template-columns:1fr 1fr}.signal>div:nth-child(2){border-right:0}.project{grid-template-columns:40px 1fr}.side{grid-column:2}.grid2,.activity{grid-template-columns:1fr}.contact{display:block}}
+@media(max-width:560px){.wrap{width:min(calc(100% - 26px),var(--max))}.hero h1{font-size:52px}.visual{min-height:330px}.visual-card{width:100%}.signal .num{font-size:25px}.signal>div{padding:18px 12px}.project{grid-template-columns:1fr;gap:12px}.side{grid-column:auto}.skills,.statrow{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
 </style>
 </head>
 <body>
-<div class="bg-grid"></div><div class="cursor-glow"></div><div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div><div class="glow"></div><div class="glow glow2"></div>
-<nav><div class="wrap navin"><a class="brand" href="#top">ABHINANDAN<b>_</b></a><div class="links"><a href="#systems">Systems</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div><div class="actions"><a class="contact-head phone-head" href="tel:+919528998232" aria-label="Call Abhinandan" title="Call +91 95289-98232">☎ <span>PHONE</span></a><a class="contact-head linkedin-head" href="https://www.linkedin.com/in/abhinandan-29b66b28b/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile" title="LinkedIn">in <span>LINKEDIN</span></a><a class="contact-head social-head github-head" href="https://github.com/A23894843" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile" title="GitHub">GH <span>GITHUB</span></a><a class="contact-head social-head leetcode-head" href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener noreferrer" aria-label="Open LeetCode profile" title="LeetCode">LC <span>LEETCODE</span></a><a class="adminlink" href="/admin/login.html">ADMIN</a><button class="theme" id="themeBtn" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-icon" aria-hidden="true">☀</span></button></div></div></nav>
+<div class="bg-grid"></div><div class="glow"></div><div class="glow glow2"></div>
+
+<nav>
+<div class="wrap navin">
+<a class="brand" href="#top">ABHINANDAN<b>_</b></a>
+<div class="links"><a href="#systems">Projects</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div>
+<div class="actions"><a class="adminlink" href="/admin/login.html">ADMIN</a><button class="theme" id="themeBtn" type="button" aria-label="Switch theme"><span class="theme-icon"></span></button></div>
+</div>
+</nav>
+
 <main id="top">
 <header class="wrap hero">
-<div class="hero-copy"><div class="eyebrow">Computer Science · Cybersecurity · Systems</div><h1>I BUILD SYSTEMS<br>THAT DETECT<br><em>WHAT OTHERS MISS.</em></h1><p>Pre-final year B.Tech CSE student focused on cybersecurity, low-level systems, machine learning and defensive engineering. I build systems that turn raw signals into actionable security decisions.</p><div class="buttons"><a class="btn primary" href="#systems">EXPLORE SYSTEMS ↓</a><a class="btn" href="https://github.com/A23894843" target="_blank">GITHUB ↗</a><a class="btn" href="https://leetcode.com/u/a23894843/" target="_blank">LEETCODE ↗</a></div></div>
+<div>
+<div class="eyebrow">Computer Science · Cybersecurity · Systems</div>
+<h1>I BUILD SYSTEMS<br>THAT DETECT<br><em>WHAT OTHERS MISS.</em></h1>
+<p>Pre-final year B.Tech CSE student focused on cybersecurity, low-level systems, machine learning and defensive engineering. I build systems that turn raw signals into actionable security decisions.</p>
+<div class="buttons"><a class="btn primary" href="#systems">EXPLORE PROJECTS ↓</a><a class="btn" href="https://github.com/A23894843" target="_blank" rel="noopener">GITHUB ↗</a><a class="btn" href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener">LEETCODE ↗</a></div>
+</div>
 <div class="visual"><div class="visual-card"><div class="rings"></div><div class="core">SECURITY<br>ENGINE</div><div class="orbit"></div><div class="orbit o2"></div><span class="visual-label v1">BEHAVIOUR / SIGNAL</span><span class="visual-label v2">DETECT / RESPOND</span><span class="visual-label v3">C++ · PYTHON · ML</span></div></div>
 </header>
-<div class="wrap signal"><div><div class="num" id="ghHero">—</div><div class="label">GITHUB CONTRIBUTIONS</div></div><div><div class="num" id="streakHero">—</div><div class="label">CURRENT STREAK</div></div><div><div class="num" id="lcHero">—</div><div class="label">LEETCODE SOLVED</div></div><div><div class="num">2</div><div class="label">FLAGSHIP SYSTEMS</div></div></div>
 
-<section id="systems" class="wrap reveal"><div class="head"><div><div class="eyebrow">01 / systems</div><h2>Built to be inspected.</h2></div><p class="note">Two flagship security systems, presented with architecture, technologies and deployment boundaries instead of generic project cards.</p></div>
-<article class="project"><div class="pno">01</div><div><div class="eyebrow">Behavioural security</div><h3>ZERO <span>CONTEXT</span></h3><p>A low-level behavioural security system designed to identify non-human behaviour using sensor data, feature extraction, machine-learning inference and a live SOC-style dashboard.</p><div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">IPC / UDS</span><span class="tag">MySQL</span></div><div class="buttons"><a class="btn" href="https://github.com/A23894843/Zero_Context" target="_blank">SOURCE ↗</a><a class="btn" id="zeroDemo" href="#" onclick="return false">LIVE DEMO · PENDING</a></div><div class="arch"><div class="node"><b>SENSOR</b>low-level input</div><div class="node"><b>BEHAVIOUR</b>feature extraction</div><div class="node"><b>ML ENGINE</b>inference</div><div class="node"><b>SOC</b>visualisation</div></div></div><div class="side"><div>TYPE <strong>Security system</strong></div><div>DEPLOYMENT <strong>Dashboard public · sensor local</strong></div><div>DEMO <strong>URL not configured</strong></div></div></article>
-<article class="project"><div class="pno">02</div><div><div class="eyebrow">Network defence</div><h3>CYBER DEFENSIVE <span>ENGINE</span></h3><p>An adaptive defensive engine combining packet capture, anomaly detection, ML models, signatures, logging, alerts and response workflows.</p><div class="tags"><span class="tag">C++</span><span class="tag">libpcap</span><span class="tag">Python</span><span class="tag">Isolation Forest</span><span class="tag">Flask</span><span class="tag">SQLite</span></div><div class="buttons"><a class="btn" href="https://github.com/A23894843/Cyber_Defensive_Engine" target="_blank">SOURCE ↗</a><a class="btn" id="cdeDemo" href="#" onclick="return false">SOC DEMO · PENDING</a></div></div><div class="side"><div>TYPE <strong>Adaptive IDS</strong></div><div>PUBLIC MODE <strong>Safe simulation</strong></div><div>FULL ENGINE <strong>Local / lab only</strong></div></div></article></section>
+<div class="wrap signal">
+<div><div class="num" id="ghHero">—</div><div class="label">GITHUB CONTRIBUTIONS</div></div>
+<div><div class="num" id="streakHero">—</div><div class="label">CURRENT STREAK</div></div>
+<div><div class="num" id="lcHero">—</div><div class="label">LEETCODE SOLVED</div></div>
+<div><div class="num">3</div><div class="label">FEATURED PROJECTS</div></div>
+</div>
 
-<section id="engineering" class="wrap reveal"><div class="head"><div><div class="eyebrow">02 / engineering</div><h2>Systems thinking.</h2></div></div><div class="grid2"><div class="card"><h3>Security close to the metal.</h3><p>I enjoy working with packets, processes, IPC, Linux permissions, logs and behavioural signals—the layers where security problems become measurable.</p><div class="skills"><div class="skill"><b>Languages</b><div>C++ · Python · Java · SQL</div></div><div class="skill"><b>Security</b><div>IDS · Network security · Linux · Packet analysis</div></div><div class="skill"><b>ML / Data</b><div>PyTorch · scikit-learn · Pandas · NumPy</div></div><div class="skill"><b>Systems</b><div>Sockets · IPC · libpcap · MySQL · Flask</div></div></div></div><div class="card"><h3>Observe → detect → explain.</h3><p>My preferred project flow is evidence-first: collect signals, model behaviour, detect anomalies, make a decision, then expose the evidence through a usable interface.</p><div class="doc-list"><div class="doc"><span class="mono">01 / OBSERVE</span><span class="badge"><i class="dot"></i>signals</span></div><div class="doc"><span class="mono">02 / MODEL</span><span class="badge"><i class="dot"></i>features</span></div><div class="doc"><span class="mono">03 / DETECT</span><span class="badge"><i class="dot"></i>anomaly</span></div><div class="doc"><span class="mono">04 / RESPOND</span><span class="badge"><i class="dot"></i>decision</span></div></div></div></div></section>
+<section id="systems" class="wrap reveal">
+<div class="head"><div><div class="eyebrow">01 / projects</div><h2>Built to be inspected.</h2></div><p class="note">Featured work is presented with architecture, technologies and deployment boundaries instead of generic project cards.</p></div>
 
-<section id="activity" class="wrap reveal"><div class="head"><div><div class="eyebrow">03 / live activity</div><h2>Proof of practice.</h2></div><p class="note">Stats are fetched on page load from your server-side API routes.</p></div><div class="activity"><div class="card"><div class="eyebrow">GitHub</div><h3>A23894843</h3><div class="statrow"><div class="stat"><div class="big" id="ghTotal">—</div><div class="label">CONTRIBUTIONS</div></div><div class="stat"><div class="big" id="ghStreak">—</div><div class="label">CURRENT STREAK</div></div><div class="stat"><div class="big" id="ghLongest">—</div><div class="label">LONGEST STREAK</div></div></div><div class="mini-chart" id="ghChart"></div><div class="muted mono" id="ghUpdated" style="font-size:10px;margin-top:8px">Fetching…</div></div><div class="card"><div class="eyebrow">LeetCode</div><h3>a23894843</h3><div class="statrow"><div class="stat"><div class="big" id="lcTotal">—</div><div class="label">TOTAL</div></div><div class="stat"><div class="big" id="lcEasy">—</div><div class="label">EASY</div></div><div class="stat"><div class="big" id="lcMed">—</div><div class="label">MEDIUM</div></div></div><div class="bars"><div class="mono muted" style="font-size:10px;display:flex;justify-content:space-between"><span>HARD</span><span id="lcHard">—</span></div><div class="bar"><i id="hardBar"></i></div></div></div></div></section>
+<article class="project">
+<div class="pno">01</div>
+<div><div class="eyebrow">Behavioural security</div><h3>ZERO <span>CONTEXT</span></h3><p>A low-level behavioural security system designed to identify non-human behaviour using sensor data, feature extraction, machine-learning inference and a live SOC-style dashboard.</p><div class="tags"><span class="tag">C++</span><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">FastAPI</span><span class="tag">IPC / UDS</span><span class="tag">MySQL</span></div><div class="buttons"><a class="btn" href="https://github.com/A23894843/Zero_Context" target="_blank" rel="noopener">SOURCE ↗</a></div></div>
+<div class="side"><div>TYPE <strong>Security system</strong></div><div>DEPLOYMENT <strong>Dashboard public · sensor local</strong></div><div>DEMO <strong>URL not configured</strong></div></div>
+</article>
 
-<section id="documents" class="wrap reveal"><div class="head"><div><div class="eyebrow">04 / recruiter access</div><h2>Professional documents.</h2></div><p class="note">CVs, certificates and project reports live on a dedicated public document room. No recruiter account is required.</p></div><div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap"><div><div class="badge"><i class="dot"></i>PUBLIC DOCUMENT ROOM</div><h3 style="font:600 28px 'Space Grotesk';margin:10px 0">Open recruiter documents</h3><p class="muted">Preview documents without signing in. Download permissions are enforced by the backend.</p></div><a class="btn primary" href="/guest/documents.html">OPEN DOCUMENT ROOM →</a></div></section>
+<article class="project">
+<div class="pno">02</div>
+<div><div class="eyebrow">Network defence</div><h3>CYBER DEFENSIVE <span>ENGINE</span></h3><p>An adaptive defensive engine combining packet capture, anomaly detection, ML models, signatures, logging, alerts and response workflows.</p><div class="tags"><span class="tag">C++</span><span class="tag">libpcap</span><span class="tag">Python</span><span class="tag">Isolation Forest</span><span class="tag">Flask</span><span class="tag">SQLite</span></div><div class="buttons"><a class="btn" href="https://github.com/A23894843/Cyber_Defensive_Engine" target="_blank" rel="noopener">SOURCE ↗</a></div></div>
+<div class="side"><div>TYPE <strong>Adaptive IDS</strong></div><div>PUBLIC MODE <strong>Safe simulation</strong></div><div>FULL ENGINE <strong>Local / lab only</strong></div></div>
+</article>
+
+<article class="project">
+<div class="pno">03</div>
+<div><div class="eyebrow">Full-stack portfolio platform</div><h3>PERSONAL <span>PORTFOLIO</span></h3><p>A deployed cybersecurity-focused portfolio and secure document platform combining a responsive interface, administrator authentication, public/private document management, protected file previews, password recovery and live developer activity.</p><div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Supabase</span><span class="tag">Vercel</span><span class="tag">REST APIs</span></div><div class="buttons"><a class="btn" href="https://my-portfolio-abhinandan.vercel.app/" target="_blank" rel="noopener">LIVE SITE ↗</a><a class="btn" href="https://github.com/A23894843/A23894843/tree/test" target="_blank" rel="noopener">SOURCE ↗</a></div></div>
+<div class="side"><div>TYPE <strong>Full-stack web platform</strong></div><div>AUTH <strong>Supabase Auth</strong></div><div>STORAGE <strong>Protected documents</strong></div><div>DEPLOYMENT <strong>Vercel</strong></div></div>
+</article>
+</section>
+
+<section id="engineering" class="wrap reveal">
+<div class="head"><div><div class="eyebrow">02 / engineering</div><h2>Systems thinking.</h2></div></div>
+<div class="grid2">
+<div class="card"><h3>Security close to the metal.</h3><p>I enjoy working with packets, processes, IPC, Linux permissions, logs and behavioural signals—the layers where security problems become measurable.</p><div class="skills"><div class="skill"><b>Languages</b><div>C++ · Python · Java · SQL</div></div><div class="skill"><b>Security</b><div>IDS · Network security · Linux · Packet analysis</div></div><div class="skill"><b>ML / Data</b><div>PyTorch · scikit-learn · Pandas · NumPy</div></div><div class="skill"><b>Systems</b><div>Sockets · IPC · libpcap · MySQL · Flask</div></div></div></div>
+<div class="card"><h3>Observe → detect → explain.</h3><p>My preferred project flow is evidence-first: collect signals, model behaviour, detect anomalies, make a decision, then expose the evidence through a usable interface.</p><div class="doc-list"><div class="doc"><span class="mono">01 / OBSERVE</span><span class="badge"><i class="dot"></i>signals</span></div><div class="doc"><span class="mono">02 / MODEL</span><span class="badge"><i class="dot"></i>features</span></div><div class="doc"><span class="mono">03 / DETECT</span><span class="badge"><i class="dot"></i>anomaly</span></div><div class="doc"><span class="mono">04 / RESPOND</span><span class="badge"><i class="dot"></i>decision</span></div></div></div>
+</div>
+</section>
+
+<section id="activity" class="wrap reveal">
+<div class="head"><div><div class="eyebrow">03 / live activity</div><h2>Proof of practice.</h2></div><p class="note">Stats are fetched on page load from your server-side API routes.</p></div>
+<div class="activity">
+<div class="card"><div class="eyebrow">GitHub</div><h3>A23894843</h3><div class="statrow"><div class="stat"><div class="big" id="ghTotal">—</div><div class="label">CONTRIBUTIONS</div></div><div class="stat"><div class="big" id="ghStreak">—</div><div class="label">CURRENT STREAK</div></div><div class="stat"><div class="big" id="ghLongest">—</div><div class="label">LONGEST STREAK</div></div></div><div class="mini-chart" id="ghChart"></div><div class="muted mono" id="ghUpdated" style="font-size:10px;margin-top:8px">Fetching…</div></div>
+<div class="card"><div class="eyebrow">LeetCode</div><h3>a23894843</h3><div class="statrow"><div class="stat"><div class="big" id="lcTotal">—</div><div class="label">TOTAL</div></div><div class="stat"><div class="big" id="lcEasy">—</div><div class="label">EASY</div></div><div class="stat"><div class="big" id="lcMed">—</div><div class="label">MEDIUM</div></div></div><div class="bars"><div class="mono muted" style="font-size:10px;display:flex;justify-content:space-between"><span>HARD</span><span id="lcHard">—</span></div><div class="bar"><i id="hardBar"></i></div></div></div>
+</div>
+</section>
+
+<section id="documents" class="wrap reveal">
+<div class="head"><div><div class="eyebrow">04 / recruiter access</div><h2>Professional documents.</h2></div><p class="note">CVs, certificates and project reports live on a dedicated public document room. No recruiter account is required.</p></div>
+<div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap"><div><div class="badge"><i class="dot"></i>PUBLIC DOCUMENT ROOM</div><h3 style="font:600 28px 'Space Grotesk';margin:10px 0">Open recruiter documents</h3><p class="muted">Preview documents without signing in. Download permissions are enforced by the backend.</p></div><a class="btn primary" href="/guest/documents.html">OPEN DOCUMENT ROOM →</a></div>
+</section>
 
 <section id="contact" class="wrap reveal"><div class="contact"><div><div class="eyebrow">05 / contact</div><h2>Let's build<br>something useful.</h2></div><div><p class="muted" style="max-width:330px">Open to internships, cybersecurity opportunities, technical collaborations and interesting systems problems.</p><a class="btn primary" href="mailto:a23894843@gmail.com">START A CONVERSATION ↗</a></div></div></section>
 </main>
-<footer class="wrap footer"><span>© 2026 ABHINANDAN · SECURITY / SYSTEMS</span><span><a href="https://github.com/A23894843" target="_blank">GITHUB</a> · <a href="https://leetcode.com/u/a23894843/" target="_blank">LEETCODE</a> · <a href="/admin/login.html">ADMIN</a></span></footer>
+
+<footer class="wrap footer"><span>© 2026 ABHINANDAN · SECURITY / SYSTEMS</span><span><a href="https://github.com/A23894843" target="_blank" rel="noopener">GITHUB</a> · <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener">LEETCODE</a> · <a href="/admin/login.html">ADMIN</a></span></footer>
+
 <script>
-const $=id=>document.getElementById(id), fmt=n=>Number(n||0).toLocaleString('en-IN');
-const demo={zeroContext:"",cyberDefensiveEngine:""};
-function demoLink(id,url,label){const e=$(id);if(url){e.href=url;e.textContent=label;e.onclick=null;e.removeAttribute('aria-disabled')}}
-demoLink('zeroDemo',demo.zeroContext,'LIVE DEMO ↗');demoLink('cdeDemo',demo.cyberDefensiveEngine,'SOC DEMO ↗');
+const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString("en-IN");
 
-const saved=localStorage.getItem('portfolio-theme'), preferred=matchMedia('(prefers-color-scheme:light)').matches?'light':'dark';
+const saved=localStorage.getItem("portfolio-theme");
+const preferred=matchMedia("(prefers-color-scheme:light)").matches?"light":"dark";
 document.documentElement.dataset.theme=saved||preferred;
-function updateThemeUI(){const t=document.documentElement.dataset.theme;const b=$('themeBtn');const dark=t==='dark';b.classList.toggle('is-light',!dark);b.setAttribute('aria-label',dark?'Switch to light theme':'Switch to dark theme');b.setAttribute('title',dark?'Switch to light theme':'Switch to dark theme');$('themeColorMeta').content=dark?'#080b10':'#f5f6f4'}
+
+function updateThemeUI(){
+ const dark=document.documentElement.dataset.theme==="dark";
+ const b=$("themeBtn");
+ b.classList.toggle("is-light",!dark);
+ b.setAttribute("aria-label",dark?"Switch to light theme":"Switch to dark theme");
+ b.title=dark?"Switch to light theme":"Switch to dark theme";
+ $("themeColorMeta").content=dark?"#080b10":"#f5f6f4";
+}
 updateThemeUI();
-$('themeBtn').onclick=()=>{const t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem('portfolio-theme',t);updateThemeUI()};
-matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{if(!localStorage.getItem('portfolio-theme')){document.documentElement.dataset.theme=e.matches?'dark':'light';updateThemeUI()}});
 
-let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty('--mx',((e.clientX/innerWidth)-.5)*100+'px');document.documentElement.style.setProperty('--my',((e.clientY/innerHeight)-.5)*100+'px')})});
-const root=document.documentElement;let pointerRaf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(pointerRaf);pointerRaf=requestAnimationFrame(()=>{root.style.setProperty('--mouse-x',e.clientX+'px');root.style.setProperty('--mouse-y',e.clientY+'px')})},{passive:true});
-if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.hero .btn,.contact-head').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`translate(${x*5}px,${y*4}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')})}
+$("themeBtn").onclick=()=>{
+ const next=document.documentElement.dataset.theme==="dark"?"light":"dark";
+ document.documentElement.dataset.theme=next;
+ localStorage.setItem("portfolio-theme",next);
+ updateThemeUI();
+};
 
-const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+matchMedia("(prefers-color-scheme:dark)").addEventListener("change",e=>{
+ if(!localStorage.getItem("portfolio-theme")){
+  document.documentElement.dataset.theme=e.matches?"dark":"light";
+  updateThemeUI();
+ }
+});
+
+let raf=0;
+addEventListener("pointermove",e=>{
+ cancelAnimationFrame(raf);
+ raf=requestAnimationFrame(()=>{
+  document.documentElement.style.setProperty("--mx",((e.clientX/innerWidth)-.5)*100+"px");
+  document.documentElement.style.setProperty("--my",((e.clientY/innerHeight)-.5)*100+"px");
+ });
+});
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+ if(e.isIntersecting)e.target.classList.add("show");
+}),{threshold:.08});
+document.querySelectorAll(".reveal").forEach(e=>io.observe(e));
 
 async function loadStats(){
  try{
   const [g,l]=await Promise.all([
-   fetch('/api/github?username=A23894843&_='+Date.now(),{cache:'no-store'}).then(r=>r.json()),
-   fetch('/api/leetcode?username=a23894843&_='+Date.now(),{cache:'no-store'}).then(r=>r.json())
+   fetch("/api/github?username=A23894843&_="+Date.now(),{cache:"no-store"}).then(r=>r.json()),
+   fetch("/api/leetcode?username=a23894843&_="+Date.now(),{cache:"no-store"}).then(r=>r.json())
   ]);
-  if(!g.error){$('ghHero').textContent=fmt(g.stats.total);$('streakHero').textContent=fmt(g.stats.currentStreak)+'d';$('ghTotal').textContent=fmt(g.stats.total);$('ghStreak').textContent=fmt(g.stats.currentStreak)+'d';$('ghLongest').textContent=fmt(g.stats.longestStreak)+'d';$('ghUpdated').textContent='Updated '+new Date(g.updatedAt).toLocaleString('en-IN');const d=g.days.slice(-140),max=Math.max(1,...d.map(x=>x.count));$('ghChart').innerHTML=d.map(x=>`<i title="${x.date}: ${x.count}" style="height:${Math.max(3,Math.round(x.count/max*100))}%"></i>`).join('')}
-  if(!l.error){$('lcHero').textContent=fmt(l.totalSolved);$('lcTotal').textContent=fmt(l.totalSolved);$('lcEasy').textContent=fmt(l.easySolved);$('lcMed').textContent=fmt(l.mediumSolved);$('lcHard').textContent=fmt(l.hardSolved);$('hardBar').style.width=(l.totalSolved?Math.min(100,l.hardSolved/l.totalSolved*100):0)+'%'}
- }catch(e){console.warn(e)}
+
+  if(!g.error){
+   $("ghHero").textContent=fmt(g.stats.total);
+   $("streakHero").textContent=fmt(g.stats.currentStreak)+"d";
+   $("ghTotal").textContent=fmt(g.stats.total);
+   $("ghStreak").textContent=fmt(g.stats.currentStreak)+"d";
+   $("ghLongest").textContent=fmt(g.stats.longestStreak)+"d";
+   $("ghUpdated").textContent="Updated "+new Date(g.updatedAt).toLocaleString("en-IN");
+   const days=g.days.slice(-140);
+   const max=Math.max(1,...days.map(x=>x.count));
+   $("ghChart").innerHTML=days.map(x=>`<i title="${x.date}: ${x.count}" style="height:${Math.max(3,Math.round(x.count/max*100))}%"></i>`).join("");
+  }
+
+  if(!l.error){
+   $("lcHero").textContent=fmt(l.totalSolved);
+   $("lcTotal").textContent=fmt(l.totalSolved);
+   $("lcEasy").textContent=fmt(l.easySolved);
+   $("lcMed").textContent=fmt(l.mediumSolved);
+   $("lcHard").textContent=fmt(l.hardSolved);
+   $("hardBar").style.width=(l.totalSolved?Math.min(100,l.hardSolved/l.totalSolved*100):0)+"%";
+  }
+ }catch(e){console.warn("Stats loading failed:",e)}
 }
+
 async function loadDocs(){
- try{const r=await fetch('/api/documents',{cache:'no-store'});const docs=await r.json();if(!Array.isArray(docs))throw Error();$('publicDocs').innerHTML=docs.map(d=>`<div class="doc"><span><b>${d.title}</b><small>${d.type.toUpperCase()} · ${d.preview?'PREVIEW':'HIDDEN'}</small></span><span style="display:flex;gap:7px"><a class="btn" href="/api/documents?id=${encodeURIComponent(d.id)}&mode=preview" target="_blank">PREVIEW ↗</a>${d.download?`<a class="btn" href="/api/documents?id=${encodeURIComponent(d.id)}&mode=download">DOWNLOAD</a>`:''}</span></div>`).join('')}catch(e){$('publicDocs').innerHTML='<div class="doc"><span class="muted">Document service not configured yet.</span></div>'}
+ try{
+  const r=await fetch("/api/documents",{cache:"no-store"});
+  if(!r.ok)throw new Error("Document API unavailable");
+  const docs=await r.json();
+  console.info("Public document room:",Array.isArray(docs)?docs.length:0,"documents");
+ }catch(e){
+  console.warn("Document service unavailable:",e);
+ }
 }
-loadStats();loadDocs();
+
+loadStats();
+loadDocs();
 </script>
 </body>
 </html>
