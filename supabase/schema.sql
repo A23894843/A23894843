@@ -14,9 +14,29 @@ create table if not exists public.documents(
     type text not null check(type in('cv','report','certificate')),
     storage_path text not null unique,
     download_allowed boolean not null default false,
+    visibility text not null default 'public'
+        check(visibility in('public','private')),
     created_by uuid not null references public.profiles(id),
     created_at timestamptz not null default now()
 );
+
+
+
+-- =========================================================
+-- DOCUMENT VISIBILITY
+-- Existing documents remain public. Private documents are
+-- visible/readable only to approved admins through RLS.
+-- =========================================================
+
+alter table public.documents
+    add column if not exists visibility text not null default 'public';
+
+alter table public.documents
+    drop constraint if exists documents_visibility_check;
+
+alter table public.documents
+    add constraint documents_visibility_check
+    check(visibility in('public','private'));
 
 alter table public.profiles enable row level security; 
 alter table public.documents enable row level security;
