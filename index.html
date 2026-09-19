@@ -18,6 +18,7 @@ a{color:inherit;text-decoration:none}button{font:inherit}.wrap{width:min(calc(10
 .glow{position:fixed;width:480px;height:480px;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:-4;opacity:.10;transform:translate3d(calc(var(--mx)*.35),calc(var(--my)*.35),0);background:var(--violet);top:-190px;right:-120px}.glow2{background:var(--teal);left:-250px;top:55%;transform:translate3d(calc(var(--mx)*-.18),calc(var(--my)*-.18),0);opacity:.07}
 nav{position:sticky;top:0;z-index:50;height:74px;border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(18px)}
 .navin{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:600 14px "DM Mono";letter-spacing:.08em}.brand b{color:var(--teal)}.links{display:flex;gap:26px;color:var(--muted);font-size:13px}.links a:hover{color:var(--ink)}.actions{display:flex;gap:9px;align-items:center}.theme,.adminlink{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:9px 11px;cursor:pointer;font:500 11px "DM Mono"}.adminlink:hover{border-color:var(--teal)}.theme{position:relative;display:inline-flex;align-items:center;width:72px;height:38px;padding:0 6px;border-radius:999px;overflow:hidden;background:#1b2433;border-color:#354155;box-shadow:inset 0 1px 2px rgba(255,255,255,.06),0 5px 16px rgba(0,0,0,.16);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .2s ease}.theme:hover{border-color:#53627a;transform:translateY(-1px);box-shadow:inset 0 1px 2px rgba(255,255,255,.08),0 7px 20px rgba(0,0,0,.2)}.theme:active{transform:translateY(0) scale(.97)}.theme::before{content:"";position:absolute;inset:3px;border-radius:999px;border:1px solid rgba(255,255,255,.07);pointer-events:none}.theme .theme-icon{position:absolute;left:7px;top:5px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#42a5ff 0%,#6f55e8 100%);box-shadow:0 2px 8px rgba(62,119,255,.3);font-size:0;line-height:1;transition:left .35s cubic-bezier(.4,0,.2,1),background .35s ease,box-shadow .35s ease}.theme .theme-icon::after{content:"☾";font-size:16px;color:#ffd978;transform:translateY(-.5px);transition:color .25s ease}.theme.is-light .theme-icon{left:37px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.14)}.theme.is-light .theme-icon::after{content:"☀";font-size:15px;color:#d28b18}.theme.is-light{background:#e9edf2;border-color:#cbd3dc}.theme.is-light:hover{border-color:#aeb9c6}
+.contact-head{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 11px;border:1px solid var(--line);border-radius:10px;background:color-mix(in srgb,var(--panel) 88%,transparent);color:var(--muted);font:500 10px "DM Mono";letter-spacing:.04em;transition:transform .2s ease,border-color .2s ease,color .2s ease,box-shadow .2s ease;white-space:nowrap}.contact-head:hover{transform:translateY(-2px);border-color:var(--teal);color:var(--ink);box-shadow:0 8px 22px color-mix(in srgb,var(--teal) 12%,transparent)}.linkedin-head{font-weight:700;font-size:11px}.social-head{font-weight:700;font-size:10px}.github-head{--social-accent:#8b5cf6}.leetcode-head{--social-accent:#f0a500}.social-head:hover{border-color:var(--social-accent);box-shadow:0 8px 22px color-mix(in srgb,var(--social-accent) 14%,transparent)}.social-head span{font-size:9px;font-weight:500}.linkedin-head span,.phone-head span{font-size:9px;font-weight:500}.cursor-glow{position:fixed;inset:0;z-index:-3;pointer-events:none;background:radial-gradient(520px circle at var(--mouse-x,50%) var(--mouse-y,50%),color-mix(in srgb,var(--teal) 8%,transparent),transparent 65%)}.aurora{position:fixed;z-index:-6;pointer-events:none;border-radius:50%;filter:blur(80px);opacity:.16;will-change:transform}.aurora.a1{width:420px;height:420px;left:-120px;top:18%;background:radial-gradient(circle,var(--teal),transparent 68%);transform:translate3d(calc(var(--mx)*-.22),calc(var(--my)*-.22),0)}.aurora.a2{width:500px;height:500px;right:-180px;top:12%;background:radial-gradient(circle,var(--violet),transparent 68%);transform:translate3d(calc(var(--mx)*.28),calc(var(--my)*.28),0)}.aurora.a3{width:380px;height:380px;left:38%;bottom:-180px;background:radial-gradient(circle,var(--amber),transparent 68%);opacity:.08;transform:translate3d(calc(var(--mx)*.12),calc(var(--my)*-.12),0)}.hero .btn,.project .btn,.card .btn,.contact .btn{will-change:transform}.hero-copy{transition:transform .18s ease-out;transform:translate3d(calc(var(--mx)*.012),calc(var(--my)*.012),0)}
 .hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.08fr .92fr;gap:65px;align-items:center;padding:90px 0 75px}.hero h1{font:700 clamp(56px,8vw,110px)/.87 "Space Grotesk";letter-spacing:-.075em;margin:18px 0 28px}.hero h1 em{font-style:normal;color:var(--teal)}.hero p{max-width:680px;color:var(--muted);font-size:17px}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 16px;border:1px solid var(--line);background:var(--panel);border-radius:10px;font:500 11px "DM Mono";transition:.2s}.btn:hover{transform:translateY(-3px);border-color:var(--teal)}.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .visual{position:relative;min-height:500px;display:grid;place-items:center;perspective:900px}.visual-card{width:min(100%,520px);aspect-ratio:1/1;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 88%,transparent),color-mix(in srgb,var(--panel2) 75%,transparent));box-shadow:0 35px 100px rgba(0,0,0,.25);position:relative;overflow:hidden;transform:rotateX(calc(var(--my)*-.035deg)) rotateY(calc(var(--mx)*.035deg));transition:transform .12s ease-out}.visual-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--teal) 18%,transparent),transparent 42%)}.rings{position:absolute;inset:12%;border:1px solid var(--line);border-radius:50%;transform:rotate(18deg)}.rings:before,.rings:after{content:"";position:absolute;inset:12%;border:1px dashed var(--line);border-radius:50%}.rings:after{inset:24%;border-style:solid}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:105px;height:105px;border-radius:50%;border:1px solid var(--teal);display:grid;place-items:center;font:500 12px "DM Mono";color:var(--teal);box-shadow:0 0 45px color-mix(in srgb,var(--teal) 24%,transparent)}.orbit{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--amber);box-shadow:0 0 22px var(--amber);left:25%;top:34%;animation:float 4s ease-in-out infinite}.orbit.o2{left:auto;right:23%;top:auto;bottom:30%;background:var(--violet);box-shadow:0 0 22px var(--violet);animation-delay:-2s}.visual-label{position:absolute;font:500 10px "DM Mono";color:var(--muted);letter-spacing:.12em}.v1{top:28px;left:28px}.v2{right:28px;top:44%}.v3{left:28px;bottom:28px}@keyframes float{50%{transform:translate3d(16px,-12px,0)}} 
 .signal{border-block:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr)}.signal>div{padding:24px 20px;border-right:1px solid var(--line)}.signal>div:last-child{border:0}.num{font:600 31px "Space Grotesk"}.label{font:10px "DM Mono";color:var(--muted);letter-spacing:.1em}
@@ -28,16 +29,76 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 .docs{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.doc-card{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:28px}.doc-list{display:grid;gap:10px;margin-top:18px}.doc{display:flex;align-items:center;justify-content:space-between;gap:15px;border:1px solid var(--line);padding:15px;border-radius:12px;background:var(--panel2)}.doc small{display:block;color:var(--muted);font:10px "DM Mono";margin-top:3px}
 .contact{border:1px solid var(--line);border-radius:24px;padding:52px;background:linear-gradient(135deg,var(--panel),transparent);display:flex;justify-content:space-between;align-items:end;gap:30px}.contact h2{font:600 clamp(44px,6vw,78px)/.9 "Space Grotesk";letter-spacing:-.06em;margin:12px 0 0}.footer{padding:30px 0 55px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font:10px "DM Mono"}
 .reveal{opacity:0;transform:translateY(18px);transition:.7s}.reveal.show{opacity:1;transform:none}.badge{display:inline-flex;align-items:center;gap:7px;color:var(--teal);font:10px "DM Mono"}.dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 12px var(--teal)}
-@media(max-width:850px){.links{display:none}.hero{grid-template-columns:1fr;padding-top:70px}.visual{min-height:390px}.signal{grid-template-columns:1fr 1fr}.signal>div:nth-child(2){border-right:0}.project{grid-template-columns:40px 1fr}.side{grid-column:2}.grid2,.activity,.docs{grid-template-columns:1fr}.arch{grid-template-columns:1fr 1fr}.contact{display:block}}
+@media(max-width:850px){.links{display:none}.contact-head span{display:none}.contact-head{width:38px;justify-content:center;padding:0}.hero{grid-template-columns:1fr;padding-top:70px}.visual{min-height:390px}.signal{grid-template-columns:1fr 1fr}.signal>div:nth-child(2){border-right:0}.project{grid-template-columns:40px 1fr}.side{grid-column:2}.grid2,.activity,.docs{grid-template-columns:1fr}.arch{grid-template-columns:1fr 1fr}.contact{display:block}}
 @media(max-width:560px){.wrap{width:min(calc(100% - 26px),var(--max))}.hero h1{font-size:52px}.visual{min-height:330px}.visual-card{width:100%}.signal .num{font-size:25px}.signal>div{padding:18px 12px}.project{grid-template-columns:1fr;gap:12px}.side{grid-column:auto}.arch,.skills,.statrow{grid-template-columns:1fr}.footer{display:block}.footer span{display:block;margin-top:8px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.aurora,.cursor-glow{display:none}.visual-card,.hero-copy{transform:none!important}}
+
+/* Cybersecurity classic visual layer */
+:root{
+  --cyber-cyan:#39e6c1;
+  --cyber-blue:#4da3ff;
+  --cyber-violet:#8b7cff;
+  --cyber-amber:#d9b56c;
+  --cyber-red:#ff5c70;
+  --cyber-ink:#071018;
+  --cyber-panel:rgba(10,18,27,.72);
+}
+body{
+  background:
+    radial-gradient(circle at 12% 18%, rgba(57,230,193,.075), transparent 28%),
+    radial-gradient(circle at 88% 22%, rgba(77,163,255,.065), transparent 30%),
+    radial-gradient(circle at 70% 82%, rgba(139,124,255,.055), transparent 32%),
+    var(--bg);
+}
+body::before{
+  background:
+    linear-gradient(rgba(57,230,193,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(57,230,193,.018) 1px, transparent 1px);
+  background-size:44px 44px;
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.8), transparent 82%);
+  pointer-events:none;
+}
+a,button{transition:color .22s ease,border-color .22s ease,background .22s ease,box-shadow .22s ease,transform .22s ease}
+.contact-head,.adminlink{
+  border-color:rgba(57,230,193,.18);
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+  box-shadow:0 5px 18px rgba(0,0,0,.12), inset 0 1px rgba(255,255,255,.035);
+  backdrop-filter:blur(10px);
+}
+.contact-head:hover,.adminlink:hover{
+  border-color:rgba(57,230,193,.52);
+  box-shadow:0 8px 24px rgba(57,230,193,.10), inset 0 1px rgba(255,255,255,.06);
+  transform:translateY(-1px);
+}
+.hero h1,.hero-title,.title{
+  text-shadow:0 0 30px rgba(57,230,193,.08);
+}
+.cyber-accent{
+  color:var(--cyber-cyan);
+}
+.cyber-status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:var(--cyber-cyan);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.cyber-status::before{
+  content:"";
+  width:6px;height:6px;border-radius:50%;
+  background:var(--cyber-cyan);
+  box-shadow:0 0 0 4px rgba(57,230,193,.08),0 0 14px rgba(57,230,193,.65);
+}
+
 </style>
 </head>
 <body>
-<div class="bg-grid"></div><div class="glow"></div><div class="glow glow2"></div>
-<nav><div class="wrap navin"><a class="brand" href="#top">ABHINANDAN<b>_</b></a><div class="links"><a href="#systems">Systems</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div><div class="actions"><a class="adminlink" href="/admin/login.html">ADMIN</a><button class="theme" id="themeBtn" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-icon" aria-hidden="true">☀</span></button></div></div></nav>
+<div class="bg-grid"></div><div class="cursor-glow"></div><div class="aurora a1"></div><div class="aurora a2"></div><div class="aurora a3"></div><div class="glow"></div><div class="glow glow2"></div>
+<nav><div class="wrap navin"><a class="brand" href="#top">ABHINANDAN<b>_</b></a><div class="links"><a href="#systems">Systems</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div><div class="actions"><a class="contact-head phone-head" href="tel:+919528998232" aria-label="Call Abhinandan" title="Call +91 95289-98232">☎ <span>PHONE</span></a><a class="contact-head linkedin-head" href="https://www.linkedin.com/in/abhinandan-29b66b28b/" target="_blank" rel="noopener noreferrer" aria-label="Open LinkedIn profile" title="LinkedIn">in <span>LINKEDIN</span></a><a class="contact-head social-head github-head" href="https://github.com/A23894843" target="_blank" rel="noopener noreferrer" aria-label="Open GitHub profile" title="GitHub">GH <span>GITHUB</span></a><a class="contact-head social-head leetcode-head" href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener noreferrer" aria-label="Open LeetCode profile" title="LeetCode">LC <span>LEETCODE</span></a><a class="adminlink" href="/admin/login.html">ADMIN</a><button class="theme" id="themeBtn" type="button" aria-label="Switch to light theme" title="Switch theme"><span class="theme-icon" aria-hidden="true">☀</span></button></div></div></nav>
 <main id="top">
 <header class="wrap hero">
-<div><div class="eyebrow">Computer Science · Cybersecurity · Systems</div><h1>I BUILD SYSTEMS<br>THAT DETECT<br><em>WHAT OTHERS MISS.</em></h1><p>Pre-final year B.Tech CSE student focused on cybersecurity, low-level systems, machine learning and defensive engineering. I build systems that turn raw signals into actionable security decisions.</p><div class="buttons"><a class="btn primary" href="#systems">EXPLORE SYSTEMS ↓</a><a class="btn" href="https://github.com/A23894843" target="_blank">GITHUB ↗</a><a class="btn" href="https://leetcode.com/u/a23894843/" target="_blank">LEETCODE ↗</a></div></div>
+<div class="hero-copy"><div class="eyebrow">Computer Science · Cybersecurity · Systems</div><h1>I BUILD SYSTEMS<br>THAT DETECT<br><em>WHAT OTHERS MISS.</em></h1><p>Pre-final year B.Tech CSE student focused on cybersecurity, low-level systems, machine learning and defensive engineering. I build systems that turn raw signals into actionable security decisions.</p><div class="buttons"><a class="btn primary" href="#systems">EXPLORE SYSTEMS ↓</a><a class="btn" href="https://github.com/A23894843" target="_blank">GITHUB ↗</a><a class="btn" href="https://leetcode.com/u/a23894843/" target="_blank">LEETCODE ↗</a></div></div>
 <div class="visual"><div class="visual-card"><div class="rings"></div><div class="core">SECURITY<br>ENGINE</div><div class="orbit"></div><div class="orbit o2"></div><span class="visual-label v1">BEHAVIOUR / SIGNAL</span><span class="visual-label v2">DETECT / RESPOND</span><span class="visual-label v3">C++ · PYTHON · ML</span></div></div>
 </header>
 <div class="wrap signal"><div><div class="num" id="ghHero">—</div><div class="label">GITHUB CONTRIBUTIONS</div></div><div><div class="num" id="streakHero">—</div><div class="label">CURRENT STREAK</div></div><div><div class="num" id="lcHero">—</div><div class="label">LEETCODE SOLVED</div></div><div><div class="num">2</div><div class="label">FLAGSHIP SYSTEMS</div></div></div>
@@ -69,6 +130,9 @@ $('themeBtn').onclick=()=>{const t=document.documentElement.dataset.theme==='dar
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',e=>{if(!localStorage.getItem('portfolio-theme')){document.documentElement.dataset.theme=e.matches?'dark':'light';updateThemeUI()}});
 
 let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty('--mx',((e.clientX/innerWidth)-.5)*100+'px');document.documentElement.style.setProperty('--my',((e.clientY/innerHeight)-.5)*100+'px')})});
+const root=document.documentElement;let pointerRaf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(pointerRaf);pointerRaf=requestAnimationFrame(()=>{root.style.setProperty('--mouse-x',e.clientX+'px');root.style.setProperty('--mouse-y',e.clientY+'px')})},{passive:true});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.querySelectorAll('.hero .btn,.contact-head').forEach(el=>{el.addEventListener('pointermove',e=>{const r=el.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;el.style.transform=`translate(${x*5}px,${y*4}px)`});el.addEventListener('pointerleave',()=>el.style.transform='')})}
+
 const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.08});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
 
 async function loadStats(){
