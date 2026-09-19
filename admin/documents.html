@@ -135,6 +135,8 @@
             .document-actions { width: 100%; } .document-actions .btn { flex: 1; }
         }
     </style>
+    <link rel="stylesheet" href="/assets/theme-system.css">
+    <script src="/assets/theme-system.js"></script>
 </head>
 <body>
     <main class="page">
@@ -192,12 +194,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="form-label" for="download">ACCESS</label>
+                            <label class="form-label" for="visibility">VISIBILITY</label>
+                            <select id="visibility" name="visibility" class="select">
+                                <option value="public">Public — recruiter accessible</option>
+                                <option value="private">Private — admin only</option>
+                            </select>
+                            <div class="help-text">Private documents are hidden from guests and cannot be opened through the public API.</div>
+                        </div>
+
+                        <div class="form-group" id="downloadGroup">
+                            <label class="form-label" for="download">PUBLIC DOWNLOAD</label>
                             <select id="download" name="download" class="select">
                                 <option value="false">Preview only</option>
                                 <option value="true">Preview + download</option>
                             </select>
-                            <div class="help-text">Controls whether guests can download the document.</div>
+                            <div class="help-text" id="downloadHelp">Controls whether recruiters can download the public document.</div>
                         </div>
 
                         <div class="upload-actions">
@@ -251,6 +262,9 @@
         const typeInput = document.getElementById("type");
         const fileInput = document.getElementById("file");
         const downloadInput = document.getElementById("download");
+        const visibilityInput = document.getElementById("visibility");
+        const downloadGroup = document.getElementById("downloadGroup");
+        const downloadHelp = document.getElementById("downloadHelp");
         const publishBtn = document.getElementById("publishBtn");
         const resetBtn = document.getElementById("resetBtn");
         const logoutBtn = document.getElementById("logoutBtn");
@@ -265,6 +279,18 @@
         let documents = [];
         const MAX_FILE_SIZE = 10 * 1024 * 1024;
         const ALLOWED_TYPES = ["application/pdf", "image/png", "image/jpeg"];
+
+        function syncAccessControls() {
+            const isPrivate = visibilityInput.value === "private";
+            downloadInput.disabled = isPrivate;
+            if (isPrivate) {
+                downloadInput.value = "false";
+                downloadHelp.textContent = "Private documents are admin-only; public download is disabled.";
+            } else {
+                downloadHelp.textContent = "Controls whether recruiters can download the public document.";
+            }
+            downloadGroup.classList.toggle("private-access", isPrivate);
+        }
 
         function setMessage(text = "", type = "") {
             message.textContent = text;
@@ -439,7 +465,13 @@
                 setMessage("Uploading document...", "warning");
                 setLoading(true);
 
-                await uploadDoc(title, typeInput.value, file, downloadInput.value === "true");
+                await uploadDoc(
+                    title,
+                    typeInput.value,
+                    file,
+                    visibilityInput.value === "public" && downloadInput.value === "true",
+                    visibilityInput.value
+                );
                 uploadForm.reset();
                 setMessage("Document published successfully.", "success");
                 await loadDocuments();
@@ -451,7 +483,11 @@
             }
         });
 
-        resetBtn.addEventListener("click", () => setMessage());
+        resetBtn.addEventListener("click", () => {
+            setMessage();
+            syncAccessControls();
+        });
+        visibilityInput.addEventListener("change", syncAccessControls);
         searchInput.addEventListener("input", applySearch);
         
         refreshBtn.addEventListener("click", async () => {
@@ -482,6 +518,7 @@
             }
         }
 
+        syncAccessControls();
         boot();
     </script>
 </body>

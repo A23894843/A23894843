@@ -162,6 +162,54 @@ async function login(email, password) {
 
 
 /* =========================================================
+   PASSWORD RESET REQUEST
+   ========================================================= */
+
+async function requestPasswordReset(email) {
+
+    if (!init()) {
+        return false;
+    }
+
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+
+    if (!normalizedEmail) {
+        setMessage("Enter your email address.");
+        return false;
+    }
+
+    try {
+        const redirectTo =
+            `${window.location.origin}/reset-password.html`;
+
+        const result =
+            await sb.auth.resetPasswordForEmail(
+                normalizedEmail,
+                { redirectTo }
+            );
+
+        if (result.error) {
+            throw result.error;
+        }
+
+        return true;
+
+    } catch (error) {
+
+        setMessage(
+            error.message ||
+            "Unable to send reset link."
+        );
+
+        return false;
+    }
+}
+
+
+// Explicit global export for pages that call the recovery function.
+window.requestPasswordReset = requestPasswordReset;
+
+/* =========================================================
    SIGNUP
    ========================================================= */
 
@@ -443,7 +491,8 @@ async function uploadDoc(
     title,
     type,
     file,
-    downloadAllowed = false
+    downloadAllowed = false,
+    visibility = "public"
 ) {
 
     if (!init()) {
@@ -464,6 +513,16 @@ async function uploadDoc(
         throw new Error(
             "Please select a file."
         );
+    }
+
+    if (visibility !== "public" && visibility !== "private") {
+        throw new Error("Invalid document visibility.");
+    }
+
+    // Private documents are admin-only and can never be downloadable
+    // through the public document room.
+    if (visibility === "private") {
+        downloadAllowed = false;
     }
 
 
@@ -566,6 +625,8 @@ async function uploadDoc(
                     download_allowed:
                         Boolean(downloadAllowed),
 
+                    visibility,
+
                     created_by:
                         userResult.data.user.id
                 });
@@ -592,6 +653,36 @@ async function uploadDoc(
 
         throw error;
     }
+}
+
+
+/* =========================================================
+   ADMIN DOCUMENT PREVIEW
+   ========================================================= */
+
+async function getAdminDocumentPreviewUrl(path) {
+    if (!init()) {
+        throw new Error("Supabase is not configured.");
+    }
+
+    if (!path) {
+        throw new Error("Document storage path is missing.");
+    }
+
+    const result = await sb
+        .storage
+        .from("documents")
+        .createSignedUrl(path, 300);
+
+    if (result.error) {
+        throw result.error;
+    }
+
+    if (!result.data?.signedUrl) {
+        throw new Error("Unable to create document preview URL.");
+    }
+
+    return result.data.signedUrl;
 }
 
 

@@ -56,19 +56,20 @@ function setHeaders(res) {
 async function listDocuments(supabase) {
     const { data, error } = await supabase
         .from("documents")
-        .select("id,title,type,download_allowed,created_at")
+        .select("id,title,type,download_allowed,visibility,created_at")
         .order("created_at", { ascending: false });
 
     if (error) {
         throw error;
     }
 
-    return (data || []).map(document => ({
+    return (data || []).filter(document => document.visibility !== "private").map(document => ({
         id: document.id,
         title: document.title,
         type: document.type,
         preview: true,
         download: Boolean(document.download_allowed),
+        visibility: "public",
         createdAt: document.created_at
     }));
 }
@@ -92,7 +93,7 @@ async function getDocument(supabase, id, mode) {
 
     const { data: document, error } = await supabase
         .from("documents")
-        .select("id,title,type,storage_path,download_allowed")
+        .select("id,title,type,storage_path,download_allowed,visibility")
         .eq("id", id)
         .maybeSingle();
 
@@ -104,6 +105,14 @@ async function getDocument(supabase, id, mode) {
         const notFound = new Error("Document not found.");
         notFound.statusCode = 404;
         throw notFound;
+    }
+
+    // This endpoint is public. Private documents must never receive a
+    // signed URL here, even when their ID is known.
+    if (document.visibility === "private") {
+        const forbidden = new Error("This document is private.");
+        forbidden.statusCode = 403;
+        throw forbidden;
     }
 
     if (mode === "download" && !document.download_allowed) {

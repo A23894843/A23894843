@@ -1,0 +1,96 @@
+/* Shared portfolio theme system */
+:root[data-theme="dark"] {
+    --bg: #080b10;
+    --panel: #10151c;
+    --panel-hover: #141b23;
+    --input-bg: #080b10;
+    --text: #eef4f5;
+    --muted: #8b97a7;
+    --border: #27323e;
+    --border-light: #33404d;
+    --primary: #42e3c4;
+    --primary-dark: #03120f;
+    --accent: #42e3c4;
+    --danger: #ff7777;
+    --warning: #ffd166;
+    --shadow: 0 20px 60px rgba(0,0,0,.25);
+    --t: #42e3c4;
+    --i: #eef4f5;
+    --m: #8b97a7;
+    --l: #27323e;
+    --p: #10151c;
+}
+
+:root[data-theme="light"] {
+    --bg: #f4f7f8;
+    --panel: #ffffff;
+    --panel-hover: #edf3f2;
+    --input-bg: #ffffff;
+    --text: #15202b;
+    --muted: #5d6975;
+    --border: #d7e0e5;
+    --border-light: #c3d0d7;
+    --primary: #087f6d;
+    --primary-dark: #ffffff;
+    --accent: #087f6d;
+    --danger: #c33d3d;
+    --warning: #9a6b00;
+    --shadow: 0 20px 60px rgba(21,32,43,.10);
+    --t: #087f6d;
+    --i: #15202b;
+    --m: #5d6975;
+    --l: #d7e0e5;
+    --p: #ffffff;
+}
+
+/* Compatibility aliases for pages that use their own semantic token names. */
+:root[data-theme="dark"],
+:root[data-theme="light"] {
+    --input: var(--input-bg);
+    --teal: var(--primary);
+    --red: var(--danger);
+    --accent: var(--primary);
+    --accent-dark: var(--primary-dark);
+    --error: var(--danger);
+    --success: var(--primary);
+}
+
+html {
+    color-scheme: light dark;
+}
+
+html[data-theme="light"] {
+    color-scheme: light;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+}
+
+body,
+.card,
+.panel,
+.document-item,
+.document-card,
+.topbar,
+input,
+select,
+textarea,
+button {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+
+.brand {
+    font-size: 18px !important;
+}
+
+.topbar .brand {
+    letter-spacing: .04em;
+}
+
+@media (max-width: 600px) {
+    .brand {
+        font-size: 17px !important;
+    }
+}
