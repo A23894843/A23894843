@@ -43,6 +43,18 @@
     --p: #ffffff;
 }
 
+/* Compatibility aliases for pages that use their own semantic token names. */
+:root[data-theme="dark"],
+:root[data-theme="light"] {
+    --input: var(--input-bg);
+    --teal: var(--primary);
+    --red: var(--danger);
+    --accent: var(--primary);
+    --accent-dark: var(--primary-dark);
+    --error: var(--danger);
+    --success: var(--primary);
+}
+
 html {
     color-scheme: light dark;
 }
