@@ -362,14 +362,52 @@
             actions.className = "document-actions";
 
             if (doc.storage_path) {
-                const preview = document.createElement("a");
+                const preview = document.createElement("button");
+                preview.type = "button";
                 preview.className = "btn small";
                 preview.textContent = "PREVIEW";
-                preview.target = "_blank";
-                preview.rel = "noopener noreferrer";
-                
-                // BUG FIX: Route through API to get the signed URL correctly
-                preview.href = `/api/documents?id=${encodeURIComponent(doc.id)}&mode=preview`;
+            
+                preview.addEventListener("click", async () => {
+                    const originalText = preview.textContent;
+            
+                    preview.disabled = true;
+                    preview.textContent = "OPENING...";
+            
+                    try {
+                        const signedUrl =
+                            await getAdminDocumentPreviewUrl(
+                                doc.storage_path
+                            );
+            
+                        const opened =
+                            window.open(
+                                signedUrl,
+                                "_blank",
+                                "noopener,noreferrer"
+                            );
+            
+                        if (!opened) {
+                            window.location.href = signedUrl;
+                        }
+            
+                    } catch (error) {
+                        console.error(
+                            "Admin document preview error:",
+                            error
+                        );
+            
+                        setMessage(
+                            error?.message ||
+                            "Unable to open the private document.",
+                            "error"
+                        );
+            
+                    } finally {
+                        preview.disabled = false;
+                        preview.textContent = originalText;
+                    }
+                });
+            
                 actions.appendChild(preview);
             }
 
