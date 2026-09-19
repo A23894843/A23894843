@@ -162,6 +162,51 @@ async function login(email, password) {
 
 
 /* =========================================================
+   PASSWORD RESET REQUEST
+   ========================================================= */
+
+async function requestPasswordReset(email) {
+
+    if (!init()) {
+        return false;
+    }
+
+    const normalizedEmail = String(email || "").trim().toLowerCase();
+
+    if (!normalizedEmail) {
+        setMessage("Enter your email address.");
+        return false;
+    }
+
+    try {
+        const redirectTo =
+            `${window.location.origin}/reset-password.html`;
+
+        const result =
+            await sb.auth.resetPasswordForEmail(
+                normalizedEmail,
+                { redirectTo }
+            );
+
+        if (result.error) {
+            throw result.error;
+        }
+
+        return true;
+
+    } catch (error) {
+
+        setMessage(
+            error.message ||
+            "Unable to send reset link."
+        );
+
+        return false;
+    }
+}
+
+
+/* =========================================================
    SIGNUP
    ========================================================= */
 
