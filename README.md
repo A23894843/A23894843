@@ -143,6 +143,22 @@ Signature-based antivirus prototype:
 ![OOP](https://img.shields.io/badge/OOP-512BD4?style=flat)
 
 </td>
+<td width="50%">
+
+### 🌐 Personal Portfolio Platform
+**HTML/CSS/JS · Supabase · Vercel · REST APIs**
+
+Full-stack secure portfolio and document platform:
+- **Supabase Auth** — admin login, signup, password recovery
+- **Protected document room** — public preview, enforced download permissions
+- **Serverless API routes** — live GitHub & LeetCode stats via Vercel functions
+- **Admin panel** — document management with full CRUD
+
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+
+</td>
 </tr>
 <tr>
 <td width="50%">
