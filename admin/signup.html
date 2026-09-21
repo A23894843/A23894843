@@ -1,1 +1,681 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Registration — Abhinandan</title><link rel="stylesheet" href="/assets/theme-system.css"><script src="/assets/theme-system.js"></script><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script><script src="/assets/turnstile-config.js"></script><script src="/assets/admin-security.js"></script><style>:root{--bg:#080b10;--panel:#10151c;--text:#eef4f5;--muted:#8b97a7;--border:#27323e;--t:#42e3c4;--r:#ff7777}body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--text);font:14px/1.6 Inter,Arial,sans-serif;padding:20px}.wrap{width:min(100%,520px)}.top{display:flex;justify-content:space-between;margin-bottom:18px}.brand{font:600 14px monospace;text-decoration:none}.brand b{color:var(--t)}.top a:last-child{color:var(--muted)}.card{background:var(--panel);border:1px solid var(--border);border-radius:22px;padding:32px}.ey{font:10px monospace;letter-spacing:.15em;color:var(--muted)}h1{font:600 40px/1.05 Arial;margin:10px 0}.sub{color:var(--muted)}.field{margin-top:15px}.field label{display:block;font:10px monospace;color:var(--muted);margin-bottom:6px}input{width:100%;padding:12px;background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:9px;outline:none}input:focus{border-color:var(--t)}.captcha{margin-top:18px}.captcha-note{color:var(--muted);font:11px monospace;border:1px dashed var(--border);padding:10px;border-radius:9px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.btn{border:1px solid var(--border);background:var(--panel);color:var(--text);padding:11px 14px;border-radius:9px;cursor:pointer;font:11px monospace;text-decoration:none}.primary{background:var(--t);color:#03120f;border-color:var(--t)}.msg{min-height:22px;margin-top:12px;color:var(--muted);font-size:12px}.success{color:var(--t)}.message{color:var(--r)}</style></head><body><main class="wrap"><div class="top"><a class="brand" href="/">ABHINANDAN<b>_</b></a><a href="/admin/login.html">SIGN IN</a></div><section class="card"><div class="ey">PRIVATE / REGISTRATION</div><h1>Request access.</h1><p class="sub">Registration creates a pending administrator request. Approval is required before access is granted.</p><form id="form"><div class="field"><label>NAME</label><input id="name" maxlength="80" autocomplete="name" required></div><div class="field"><label>EMAIL</label><input id="email" type="email" autocomplete="email" required></div><div class="field"><label>PASSWORD</label><input id="password" type="password" minlength="15" maxlength="128" autocomplete="new-password" required></div><div class="field"><label>CONFIRM PASSWORD</label><input id="confirm" type="password" minlength="15" maxlength="128" autocomplete="new-password" required></div><div class="captcha" id="captcha" data-turnstile-widget></div><div class="actions"><button id="submit" class="btn primary" type="submit">REQUEST ACCESS →</button><a class="btn" href="/admin/login.html">LOGIN</a></div><div id="msg" class="msg" aria-live="polite"></div></form></section></main><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="/admin/config.js"></script><script src="/admin/auth.js"></script><script>const f=document.getElementById('form'),b=document.getElementById('submit'),m=document.getElementById('msg');AdminSecurity.render('captcha','signup');f.addEventListener('submit',async e=>{e.preventDefault();m.textContent='';b.disabled=true;b.textContent='SUBMITTING...';try{const ok=await signup(name.value,email.value,password.value,confirm.value,AdminSecurity.getToken());if(ok)f.reset();}catch(err){m.textContent=err.message||'Unable to create account.'}finally{AdminSecurity.reset();b.disabled=false;b.textContent='REQUEST ACCESS →';AdminSecurity.render('captcha','signup')}});</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <title>Admin Registration — Abhinandan</title>
+
+    <!-- Theme -->
+    <link
+        rel="stylesheet"
+        href="/assets/theme-system.css"
+    >
+
+    <script src="/assets/theme-system.js"></script>
+
+    <!-- Cloudflare Turnstile -->
+    <script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        async
+        defer
+    ></script>
+
+    <!-- Turnstile configuration -->
+    <script src="/assets/turnstile-config.js"></script>
+
+    <!-- Admin security helpers -->
+    <script src="/assets/admin-security.js"></script>
+
+    <style>
+        :root {
+            --bg: #080b10;
+            --panel: #10151c;
+            --text: #eef4f5;
+            --muted: #8b97a7;
+            --border: #27323e;
+            --t: #42e3c4;
+            --r: #ff7777;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: var(--bg);
+            color: var(--text);
+            font: 14px/1.6 Inter, Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .wrap {
+            width: min(100%, 520px);
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .brand {
+            font: 600 14px monospace;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .brand b {
+            color: var(--t);
+        }
+
+        .top a:last-child {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        .top a:last-child:hover {
+            color: var(--t);
+        }
+
+        .card {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: 22px;
+            padding: 32px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.28);
+        }
+
+        .ey {
+            font: 10px monospace;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+        }
+
+        h1 {
+            font: 600 40px/1.05 Arial, sans-serif;
+            margin: 10px 0;
+        }
+
+        .sub {
+            color: var(--muted);
+            margin: 0 0 20px;
+        }
+
+        .field {
+            margin-top: 15px;
+        }
+
+        .field label {
+            display: block;
+            font: 10px monospace;
+            color: var(--muted);
+            margin-bottom: 6px;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            outline: none;
+            transition:
+                border-color 180ms ease,
+                box-shadow 180ms ease;
+        }
+
+        input:focus {
+            border-color: var(--t);
+            box-shadow:
+                0 0 0 3px rgba(66, 227, 196, 0.08);
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: var(--border);
+        }
+
+        .captcha {
+            margin-top: 18px;
+            min-height: 65px;
+        }
+
+        .captcha-note {
+            color: var(--muted);
+            font: 11px monospace;
+            border: 1px dashed var(--border);
+            padding: 10px;
+            border-radius: 9px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .btn {
+            border: 1px solid var(--border);
+            background: var(--panel);
+            color: var(--text);
+            padding: 11px 14px;
+            border-radius: 9px;
+            cursor: pointer;
+            font: 11px monospace;
+            text-decoration: none;
+            transition:
+                opacity 180ms ease,
+                border-color 180ms ease,
+                transform 180ms ease;
+        }
+
+        .btn:hover {
+            border-color: var(--t);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.55;
+            transform: none;
+        }
+
+        .primary {
+            background: var(--t);
+            color: #03120f;
+            border-color: var(--t);
+        }
+
+        .primary:hover {
+            border-color: var(--t);
+            opacity: 0.9;
+        }
+
+        .msg {
+            min-height: 22px;
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .success {
+            color: var(--t);
+        }
+
+        .message {
+            color: var(--r);
+        }
+
+        @media (max-width: 560px) {
+            body {
+                padding: 14px;
+            }
+
+            .card {
+                padding: 24px 20px;
+                border-radius: 18px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="wrap">
+
+        <!-- Header -->
+        <div class="top">
+
+            <a
+                class="brand"
+                href="/"
+            >
+                ABHINANDAN<b>_</b>
+            </a>
+
+            <a href="/admin/login.html">
+                SIGN IN
+            </a>
+
+        </div>
+
+
+        <!-- Registration Card -->
+        <section class="card">
+
+            <div class="ey">
+                PRIVATE / REGISTRATION
+            </div>
+
+            <h1>
+                Request access.
+            </h1>
+
+            <p class="sub">
+                Registration creates a pending administrator
+                request. Approval is required before access is granted.
+            </p>
+
+
+            <!-- Registration Form -->
+            <form
+                id="form"
+                novalidate
+            >
+
+                <!-- Name -->
+                <div class="field">
+
+                    <label for="name">
+                        NAME
+                    </label>
+
+                    <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        maxlength="80"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Email -->
+                <div class="field">
+
+                    <label for="email">
+                        EMAIL
+                    </label>
+
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="field">
+
+                    <label for="password">
+                        PASSWORD
+                    </label>
+
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        minlength="15"
+                        maxlength="128"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Confirm Password -->
+                <div class="field">
+
+                    <label for="confirm-password">
+                        CONFIRM PASSWORD
+                    </label>
+
+                    <input
+                        id="confirm-password"
+                        name="confirmPassword"
+                        type="password"
+                        minlength="15"
+                        maxlength="128"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Turnstile -->
+                <div
+                    class="captcha"
+                    id="captcha"
+                    data-turnstile-widget
+                ></div>
+
+
+                <!-- Actions -->
+                <div class="actions">
+
+                    <button
+                        id="submit"
+                        class="btn primary"
+                        type="submit"
+                    >
+                        REQUEST ACCESS →
+                    </button>
+
+                    <a
+                        class="btn"
+                        href="/admin/login.html"
+                    >
+                        LOGIN
+                    </a>
+
+                </div>
+
+
+                <!-- Status -->
+                <div
+                    id="msg"
+                    class="msg"
+                    aria-live="polite"
+                ></div>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- IMPORTANT:
+         Existing config.js is intentionally untouched. -->
+    <script src="/admin/config.js"></script>
+
+    <!-- Authentication -->
+    <script src="/admin/auth.js"></script>
+
+
+    <!-- Registration Logic -->
+    <script>
+        (() => {
+            "use strict";
+
+            const form =
+                document.getElementById("form");
+
+            const submitButton =
+                document.getElementById("submit");
+
+            const message =
+                document.getElementById("msg");
+
+            const nameInput =
+                document.getElementById("name");
+
+            const emailInput =
+                document.getElementById("email");
+
+            const passwordInput =
+                document.getElementById("password");
+
+            const confirmPasswordInput =
+                document.getElementById("confirm-password");
+
+
+            /*
+             * Display a message to the user.
+             */
+            function showMessage(
+                text,
+                type = "message"
+            ) {
+                message.textContent = text;
+                message.className = `msg ${type}`;
+            }
+
+
+            /*
+             * Reset the form's submit state.
+             */
+            function resetSubmitButton() {
+                submitButton.disabled = false;
+                submitButton.textContent =
+                    "REQUEST ACCESS →";
+            }
+
+
+            /*
+             * Render Turnstile.
+             */
+            function renderCaptcha() {
+                try {
+                    AdminSecurity.render(
+                        "captcha",
+                        "signup"
+                    );
+                } catch (error) {
+                    console.error(
+                        "Turnstile render error:",
+                        error
+                    );
+                }
+            }
+
+
+            /*
+             * Initial Turnstile render.
+             */
+            renderCaptcha();
+
+
+            /*
+             * Registration submit handler.
+             */
+            form.addEventListener(
+                "submit",
+                async (event) => {
+
+                    event.preventDefault();
+
+                    showMessage("");
+
+                    submitButton.disabled = true;
+                    submitButton.textContent =
+                        "SUBMITTING...";
+
+
+                    try {
+
+                        /*
+                         * Read the fields explicitly.
+                         *
+                         * Do NOT use:
+                         * name.value
+                         * email.value
+                         * password.value
+                         * confirm.value
+                         *
+                         * because those can resolve to
+                         * browser globals instead of
+                         * the intended input elements.
+                         */
+                        const name =
+                            nameInput.value.trim();
+
+                        const email =
+                            emailInput.value.trim();
+
+                        const password =
+                            passwordInput.value;
+
+                        const confirmPassword =
+                            confirmPasswordInput.value;
+
+
+                        /*
+                         * Basic validation.
+                         */
+                        if (!name) {
+                            throw new Error(
+                                "Please enter your name."
+                            );
+                        }
+
+                        if (!email) {
+                            throw new Error(
+                                "Please enter your email address."
+                            );
+                        }
+
+                        if (!password) {
+                            throw new Error(
+                                "Please enter a password."
+                            );
+                        }
+
+                        if (!confirmPassword) {
+                            throw new Error(
+                                "Please confirm your password."
+                            );
+                        }
+
+
+                        /*
+                         * Password comparison.
+                         */
+                        if (
+                            password !==
+                            confirmPassword
+                        ) {
+                            throw new Error(
+                                "Passwords do not match."
+                            );
+                        }
+
+
+                        /*
+                         * Explicit password length check.
+                         */
+                        if (password.length < 15) {
+                            throw new Error(
+                                "Password must be at least 15 characters."
+                            );
+                        }
+
+
+                        /*
+                         * Obtain the Turnstile token.
+                         */
+                        const captchaToken =
+                            AdminSecurity.getToken();
+
+
+                        if (!captchaToken) {
+                            throw new Error(
+                                "Please complete the CAPTCHA."
+                            );
+                        }
+
+
+                        /*
+                         * Call the existing signup()
+                         * function from auth.js.
+                         */
+                        const result =
+                            await signup(
+                                name,
+                                email,
+                                password,
+                                confirmPassword,
+                                captchaToken
+                            );
+
+
+                        /*
+                         * If signup() returns true,
+                         * clear the form.
+                         */
+                        if (result) {
+                            form.reset();
+
+                            showMessage(
+                                "Registration submitted. Your administrator account is pending approval.",
+                                "success"
+                            );
+                        }
+
+                    } catch (error) {
+
+                        console.error(
+                            "Signup error:",
+                            error
+                        );
+
+                        showMessage(
+                            error?.message ||
+                            "Unable to create account."
+                        );
+
+                    } finally {
+
+                        /*
+                         * Reset Turnstile after
+                         * every submission.
+                         */
+                        try {
+                            AdminSecurity.reset();
+                        } catch (error) {
+                            console.error(
+                                "Turnstile reset error:",
+                                error
+                            );
+                        }
+
+
+                        resetSubmitButton();
+
+
+                        /*
+                         * Re-render the widget after
+                         * the previous widget has been reset.
+                         */
+                        setTimeout(
+                            renderCaptcha,
+                            100
+                        );
+                    }
+                }
+            );
+
+        })();
+    </script>
+
+</body>
+</html>
