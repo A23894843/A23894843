@@ -20,7 +20,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 [![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
-[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf)
+[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://my-portfolio-abhinandan.vercel.app/api/documents?id=84b0372c-0e33-459c-8a1a-c6d1a4f6bd86&mode=preview)
 [![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
 
 </div>
@@ -110,7 +110,7 @@ Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
 </td>
 </tr>
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
 
 ### 🔐 Cyber Defensive Engine
 **C++ · Python · ML · Unix IPC**
@@ -127,7 +127,7 @@ Real-time hybrid network defence system:
 ![IPC](https://img.shields.io/badge/Unix_IPC-333333?style=flat&logo=linux&logoColor=white)
 
 </td>
-<td width="50%">
+<td width="50%" valign="top">
 
 ### 🦠 Dr. Vaccine Antivirus
 **Java · OOP · Security**
@@ -144,8 +144,25 @@ Signature-based antivirus prototype:
 
 </td>
 </tr>
+
 <tr>
-<td width="50%">
+<td width="50%" valign="top">
+
+### 🌐 Personal Portfolio Platform
+**HTML/CSS/JS · Supabase · Vercel · REST APIs**
+
+Full-stack secure portfolio and document platform:
+- **Supabase Auth** — admin login, signup, password recovery
+- **Protected document room** — public preview, enforced download permissions
+- **Serverless API routes** — live GitHub & LeetCode stats via Vercel functions
+- **Admin panel** — document management with full CRUD
+
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+
+</td>
+<td width="50%" valign="top">
 
 ### 📋 Contact Management System
 **Python · MySQL · Tkinter**
@@ -160,7 +177,10 @@ Full-featured desktop CRUD app:
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-2ECC71?style=flat)
 
 </td>
-<td width="50%">
+</tr>
+
+<tr>
+<td width="50%" valign="top">
 
 ### 🔑 Secure Password Generator
 **Python · String Handling**
@@ -172,6 +192,9 @@ GUI-based cryptographic password tool:
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![Security](https://img.shields.io/badge/Cryptography-117A65?style=flat&logo=letsencrypt&logoColor=white)
+
+</td>
+<td width="50%" valign="top">
 
 </td>
 </tr>
