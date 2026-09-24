@@ -1,12 +1,8 @@
 {
   "crons": [
     {
-      "path": "/api/admin/query-mail-queue",
-      "schedule": "0 * * * *"
-    },
-    {
-      "path": "/api/admin/query-reminders",
-      "schedule": "0 * * * *"
+      "path": "/api/admin/query-scheduler",
+      "schedule": "30 3 * * *"
     }
   ]
 }
