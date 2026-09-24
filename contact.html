@@ -1,42 +1,17 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact — Abhinandan</title>
+    <meta name="description" content="Send a message to Abhinandan.">
 
-    <meta
-        name="description"
-        content="Send a message to Abhinandan."
-    >
-
-    <!-- Theme -->
-    <link
-        rel="stylesheet"
-        href="/assets/theme-system.css"
-    >
-
+    <link rel="stylesheet" href="/assets/theme-system.css">
     <script src="/assets/theme-system.js"></script>
 
-    <!-- Cloudflare Turnstile -->
-    <script
-        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-        async
-        defer
-    ></script>
-
-    <!-- Turnstile configuration -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="/assets/turnstile-config.js"></script>
-
-    <!-- Security helper -->
     <script src="/assets/admin-security.js"></script>
-
 
     <style>
         :root {
@@ -49,9 +24,7 @@
             --error: #ff7777;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             margin: 0;
@@ -65,10 +38,6 @@
             margin: 50px auto;
         }
 
-        /* =========================
-           HEADER
-           ========================= */
-
         .top {
             display: flex;
             justify-content: space-between;
@@ -81,33 +50,22 @@
             text-decoration: none;
         }
 
-        .brand b {
-            color: var(--accent);
-        }
+        .brand b { color: var(--accent); }
 
         .top a {
             color: var(--muted);
             text-decoration: none;
         }
 
-        .top a:hover {
-            color: var(--accent);
-        }
-
-        /* =========================
-           CARD
-           ========================= */
+        .top a:hover { color: var(--accent); }
 
         .card {
             margin-top: 22px;
             padding: 32px;
-
             background: var(--panel);
             border: 1px solid var(--border);
             border-radius: 22px;
-
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
         }
 
         .ey {
@@ -123,50 +81,46 @@
 
         .sub {
             color: var(--muted);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
-        /* =========================
-           FORM
-           ========================= */
-
-        .field {
-            margin-top: 16px;
+        .reply-note {
+            margin: 0 0 24px;
+            padding: 12px 14px;
+            border: 1px solid rgba(66, 227, 196, 0.22);
+            border-left: 3px solid var(--accent);
+            border-radius: 10px;
+            background: rgba(66, 227, 196, 0.05);
+            color: var(--muted);
+            font-size: 12px;
         }
+
+        .reply-note strong { color: var(--text); }
+
+        .field { margin-top: 16px; }
 
         .field label {
             display: block;
             margin-bottom: 6px;
-
             color: var(--muted);
             font: 10px monospace;
             letter-spacing: 0.04em;
         }
 
-        .input,
-        .textarea {
+        .input, .textarea {
             width: 100%;
-
             background: var(--bg);
             color: var(--text);
-
             border: 1px solid var(--border);
             border-radius: 9px;
-
             padding: 12px;
             outline: none;
-
-            transition:
-                border-color 180ms ease,
-                box-shadow 180ms ease;
+            transition: border-color 180ms ease, box-shadow 180ms ease;
         }
 
-        .input:focus,
-        .textarea:focus {
+        .input:focus, .textarea:focus {
             border-color: var(--accent);
-
-            box-shadow:
-                0 0 0 3px rgba(66, 227, 196, 0.08);
+            box-shadow: 0 0 0 3px rgba(66, 227, 196, 0.08);
         }
 
         .textarea {
@@ -174,18 +128,10 @@
             resize: vertical;
         }
 
-        /* =========================
-           CAPTCHA
-           ========================= */
-
         .captcha {
             margin-top: 18px;
             min-height: 65px;
         }
-
-        /* =========================
-           HONEYPOT
-           ========================= */
 
         .hp {
             position: absolute;
@@ -195,49 +141,26 @@
             opacity: 0;
         }
 
-        /* =========================
-           ACTIONS
-           ========================= */
-
-        .actions {
-            margin-top: 20px;
-        }
+        .actions { margin-top: 20px; }
 
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-
             border: 1px solid var(--border);
             background: var(--panel);
             color: var(--text);
-
             padding: 11px 15px;
             border-radius: 9px;
-
             font: 11px monospace;
             text-decoration: none;
-
             cursor: pointer;
-
-            transition:
-                opacity 180ms ease,
-                transform 180ms ease,
-                border-color 180ms ease;
+            transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease;
         }
 
-        .btn:hover {
-            border-color: var(--accent);
-        }
-
-        .btn:active {
-            transform: translateY(1px);
-        }
-
-        .btn:disabled {
-            opacity: 0.55;
-            cursor: not-allowed;
-        }
+        .btn:hover { border-color: var(--accent); }
+        .btn:active { transform: translateY(1px); }
+        .btn:disabled { opacity: 0.55; cursor: not-allowed; }
 
         .primary {
             background: var(--accent);
@@ -245,32 +168,17 @@
             border-color: var(--accent);
         }
 
-        /* =========================
-           STATUS MESSAGE
-           ========================= */
-
         .msg {
             min-height: 22px;
             margin-top: 12px;
-
             color: var(--muted);
             font-size: 12px;
         }
 
-        .success {
-            color: var(--accent);
-        }
-
-        .error {
-            color: var(--error);
-        }
-
-        /* =========================
-           MOBILE
-           ========================= */
+        .success { color: var(--accent); }
+        .error { color: var(--error); }
 
         @media (max-width: 600px) {
-
             .wrap {
                 width: min(calc(100% - 20px), 700px);
                 margin: 25px auto;
@@ -281,491 +189,194 @@
                 border-radius: 18px;
             }
 
-            h1 {
-                font-size: 40px;
-            }
-
-            .top {
-                gap: 15px;
-            }
-
+            h1 { font-size: 40px; }
+            .top { gap: 15px; }
         }
     </style>
 </head>
 
-
 <body>
-
     <main class="wrap">
-
-        <!-- =========================
-             HEADER
-             ========================= -->
-
         <header class="top">
-
-            <a
-                class="brand"
-                href="/"
-            >
-                ABHINANDAN<b>_</b>
-            </a>
-
-            <a href="/">
-                ← PORTFOLIO
-            </a>
-
+            <a class="brand" href="/">ABHINANDAN<b>_</b></a>
+            <a href="/">← PORTFOLIO</a>
         </header>
 
-
-        <!-- =========================
-             CONTACT CARD
-             ========================= -->
-
         <section class="card">
+            <div class="ey">SECURE CONTACT CHANNEL</div>
 
-            <div class="ey">
-                SECURE CONTACT CHANNEL
-            </div>
-
-            <h1>
-                Send a query.
-            </h1>
+            <h1>Send a query.</h1>
 
             <p class="sub">
-                For internships, collaborations, technical
-                questions or portfolio feedback. Your message
-                is routed to the admin inbox.
+                For internships, collaborations, technical questions or portfolio feedback.
+                Your message is routed to the admin inbox.
             </p>
 
+            <p class="reply-note">
+                <strong>Response time:</strong>
+                Queries are generally reviewed and replied to within
+                <strong>24–48 hours</strong>. The reply will be sent to the email address
+                you provide above.
+            </p>
 
-            <!-- =========================
-                 CONTACT FORM
-                 ========================= -->
-
-            <form
-                id="form"
-                novalidate
-            >
-
-                <!-- Name -->
+            <form id="form" novalidate>
                 <div class="field">
-
-                    <label for="name">
-                        NAME
-                    </label>
-
-                    <input
-                        class="input"
-                        id="name"
-                        name="name"
-                        type="text"
-                        maxlength="100"
-                        autocomplete="name"
-                        required
-                    >
-
+                    <label for="name">NAME</label>
+                    <input class="input" id="name" name="name" type="text"
+                           maxlength="100" autocomplete="name" required>
                 </div>
 
-
-                <!-- Email -->
                 <div class="field">
-
-                    <label for="email">
-                        EMAIL
-                    </label>
-
-                    <input
-                        class="input"
-                        id="email"
-                        name="email"
-                        type="email"
-                        maxlength="320"
-                        autocomplete="email"
-                        required
-                    >
-
+                    <label for="email">EMAIL</label>
+                    <input class="input" id="email" name="email" type="email"
+                           maxlength="320" autocomplete="email" required>
                 </div>
 
-
-                <!-- Subject -->
                 <div class="field">
-
-                    <label for="subject">
-                        SUBJECT
-                    </label>
-
-                    <input
-                        class="input"
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        maxlength="160"
-                        required
-                    >
-
+                    <label for="subject">SUBJECT</label>
+                    <input class="input" id="subject" name="subject" type="text"
+                           maxlength="160" required>
                 </div>
 
-
-                <!-- Message -->
                 <div class="field">
-
-                    <label for="message">
-                        MESSAGE
-                    </label>
-
-                    <textarea
-                        class="textarea"
-                        id="message"
-                        name="message"
-                        maxlength="8000"
-                        required
-                    ></textarea>
-
+                    <label for="message">MESSAGE</label>
+                    <textarea class="textarea" id="message" name="message"
+                              maxlength="8000" required></textarea>
                 </div>
 
+                <input class="hp" id="website" name="website" type="text"
+                       tabindex="-1" autocomplete="off" aria-hidden="true">
 
-                <!-- Honeypot -->
-                <input
-                    class="hp"
-                    id="website"
-                    name="website"
-                    type="text"
-                    tabindex="-1"
-                    autocomplete="off"
-                    aria-hidden="true"
-                >
+                <div class="captcha" id="captcha" data-turnstile-widget></div>
 
-
-                <!-- Turnstile -->
-                <div
-                    class="captcha"
-                    id="captcha"
-                    data-turnstile-widget
-                ></div>
-
-
-                <!-- Submit -->
                 <div class="actions">
-
-                    <button
-                        class="btn primary"
-                        id="submit"
-                        type="submit"
-                    >
+                    <button class="btn primary" id="submit" type="submit">
                         SEND QUERY →
                     </button>
-
                 </div>
 
-
-                <!-- Status -->
-                <div
-                    class="msg"
-                    id="msg"
-                    aria-live="polite"
-                ></div>
-
+                <div class="msg" id="msg" aria-live="polite"></div>
             </form>
-
         </section>
-
     </main>
-
-
-    <!-- =========================
-         CONTACT FORM LOGIC
-         ========================= -->
 
     <script>
         (() => {
             "use strict";
 
-            /*
-             * Explicit DOM references.
-             *
-             * Do not use:
-             * name.value
-             * email.value
-             * subject.value
-             * message.value
-             * website.value
-             *
-             * because browser globals can conflict
-             * with these names.
-             */
+            const form = document.getElementById("form");
+            const submitButton = document.getElementById("submit");
+            const messageBox = document.getElementById("msg");
+            const nameInput = document.getElementById("name");
+            const emailInput = document.getElementById("email");
+            const subjectInput = document.getElementById("subject");
+            const messageInput = document.getElementById("message");
+            const honeypotInput = document.getElementById("website");
 
-            const form =
-                document.getElementById("form");
-
-            const submitButton =
-                document.getElementById("submit");
-
-            const messageBox =
-                document.getElementById("msg");
-
-            const nameInput =
-                document.getElementById("name");
-
-            const emailInput =
-                document.getElementById("email");
-
-            const subjectInput =
-                document.getElementById("subject");
-
-            const messageInput =
-                document.getElementById("message");
-
-            const honeypotInput =
-                document.getElementById("website");
-
-
-            /*
-             * Display status message.
-             */
-            function showMessage(
-                text,
-                type = ""
-            ) {
+            function showMessage(text, type = "") {
                 messageBox.textContent = text;
-                messageBox.className =
-                    `msg ${type}`.trim();
+                messageBox.className = `msg ${type}`.trim();
             }
 
-
-            /*
-             * Reset submit button.
-             */
             function resetButton() {
                 submitButton.disabled = false;
-                submitButton.textContent =
-                    "SEND QUERY →";
+                submitButton.textContent = "SEND QUERY →";
             }
 
-
-            /*
-             * Render Turnstile.
-             */
             function renderCaptcha() {
                 try {
-                    AdminSecurity.render(
-                        "captcha",
-                        "contact"
-                    );
+                    AdminSecurity.render("captcha", "contact");
                 } catch (error) {
-                    console.error(
-                        "Turnstile render error:",
-                        error
-                    );
+                    console.error("Turnstile render error:", error);
                 }
             }
 
-
-            /*
-             * Initial CAPTCHA render.
-             */
             renderCaptcha();
 
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
 
-            /*
-             * Form submission.
-             */
-            form.addEventListener(
-                "submit",
-                async (event) => {
+                showMessage("");
+                submitButton.disabled = true;
+                submitButton.textContent = "SENDING...";
 
-                    event.preventDefault();
+                try {
+                    const name = nameInput.value.trim();
+                    const email = emailInput.value.trim();
+                    const subject = subjectInput.value.trim();
+                    const message = messageInput.value.trim();
+                    const website = honeypotInput.value.trim();
 
-                    showMessage("");
+                    if (!name) throw new Error("Please enter your name.");
+                    if (!email) throw new Error("Please enter your email address.");
+                    if (!subject) throw new Error("Please enter a subject.");
+                    if (!message) throw new Error("Please enter your message.");
 
-                    submitButton.disabled = true;
-                    submitButton.textContent =
-                        "SENDING...";
+                    if (!emailInput.checkValidity()) {
+                        throw new Error("Please enter a valid email address.");
+                    }
 
+                    const turnstileToken = AdminSecurity.getToken();
+
+                    if (!turnstileToken) {
+                        throw new Error("Please complete the CAPTCHA.");
+                    }
+
+                    const response = await fetch("/api/public-query", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            subject,
+                            message,
+                            website,
+                            turnstileToken
+                        })
+                    });
+
+                    let data = {};
 
                     try {
-
-                        /*
-                         * Read values explicitly.
-                         */
-                        const name =
-                            nameInput.value.trim();
-
-                        const email =
-                            emailInput.value.trim();
-
-                        const subject =
-                            subjectInput.value.trim();
-
-                        const message =
-                            messageInput.value.trim();
-
-                        const website =
-                            honeypotInput.value.trim();
-
-
-                        /*
-                         * Basic validation.
-                         */
-                        if (!name) {
-                            throw new Error(
-                                "Please enter your name."
-                            );
-                        }
-
-                        if (!email) {
-                            throw new Error(
-                                "Please enter your email address."
-                            );
-                        }
-
-                        if (!subject) {
-                            throw new Error(
-                                "Please enter a subject."
-                            );
-                        }
-
-                        if (!message) {
-                            throw new Error(
-                                "Please enter your message."
-                            );
-                        }
-
-
-                        /*
-                         * Browser email validation.
-                         */
-                        if (!emailInput.checkValidity()) {
-                            throw new Error(
-                                "Please enter a valid email address."
-                            );
-                        }
-
-
-                        /*
-                         * Get Turnstile token.
-                         */
-                        const turnstileToken =
-                            AdminSecurity.getToken();
-
-
-                        if (!turnstileToken) {
-                            throw new Error(
-                                "Please complete the CAPTCHA."
-                            );
-                        }
-
-
-                        /*
-                         * Submit to the server.
-                         */
-                        const response =
-                            await fetch(
-                                "/api/public-query",
-                                {
-                                    method: "POST",
-
-                                    headers: {
-                                        "Content-Type":
-                                            "application/json"
-                                    },
-
-                                    body: JSON.stringify({
-                                        name,
-                                        email,
-                                        subject,
-                                        message,
-                                        website,
-                                        turnstileToken
-                                    })
-                                }
-                            );
-
-
-                        /*
-                         * Safely parse the response.
-                         */
-                        let data = {};
-
-                        try {
-                            data =
-                                await response.json();
-                        } catch {
-                            data = {};
-                        }
-
-
-                        /*
-                         * Handle API errors.
-                         */
-                        if (!response.ok) {
-                            throw new Error(
-                                data.error ||
-                                "Unable to send query."
-                            );
-                        }
-
-
-                        /*
-                         * Success.
-                         */
-                        showMessage(
-                            data.message ||
-                            "Query sent successfully.",
-                            "success"
-                        );
-
-                        form.reset();
-
-                    } catch (error) {
-
-                        console.error(
-                            "Contact form error:",
-                            error
-                        );
-
-                        showMessage(
-                            error?.message ||
-                            "Unable to send query.",
-                            "error"
-                        );
-
-                    } finally {
-
-                        /*
-                         * Reset Turnstile.
-                         */
-                        try {
-                            AdminSecurity.reset();
-                        } catch (error) {
-                            console.error(
-                                "Turnstile reset error:",
-                                error
-                            );
-                        }
-
-
-                        /*
-                         * Restore button.
-                         */
-                        resetButton();
-
-
-                        /*
-                         * Render a fresh Turnstile
-                         * widget for another submission.
-                         */
-                        setTimeout(
-                            renderCaptcha,
-                            100
-                        );
+                        data = await response.json();
+                    } catch {
+                        data = {};
                     }
-                }
-            );
 
+                    if (!response.ok) {
+                        throw new Error(data.error || "Unable to send query.");
+                    }
+
+                    showMessage(
+                        data.message || "Query sent successfully.",
+                        "success"
+                    );
+
+                    form.reset();
+
+                } catch (error) {
+                    console.error("Contact form error:", error);
+
+                    showMessage(
+                        error?.message || "Unable to send query.",
+                        "error"
+                    );
+
+                } finally {
+                    try {
+                        AdminSecurity.reset();
+                    } catch (error) {
+                        console.error("Turnstile reset error:", error);
+                    }
+
+                    resetButton();
+
+                    setTimeout(renderCaptcha, 100);
+                }
+            });
         })();
     </script>
-
 </body>
-
 </html>
