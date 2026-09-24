@@ -11,11 +11,7 @@ function validEmail(email) {
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (char) => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;'
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
   }[char]));
 }
 
@@ -25,15 +21,8 @@ function createTransporter() {
   const secure = String(process.env.SMTP_SECURE || 'true').toLowerCase() !== 'false';
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASS;
-
   if (!host || !user || !pass) return null;
-
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure,
-    auth: { user, pass }
-  });
+  return nodemailer.createTransport({ host, port, secure, auth: { user, pass } });
 }
 
 export default async function handler(req, res) {
@@ -41,16 +30,13 @@ export default async function handler(req, res) {
 
   const { name, email, subject, message, turnstileToken, website } = req.body || {};
 
-  if (clean(website, 100)) {
-    return json(res, 200, { ok: true, message: 'Thank you.' });
-  }
+  if (clean(website, 100)) return json(res, 200, { ok: true, message: 'Thank you.' });
 
   if (!turnstileToken) {
     return json(res, 400, { error: 'CAPTCHA verification is required.' });
   }
 
   const secret = process.env.TURNSTILE_SECRET_KEY;
-
   if (!secret) {
     return json(res, 503, { error: 'CAPTCHA is not configured on the server.' });
   }
@@ -73,9 +59,7 @@ export default async function handler(req, res) {
     : null;
 
   if (!result?.success || (result.action && result.action !== 'contact')) {
-    return json(res, 403, {
-      error: 'CAPTCHA verification failed. Please try again.'
-    });
+    return json(res, 403, { error: 'CAPTCHA verification failed. Please try again.' });
   }
 
   const n = clean(name, 100);
@@ -84,13 +68,10 @@ export default async function handler(req, res) {
   const m = clean(message, 8000);
 
   if (!n || !validEmail(e) || !s || !m) {
-    return json(res, 400, {
-      error: 'Please complete all fields with valid information.'
-    });
+    return json(res, 400, { error: 'Please complete all fields with valid information.' });
   }
 
   const client = getServerClient();
-
   const windowStart = new Date(Date.now() - 10 * 60 * 1000).toISOString();
 
   const { count: recentCount } = await client
@@ -107,12 +88,7 @@ export default async function handler(req, res) {
 
   const { data, error } = await client
     .from('queries')
-    .insert({
-      name: n,
-      email: e,
-      subject: s,
-      message: m
-    })
+    .insert({ name: n, email: e, subject: s, message: m })
     .select('id,created_at')
     .single();
 
@@ -121,15 +97,12 @@ export default async function handler(req, res) {
     return json(res, 500, { error: 'Unable to store your query.' });
   }
 
-  /*
-   * The query is already safely stored before the notification is attempted.
-   * Therefore an SMTP problem will not make the visitor lose their message.
-   */
+  // Query is stored first. SMTP failure does not lose the visitor's query.
+  // Owner notification defaults to the portfolio owner email.
   const transporter = createTransporter();
   const notificationEmail =
-    process.env.ADMIN_NOTIFICATION_EMAIL || process.env.SMTP_USER;
-  const emailFrom =
-    process.env.EMAIL_FROM || process.env.SMTP_USER;
+    process.env.ADMIN_NOTIFICATION_EMAIL || 'a23894843@gmail.com';
+  const emailFrom = process.env.EMAIL_FROM || process.env.SMTP_USER;
   const appBaseUrl =
     process.env.APP_BASE_URL || 'https://my-portfolio-abhinandan.vercel.app';
 
@@ -168,8 +141,7 @@ export default async function handler(req, res) {
         to: notificationEmail,
         replyTo: e,
         subject: `[New Query] ${s}`,
-        text:
-`New portfolio query
+        text: `New portfolio query
 
 From: ${n}
 Email: ${e}
