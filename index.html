@@ -282,6 +282,40 @@ html[data-theme="dark"] .text-brand{
   .text-brand{width:145px;flex-basis:145px;font-size:14px}
 }
 
+
+/* Mouse-responsive portfolio effects */
+.cursor-glow{
+  opacity:0;
+  transition:opacity .2s ease,transform .08s linear;
+  position:fixed;
+  width:280px;
+  height:280px;
+  left:0;
+  top:0;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:2;
+  transform:translate3d(calc(var(--mouse-x, 50vw) - 140px),calc(var(--mouse-y, 50vh) - 140px),0);
+  background:radial-gradient(circle,rgba(50,225,197,.10) 0%,rgba(50,225,197,.035) 32%,transparent 68%);
+  transition:transform .08s linear;
+  mix-blend-mode:screen;
+}
+[data-theme="light"] .cursor-glow{
+  background:radial-gradient(circle,rgba(20,110,190,.09) 0%,rgba(50,180,190,.035) 34%,transparent 68%);
+  mix-blend-mode:multiply;
+}
+.mouse-tilt{
+  transform:perspective(900px) rotateX(var(--tilt-y,0deg)) rotateY(var(--tilt-x,0deg)) translateZ(0);
+  transition:transform .18s ease-out;
+}
+.project-card,.value-card,.arch-step,.stat-card,.contact{
+  transform-style:preserve-3d;
+}
+@media (prefers-reduced-motion:reduce){
+  .cursor-glow{display:none}
+  .mouse-tilt{transform:none!important;transition:none!important}
+}
+
 </style>
 <script>
 (function(){
@@ -295,6 +329,7 @@ html[data-theme="dark"] .text-brand{
 </head>
 <body>
 <div class="top-progress" id="topProgress"></div>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 <div class="bg-grid"></div><div class="glow"></div><div class="glow glow2"></div>
 
 <nav>
@@ -561,11 +596,46 @@ if(typeof browserTheme.addEventListener==="function"){
 }
 
 let raf=0;
+const cursorGlow=$("cursorGlow");
+const interactiveCards=document.querySelectorAll(".project-card,.value-card,.arch-step,.stat-card,.contact");
+
 addEventListener("pointermove",e=>{
  cancelAnimationFrame(raf);
  raf=requestAnimationFrame(()=>{
-  document.documentElement.style.setProperty("--mx",((e.clientX/innerWidth)-.5)*100+"px");
-  document.documentElement.style.setProperty("--my",((e.clientY/innerHeight)-.5)*100+"px");
+  const px=e.clientX/innerWidth;
+  const py=e.clientY/innerHeight;
+
+  document.documentElement.style.setProperty("--mx",((px)-.5)*100+"px");
+  document.documentElement.style.setProperty("--my",((py)-.5)*100+"px");
+  document.documentElement.style.setProperty("--mouse-x",e.clientX+"px");
+  document.documentElement.style.setProperty("--mouse-y",e.clientY+"px");
+
+  if(cursorGlow) cursorGlow.style.opacity="1";
+
+  interactiveCards.forEach(card=>{
+    const r=card.getBoundingClientRect();
+    if(e.clientX>=r.left && e.clientX<=r.right && e.clientY>=r.top && e.clientY<=r.bottom){
+      const x=(e.clientX-(r.left+r.width/2))/(r.width/2);
+      const y=(e.clientY-(r.top+r.height/2))/(r.height/2);
+      card.style.setProperty("--tilt-x",(x*2.2).toFixed(2)+"deg");
+      card.style.setProperty("--tilt-y",(-y*2.2).toFixed(2)+"deg");
+      card.classList.add("mouse-active");
+    }else{
+      card.style.setProperty("--tilt-x","0deg");
+      card.style.setProperty("--tilt-y","0deg");
+      card.classList.remove("mouse-active");
+    }
+  });
+ });
+
+ if(cursorGlow) cursorGlow.style.opacity="1";
+});
+
+addEventListener("pointerleave",()=>{
+ if(cursorGlow) cursorGlow.style.opacity="0";
+ interactiveCards.forEach(card=>{
+  card.style.setProperty("--tilt-x","0deg");
+  card.style.setProperty("--tilt-y","0deg");
  });
 });
 
