@@ -28,7 +28,7 @@ nav{position:sticky;top:0;z-index:50;height:74px;border-bottom:1px solid var(--l
 .navin{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:600 14px "DM Mono";letter-spacing:.08em}.brand b{color:var(--teal)}.links{display:flex;gap:25px;color:var(--muted);font-size:13px}.links a:hover{color:var(--ink)}.actions{display:flex;gap:9px;align-items:center}
 .headbtn,.adminlink,.theme{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:9px 11px;cursor:pointer;font:500 11px "DM Mono";white-space:nowrap}.headbtn:hover,.adminlink:hover{border-color:var(--teal);transform:translateY(-2px)}.headbtn{display:inline-flex;align-items:center;gap:6px}.theme{transition:.2s}
 .theme{position:relative;width:72px;height:38px;padding:0;border-radius:999px;overflow:hidden;background:#1b2433;border-color:#354155}.theme:before{content:"";position:absolute;inset:3px;border-radius:999px;border:1px solid rgba(255,255,255,.07)}.theme-icon{position:absolute;left:7px;top:5px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#42a5ff,#6f55e8);color:#ffd978;transition:.35s}.theme-icon:after{content:"☾"}.theme.is-light{background:#e9edf2;border-color:#cbd3dc}.theme.is-light .theme-icon{left:37px;background:#fff;color:#d28b18}.theme.is-light .theme-icon:after{content:"☀"}
-.hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:1.08fr .92fr;gap:65px;align-items:center;padding:90px 0 75px}.hero h1{font:700 clamp(56px,8vw,110px)/.87 "Space Grotesk";letter-spacing:-.075em;margin:18px 0 28px}.hero h1 em{font-style:normal;color:var(--teal)}.hero p{max-width:680px;color:var(--muted);font-size:17px}
+.hero{min-height:calc(100vh - 74px);display:grid;grid-template-columns:minmax(0,1.02fr) minmax(390px,.98fr);gap:55px;align-items:center;padding:90px 0 75px}.hero h1{font:700 clamp(54px,7.2vw,102px)/.87 "Space Grotesk";letter-spacing:-.075em;margin:18px 0 28px}.hero h1 em{font-style:normal;color:var(--teal)}.hero p{max-width:680px;color:var(--muted);font-size:17px}
 .buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.btn{display:inline-flex;align-items:center;gap:7px;padding:12px 16px;border:1px solid var(--line);background:var(--panel);border-radius:10px;font:500 11px "DM Mono";transition:.2s}.btn:hover{transform:translateY(-3px);border-color:var(--teal)}.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .visual{position:relative;min-height:500px;display:grid;place-items:center;perspective:900px}.visual-card{width:min(100%,520px);aspect-ratio:1;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,color-mix(in srgb,var(--panel) 88%,transparent),color-mix(in srgb,var(--panel2) 75%,transparent));box-shadow:0 35px 100px rgba(0,0,0,.25);position:relative;overflow:hidden;transform:rotateX(calc(var(--my)*-.035deg)) rotateY(calc(var(--mx)*.035deg));transition:transform .12s}
 .visual-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--teal) 18%,transparent),transparent 42%)}.rings{position:absolute;inset:12%;border:1px solid var(--line);border-radius:50%;transform:rotate(18deg)}.rings:before,.rings:after{content:"";position:absolute;inset:12%;border:1px dashed var(--line);border-radius:50%}.rings:after{inset:24%;border-style:solid}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:105px;height:105px;border-radius:50%;border:1px solid var(--teal);display:grid;place-items:center;text-align:center;font:500 12px "DM Mono";color:var(--teal);box-shadow:0 0 45px color-mix(in srgb,var(--teal) 24%,transparent)}.orbit{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--amber);box-shadow:0 0 22px var(--amber);left:25%;top:34%;animation:float 4s ease-in-out infinite}.orbit.o2{left:auto;right:23%;top:auto;bottom:30%;background:var(--violet);box-shadow:0 0 22px var(--violet);animation-delay:-2s}.visual-label{position:absolute;font:500 10px "DM Mono";color:var(--muted);letter-spacing:.12em}.v1{top:28px;left:28px}.v2{right:28px;top:44%}.v3{left:28px;bottom:28px}@keyframes float{50%{transform:translate3d(16px,-12px,0)}}
@@ -87,6 +87,25 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 .brand-wordmark span{margin-top:4px;color:var(--muted);font:9px "DM Mono";letter-spacing:.08em}
 @media(max-width:600px){.brand-mark{width:36px;height:36px;flex-basis:36px}.brand-wordmark span{display:none}}
 
+    
+/* Final brand / hero correction */
+.nav-brand-lockup{gap:9px}
+.nav-brand-lockup .brand-mark{width:38px;height:38px;flex-basis:38px}
+.nav-brand-lockup .brand-wordmark strong{font-size:13px}
+.nav-brand-lockup .brand-wordmark span{font-size:8px}
+.hero-brand-logo{position:absolute;z-index:3;top:50%;left:50%;width:min(260px,42%);height:auto;object-fit:contain;transform:translate(-50%,-58%);filter:drop-shadow(0 0 24px rgba(0,220,255,.22));opacity:.94}
+.visual-card .core{z-index:4}
+.visual-card{isolation:isolate}
+@media(max-width:850px){
+  .nav-brand-lockup .brand-mark{width:34px;height:34px;flex-basis:34px}
+  .hero-brand-logo{width:210px}
+}
+@media(max-width:560px){
+  .nav-brand-lockup .brand-mark{width:32px;height:32px;flex-basis:32px}
+  .nav-brand-lockup .brand-wordmark strong{font-size:12px}
+  .hero-brand-logo{width:175px}
+}
+
     </style>
 </head>
 <body>
@@ -95,7 +114,10 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 
 <nav>
 <div class="wrap navin">
-<a class="brand" href="#top">ABHINANDAN<b>_</b></a>
+<a class="brand-lockup nav-brand-lockup" href="#top" aria-label="Abhinandan home">
+<img class="brand-mark" src="/abhinandan-logo.png" alt="Abhinandan logo">
+<span class="brand-wordmark"><strong>ABHINANDAN</strong><span>CS · CYBERSECURITY</span></span>
+</a>
 <div class="links"><a href="#systems">Projects</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div>
 <div class="actions">
 <a class="headbtn" href="tel:+919528998232">+91 95289-98232</a>
@@ -110,11 +132,6 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 
 <main id="top">
 <header class="wrap hero">
-<a class="brand-lockup" href="#top" aria-label="Abhinandan home">
-<img class="brand-mark" src="/abhinandan-logo.png" alt="Abhinandan logo">
-<span class="brand-wordmark"><strong>ABHINANDAN</strong><span>CS · CYBERSECURITY</span></span>
-</a>
-
 <div>
 <div class="hero-kicker">
   <div class="eyebrow">Computer Science · Cybersecurity · Systems</div>
@@ -131,7 +148,18 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 <div class="buttons"><a class="btn primary" href="#systems">EXPLORE PROJECTS ↓</a><a class="btn" href="#profile">CV PROFILE ↓</a><a class="btn" href="/guest/documents.html">RESUME / DOCUMENTS ↗</a><a class="btn" href="mailto:a23894843@gmail.com">EMAIL ↗</a></div>
 <div class="quick-panel"><div><strong>BUILD → MEASURE → EXPLAIN</strong><span>Every project is presented with its purpose, stack and engineering context.</span></div><a class="btn" href="#engineering">HOW I BUILD →</a></div>
 </div>
-<div class="visual"><div class="visual-card"><div class="rings"></div><div class="core">SECURITY<br>ENGINE</div><div class="orbit"></div><div class="orbit o2"></div><span class="visual-label v1">BEHAVIOUR / SIGNAL</span><span class="visual-label v2">DETECT / RESPOND</span><span class="visual-label v3">C++ · PYTHON · ML</span></div></div>
+<div class="visual">
+  <div class="visual-card">
+    <img class="hero-brand-logo" src="/abhinandan-logo.png" alt="" aria-hidden="true">
+    <div class="rings"></div>
+    <div class="core">SECURITY<br>ENGINE</div>
+    <div class="orbit"></div>
+    <div class="orbit o2"></div>
+    <span class="visual-label v1">BEHAVIOUR / SIGNAL</span>
+    <span class="visual-label v2">DETECT / RESPOND</span>
+    <span class="visual-label v3">C++ · PYTHON · ML</span>
+  </div>
+</div>
 </header>
 
 <div class="wrap signal">
