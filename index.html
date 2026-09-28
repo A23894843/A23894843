@@ -283,6 +283,15 @@ html[data-theme="dark"] .text-brand{
 }
 
 </style>
+<script>
+(function(){
+  try {
+    var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.dataset.theme = dark ? "dark" : "light";
+  } catch(e) {}
+})();
+</script>
+
 </head>
 <body>
 <div class="top-progress" id="topProgress"></div>
@@ -504,37 +513,52 @@ html[data-theme="dark"] .text-brand{
 <script>
 const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString("en-IN");
 
-const saved=localStorage.getItem("portfolio-theme");
-const preferred=matchMedia("(prefers-color-scheme:light)").matches?"light":"dark";
-document.documentElement.dataset.theme=saved||preferred;
+/* Browser-synchronized theme
+   The portfolio follows the browser/OS color-scheme preference.
+   The theme button remains available as a temporary manual switch.
+   Reloading returns to the browser preference. */
+const browserTheme=matchMedia("(prefers-color-scheme:dark)");
+
+function browserPreferredTheme(){
+ return browserTheme.matches?"dark":"light";
+}
 
 function updateThemeUI(){
  const dark=document.documentElement.dataset.theme==="dark";
  const b=$("themeBtn");
- b.classList.toggle("is-light",!dark);
- b.setAttribute("aria-label",dark?"Switch to light theme":"Switch to dark theme");
- b.title=dark?"Switch to light theme":"Switch to dark theme";
- $("themeColorMeta").content=dark?"#080b10":"#f5f6f4";
+ if(b){
+  b.classList.toggle("is-light",!dark);
+  b.setAttribute("aria-label",dark?"Switch to light theme":"Switch to dark theme");
+  b.title=dark?"Switch to light theme":"Switch to dark theme";
+ }
+ const meta=$("themeColorMeta");
+ if(meta) meta.content=dark?"#080b10":"#f5f6f4";
+
  const favicon=$("faviconLink");
  const apple=$("appleTouchIcon");
  if(favicon) favicon.href=dark?"/abhinandan-A-dark.png":"/abhinandan-A-light.png";
  if(apple) apple.href=dark?"/abhinandan-A-dark.png":"/abhinandan-A-light.png";
 }
-updateThemeUI();
+
+function syncWithBrowserTheme(){
+ document.documentElement.dataset.theme=browserPreferredTheme();
+ updateThemeUI();
+}
+
+syncWithBrowserTheme();
 
 $("themeBtn").onclick=()=>{
  const next=document.documentElement.dataset.theme==="dark"?"light":"dark";
  document.documentElement.dataset.theme=next;
- localStorage.setItem("portfolio-theme",next);
  updateThemeUI();
 };
 
-matchMedia("(prefers-color-scheme:dark)").addEventListener("change",e=>{
- if(!localStorage.getItem("portfolio-theme")){
-  document.documentElement.dataset.theme=e.matches?"dark":"light";
-  updateThemeUI();
- }
-});
+/* When Windows/macOS/browser appearance changes, update immediately. */
+if(typeof browserTheme.addEventListener==="function"){
+ browserTheme.addEventListener("change",syncWithBrowserTheme);
+}else if(typeof browserTheme.addListener==="function"){
+ browserTheme.addListener(syncWithBrowserTheme);
+}
 
 let raf=0;
 addEventListener("pointermove",e=>{
