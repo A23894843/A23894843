@@ -93,17 +93,113 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 .nav-brand-lockup .brand-mark{width:38px;height:38px;flex-basis:38px}
 .nav-brand-lockup .brand-wordmark strong{font-size:13px}
 .nav-brand-lockup .brand-wordmark span{font-size:8px}
-.hero-brand-logo{position:absolute;z-index:3;top:50%;left:50%;width:min(260px,42%);height:auto;object-fit:contain;transform:translate(-50%,-58%);filter:drop-shadow(0 0 24px rgba(0,220,255,.22));opacity:.94}
-.visual-card .core{z-index:4}
+
+
 .visual-card{isolation:isolate}
 @media(max-width:850px){
   .nav-brand-lockup .brand-mark{width:34px;height:34px;flex-basis:34px}
-  .hero-brand-logo{width:210px}
+  
 }
 @media(max-width:560px){
   .nav-brand-lockup .brand-mark{width:32px;height:32px;flex-basis:32px}
   .nav-brand-lockup .brand-wordmark strong{font-size:12px}
-  .hero-brand-logo{width:175px}
+  
+}
+
+    
+/* Final header + footer presentation */
+nav{
+  background:#080d12;
+  border-bottom:1px solid rgba(255,255,255,.11);
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
+}
+.navin{gap:24px}
+.nav-brand-lockup{min-width:235px}
+.nav-brand-lockup .brand-mark{width:50px;height:50px;flex-basis:50px;filter:drop-shadow(0 0 12px rgba(0,220,255,.22))}
+.nav-brand-lockup .brand-wordmark strong{font-size:15px;letter-spacing:.07em;color:#f4f7f8}
+.nav-brand-lockup .brand-wordmark span{font-size:8px;letter-spacing:.1em;color:#8e9ba4}
+.links a{color:#a8b2ba}
+.links a:hover{color:#fff}
+.actions{gap:8px}
+.headbtn,.adminlink{
+  border-color:rgba(255,255,255,.14);
+  background:rgba(255,255,255,.025);
+  color:#e5ebee;
+}
+.headbtn:hover,.adminlink:hover{border-color:rgba(55,231,202,.45);color:#fff}
+.site-footer{
+  margin-top:80px;
+  background:#080d12;
+  color:#dce4e7;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.footer-main{
+  padding-top:42px;
+  padding-bottom:34px;
+  display:grid;
+  grid-template-columns:1.35fr .85fr 1.15fr 1.05fr .95fr;
+  gap:34px;
+}
+.footer-brand-lockup{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:#fff}
+.footer-brand-lockup img{width:58px;height:58px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(0,220,255,.2))}
+.footer-brand-lockup strong{display:block;font:700 17px "Space Grotesk";letter-spacing:.06em}
+.footer-brand-lockup small{display:block;margin-top:5px;color:#87949d;font:8px "DM Mono";letter-spacing:.12em}
+.footer-brand p{max-width:290px;margin:17px 0;color:#9ba8b0;font-size:12px;line-height:1.7}
+.footer-socials{display:flex;gap:9px;margin-top:17px}
+.footer-socials a{
+  width:31px;height:31px;border:1px solid rgba(255,255,255,.15);border-radius:8px;
+  display:grid;place-items:center;color:#eaf1f3;text-decoration:none;font:700 11px "DM Mono";
+  background:rgba(255,255,255,.025);transition:.2s
+}
+.footer-socials a:hover{border-color:#32e1c5;color:#32e1c5;transform:translateY(-2px)}
+.footer-status{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:18px;color:#aab5bb;font:9px "DM Mono"
+}
+.footer-status i,.footer-open i{width:7px;height:7px;border-radius:50%;background:#32e1c5;box-shadow:0 0 9px rgba(50,225,197,.55)}
+.footer-status small{color:#6f7c84}
+.footer-col h3{
+  margin:3px 0 15px;color:#f0f4f5;font:600 12px "Space Grotesk";letter-spacing:.02em
+}
+.footer-col>a,.footer-col>span{
+  display:block;margin:0 0 11px;color:#98a5ad;text-decoration:none;font-size:11px;line-height:1.4
+}
+.footer-col>a:hover{color:#35dfc5}
+.footer-open{margin-top:17px!important;display:flex!important;align-items:flex-start;gap:8px;color:#b4c0c6!important}
+.footer-open i{flex:0 0 auto;margin-top:4px}
+.stack-pills{display:flex;flex-wrap:wrap;gap:7px}
+.stack-pills span{
+  padding:7px 10px;border:1px solid rgba(255,255,255,.13);border-radius:999px;
+  color:#c3cdd1;background:rgba(255,255,255,.025);font:9px "DM Mono"
+}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  min-height:62px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  color:#74818a;font:9px "DM Mono"
+}
+.footer-tagline{color:#a4afb5;text-align:center}
+.footer-bottom-links{display:flex;gap:18px}
+.footer-bottom-links a{color:#87939b;text-decoration:none}
+.footer-bottom-links a:hover{color:#35dfc5}
+@media(max-width:1050px){
+  .nav-brand-lockup{min-width:auto}
+  .footer-main{grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+  .footer-stack{grid-column:3}
+}
+@media(max-width:800px){
+  .links{display:none}
+  .footer-main{grid-template-columns:1fr 1fr}
+  .footer-stack{grid-column:auto}
+  .footer-bottom{align-items:flex-start;flex-direction:column;padding:20px 0}
+  .footer-tagline{text-align:left}
+  .footer-bottom-links{flex-wrap:wrap;gap:12px}
+}
+@media(max-width:560px){
+  .nav-brand-lockup .brand-mark{width:42px;height:42px;flex-basis:42px}
+  .nav-brand-lockup .brand-wordmark span{display:none}
+  .actions .headbtn:first-child{display:none}
+  .footer-main{grid-template-columns:1fr}
+  .footer-stack{grid-column:auto}
 }
 
     </style>
@@ -150,7 +246,6 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 </div>
 <div class="visual">
   <div class="visual-card">
-    <img class="hero-brand-logo" src="/abhinandan-logo.png" alt="" aria-hidden="true">
     <div class="rings"></div>
     <div class="core">SECURITY<br>ENGINE</div>
     <div class="orbit"></div>
@@ -261,7 +356,76 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 </main>
 <button class="backtop" id="backTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
 
-<footer class="wrap footer"><span>© 2026 ABHINANDAN · SECURITY / SYSTEMS</span><span><a href="https://github.com/A23894843" target="_blank" rel="noopener">GITHUB</a> · <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener">LEETCODE</a> · <a href="/admin/login.html">ADMIN</a></span></footer>
+<footer class="site-footer">
+  <div class="wrap footer-main">
+    <div class="footer-brand">
+      <a class="footer-brand-lockup" href="#top" aria-label="Back to Abhinandan home">
+        <img src="/abhinandan-logo.png" alt="Abhinandan logo">
+        <span>
+          <strong>ABHINANDAN</strong>
+          <small>COMPUTER SCIENCE ENGINEER</small>
+        </span>
+      </a>
+      <p>Building secure, intelligent and practical systems that create real impact.</p>
+      <div class="footer-socials" aria-label="Social links">
+        <a href="https://www.linkedin.com/in/abhinandan-29b66b28b/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+        <a href="https://github.com/A23894843" target="_blank" rel="noopener noreferrer" aria-label="GitHub">⌘</a>
+        <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener noreferrer" aria-label="LeetCode">&lt;/&gt;</a>
+        <a href="mailto:a23894843@gmail.com" aria-label="Email">@</a>
+      </div>
+      <div class="footer-status"><i></i><span>Portfolio Online</span><small>Last updated · Sep 2026</small></div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <a href="#top">⌂ &nbsp; Home</a>
+      <a href="#systems">□ &nbsp; Projects</a>
+      <a href="#engineering">&lt;/&gt; &nbsp; Engineering</a>
+      <a href="#activity">▥ &nbsp; Activity</a>
+      <a href="#documents">▤ &nbsp; Documents</a>
+      <a href="#contact">✉ &nbsp; Contact</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Featured Projects</h3>
+      <a href="#systems">Cyber Defensive Engine</a>
+      <a href="#systems">Dr. Vaccine</a>
+      <a href="#systems">Contact Management System</a>
+      <a href="#systems">Strong Password Generator</a>
+      <a href="#systems">To-Do Application</a>
+    </div>
+
+    <div class="footer-col">
+      <h3>Connect</h3>
+      <a href="tel:+919528998232">☎ &nbsp; +91 95289-98232</a>
+      <a href="mailto:a23894843@gmail.com">✉ &nbsp; a23894843@gmail.com</a>
+      <a href="/contact.html">↗ &nbsp; Send a query</a>
+      <a href="https://www.linkedin.com/in/abhinandan-29b66b28b/" target="_blank" rel="noopener noreferrer">in &nbsp; LinkedIn</a>
+      <span class="footer-open"><i></i> Open to internships &amp; entry-level opportunities</span>
+    </div>
+
+    <div class="footer-col footer-stack">
+      <h3>Tech Stack</h3>
+      <div class="stack-pills">
+        <span>Python</span><span>C++</span><span>Java</span><span>SQL</span>
+        <span>Flask</span><span>Supabase</span><span>ML / AI</span>
+        <span>Cybersecurity</span><span>Linux</span><span>Git</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <span>© 2026 Abhinandan. All rights reserved.</span>
+    <span class="footer-tagline">“Secure Systems. Intelligent Solutions. Real Impact.”</span>
+    <span class="footer-bottom-links">
+      <a href="/contact.html">Contact</a>
+      <a href="/admin/login.html">Admin</a>
+      <a href="https://github.com/A23894843" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/abhinandan-29b66b28b/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="https://leetcode.com/u/a23894843/" target="_blank" rel="noopener noreferrer">LeetCode</a>
+    </span>
+  </div>
+</footer>
 
 <script>
 const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString("en-IN");
