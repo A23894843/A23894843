@@ -2,8 +2,8 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="/abhinandan-logo-dark.png" id="faviconLink">
-<link rel="apple-touch-icon" href="/abhinandan-logo-light.png" id="appleTouchIcon">
+<link rel="icon" type="image/png" href="/abhinandan-A-dark.png" id="faviconLink">
+<link rel="apple-touch-icon" href="/abhinandan-A-light.png" id="appleTouchIcon">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b10" id="themeColorMeta">
 <meta name="description" content="Abhinandan — B.Tech Computer Science student focused on cybersecurity, systems engineering, machine learning and secure full-stack development.">
@@ -13,7 +13,7 @@
 <meta property="og:title" content="Abhinandan — Computer Science Engineer">
 <meta property="og:description" content="Cybersecurity, systems engineering, machine learning and secure full-stack projects.">
 <meta property="og:url" content="https://my-portfolio-abhinandan.vercel.app/">
-<title>Abhinandan — Computer Science Engineer | Cybersecurity · Systems · AI</title>
+<title>Abhinandan | Computer Science Engineer · Cybersecurity · Systems</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -254,7 +254,35 @@ html[data-theme="light"] .signature-logo-dark{display:none}
   .signature-logo{width:142px;max-height:50px}
 }
 
-    </style>
+    
+
+/* Header name: always white in both themes */
+.text-brand,
+html[data-theme="light"] .text-brand,
+html[data-theme="dark"] .text-brand{
+  display:inline-flex;
+  align-items:center;
+  width:230px;
+  flex:0 0 230px;
+  color:#ffffff!important;
+  -webkit-text-fill-color:#ffffff!important;
+  text-decoration:none!important;
+  font:700 17px/1 "Space Grotesk";
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+.text-brand span{
+  color:#32e1c5!important;
+  -webkit-text-fill-color:#32e1c5!important;
+}
+@media(max-width:800px){
+  .text-brand{width:175px;flex-basis:175px;font-size:15px}
+}
+@media(max-width:560px){
+  .text-brand{width:145px;flex-basis:145px;font-size:14px}
+}
+
+</style>
 </head>
 <body>
 <div class="top-progress" id="topProgress"></div>
@@ -262,10 +290,7 @@ html[data-theme="light"] .signature-logo-dark{display:none}
 
 <nav>
 <div class="wrap navin">
-<a class="signature-brand" href="#top" aria-label="Abhinandan home">
-  <img class="signature-logo signature-logo-light" src="/abhinandan-logo-light.png" alt="Abhinandan — Computer Science Engineer">
-  <img class="signature-logo signature-logo-dark" src="/abhinandan-logo-dark.png" alt="Abhinandan — Computer Science Engineer">
-</a>
+<a class="text-brand" href="#top" aria-label="Abhinandan home">ABHINANDAN<span>_</span></a>
 <div class="links"><a href="#systems">Projects</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div>
 <div class="actions">
 <a class="headbtn" href="tel:+919528998232">+91 95289-98232</a>
@@ -492,8 +517,8 @@ function updateThemeUI(){
  $("themeColorMeta").content=dark?"#080b10":"#f5f6f4";
  const favicon=$("faviconLink");
  const apple=$("appleTouchIcon");
- if(favicon) favicon.href=dark?"/abhinandan-logo-dark.png":"/abhinandan-logo-light.png";
- if(apple) apple.href=dark?"/abhinandan-logo-dark.png":"/abhinandan-logo-light.png";
+ if(favicon) favicon.href=dark?"/abhinandan-A-dark.png":"/abhinandan-A-light.png";
+ if(apple) apple.href=dark?"/abhinandan-A-dark.png":"/abhinandan-A-light.png";
 }
 updateThemeUI();
 
