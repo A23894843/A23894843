@@ -2,18 +2,18 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
-<link rel="icon" type="image/png" href="/abhinandan-logo.png">
-<link rel="apple-touch-icon" href="/abhinandan-logo.png">
+<link rel="icon" type="image/png" href="/abhinandan-logo-dark.png" id="faviconLink">
+<link rel="apple-touch-icon" href="/abhinandan-logo-light.png" id="appleTouchIcon">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#080b10" id="themeColorMeta">
 <meta name="description" content="Abhinandan — B.Tech Computer Science student focused on cybersecurity, systems engineering, machine learning and secure full-stack development.">
 <meta name="author" content="Abhinandan">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Abhinandan — Cybersecurity / Systems / Full-Stack">
+<meta property="og:title" content="Abhinandan — Computer Science Engineer">
 <meta property="og:description" content="Cybersecurity, systems engineering, machine learning and secure full-stack projects.">
 <meta property="og:url" content="https://my-portfolio-abhinandan.vercel.app/">
-<title>Abhinandan — Cybersecurity / Systems / Full-Stack</title>
+<title>Abhinandan — Computer Science Engineer | Cybersecurity · Systems · AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -89,9 +89,9 @@ section{padding:110px 0}.head{display:flex;justify-content:space-between;gap:30p
 
     
 /* Final brand / hero correction */
-.nav-brand-lockup{gap:9px}
-.nav-brand-lockup .brand-mark{width:38px;height:38px;flex-basis:38px}
-.nav-brand-lockup .brand-wordmark strong{font-size:13px}
+
+
+
 .nav-brand-lockup .brand-wordmark span{font-size:8px}
 
 
@@ -114,10 +114,10 @@ nav{
   box-shadow:0 8px 30px rgba(0,0,0,.12);
 }
 .navin{gap:24px}
-.nav-brand-lockup{min-width:235px}
-.nav-brand-lockup .brand-mark{width:50px;height:50px;flex-basis:50px;filter:drop-shadow(0 0 12px rgba(0,220,255,.22))}
-.nav-brand-lockup .brand-wordmark strong{font-size:15px;letter-spacing:.07em;color:#f4f7f8}
-.nav-brand-lockup .brand-wordmark span{font-size:8px;letter-spacing:.1em;color:#8e9ba4}
+
+
+
+
 .links a{color:#a8b2ba}
 .links a:hover{color:#fff}
 .actions{gap:8px}
@@ -202,6 +202,58 @@ nav{
   .footer-stack{grid-column:auto}
 }
 
+    
+/* Signature brand: light/dark theme variants */
+.signature-brand{
+  display:flex;
+  align-items:center;
+  width:230px;
+  height:60px;
+  flex:0 0 230px;
+  overflow:hidden;
+}
+.signature-logo{
+  width:220px;
+  height:auto;
+  max-height:58px;
+  object-fit:contain;
+  object-position:left center;
+  display:block;
+}
+.signature-logo-dark{display:none}
+html[data-theme="dark"] .signature-logo-light{display:none}
+html[data-theme="dark"] .signature-logo-dark{display:block}
+html[data-theme="light"] .signature-logo-light{display:block}
+html[data-theme="light"] .signature-logo-dark{display:none}
+.footer-text-brand{
+  display:inline-flex;
+  flex-direction:column;
+  text-decoration:none;
+  color:#fff;
+}
+.footer-text-brand strong{
+  font:700 18px "Space Grotesk";
+  letter-spacing:.08em;
+}
+.footer-text-brand small{
+  margin-top:5px;
+  color:#87949d;
+  font:8px "DM Mono";
+  letter-spacing:.13em;
+}
+@media(max-width:1050px){
+  .signature-brand{width:205px;flex-basis:205px}
+  .signature-logo{width:198px}
+}
+@media(max-width:800px){
+  .signature-brand{width:175px;flex-basis:175px}
+  .signature-logo{width:170px}
+}
+@media(max-width:560px){
+  .signature-brand{width:145px;flex-basis:145px;height:54px}
+  .signature-logo{width:142px;max-height:50px}
+}
+
     </style>
 </head>
 <body>
@@ -210,9 +262,9 @@ nav{
 
 <nav>
 <div class="wrap navin">
-<a class="brand-lockup nav-brand-lockup" href="#top" aria-label="Abhinandan home">
-<img class="brand-mark" src="/abhinandan-logo.png" alt="Abhinandan logo">
-<span class="brand-wordmark"><strong>ABHINANDAN</strong><span>CS · CYBERSECURITY</span></span>
+<a class="signature-brand" href="#top" aria-label="Abhinandan home">
+  <img class="signature-logo signature-logo-light" src="/abhinandan-logo-light.png" alt="Abhinandan — Computer Science Engineer">
+  <img class="signature-logo signature-logo-dark" src="/abhinandan-logo-dark.png" alt="Abhinandan — Computer Science Engineer">
 </a>
 <div class="links"><a href="#systems">Projects</a><a href="#engineering">Engineering</a><a href="#activity">Activity</a><a href="#documents">Documents</a><a href="#contact">Contact</a></div>
 <div class="actions">
@@ -359,12 +411,9 @@ nav{
 <footer class="site-footer">
   <div class="wrap footer-main">
     <div class="footer-brand">
-      <a class="footer-brand-lockup" href="#top" aria-label="Back to Abhinandan home">
-        <img src="/abhinandan-logo.png" alt="Abhinandan logo">
-        <span>
-          <strong>ABHINANDAN</strong>
-          <small>COMPUTER SCIENCE ENGINEER</small>
-        </span>
+      <a class="footer-text-brand" href="#top" aria-label="Back to Abhinandan home">
+        <strong>ABHINANDAN</strong>
+        <small>COMPUTER SCIENCE ENGINEER</small>
       </a>
       <p>Building secure, intelligent and practical systems that create real impact.</p>
       <div class="footer-socials" aria-label="Social links">
@@ -441,6 +490,10 @@ function updateThemeUI(){
  b.setAttribute("aria-label",dark?"Switch to light theme":"Switch to dark theme");
  b.title=dark?"Switch to light theme":"Switch to dark theme";
  $("themeColorMeta").content=dark?"#080b10":"#f5f6f4";
+ const favicon=$("faviconLink");
+ const apple=$("appleTouchIcon");
+ if(favicon) favicon.href=dark?"/abhinandan-logo-dark.png":"/abhinandan-logo-light.png";
+ if(apple) apple.href=dark?"/abhinandan-logo-dark.png":"/abhinandan-logo-light.png";
 }
 updateThemeUI();
 
