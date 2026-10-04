@@ -20,7 +20,7 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 [![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
-[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://my-portfolio-abhinandan.vercel.app/api/documents?id=84b0372c-0e33-459c-8a1a-c6d1a4f6bd86&mode=preview)
+[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf)
 [![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
 
 </div>
@@ -40,7 +40,7 @@ class Abhinandan:
         self.languages   = ["Python", "C++", "Java", "SQL"]
         self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
         self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
-        self.streak      = "69 days and counting 🔥"
+        self.streak      = "84 days and counting 🔥"
         self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
 
     def current_goal(self) -> str:
@@ -57,15 +57,15 @@ class Abhinandan:
 
 <!-- Snapshot badges — update when refreshing numbers -->
 
-![Contributions](https://img.shields.io/badge/Total_Contributions-441-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
-![Streak](https://img.shields.io/badge/Current_Streak-69_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
-![Longest](https://img.shields.io/badge/Longest_Streak-69_Days_(Jul_9–Sep_15)-7FDBCA?style=for-the-badge&labelColor=0D1117)
+![Contributions](https://img.shields.io/badge/Total_Contributions-595-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
+![Streak](https://img.shields.io/badge/Current_Streak-84_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
+![Longest](https://img.shields.io/badge/Longest_Streak-84_Days-7FDBCA?style=for-the-badge&labelColor=0D1117)
 ![Since](https://img.shields.io/badge/Active_Since-Jun_21_2024-8B949E?style=for-the-badge&labelColor=0D1117)
 
-![LeetCode](https://img.shields.io/badge/LeetCode-141_Solved_·_50_Days_Badge_2026-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
-![Easy](https://img.shields.io/badge/Easy-81-4ade80?style=flat-square&labelColor=0D1117)
-![Medium](https://img.shields.io/badge/Medium-53-fbbf24?style=flat-square&labelColor=0D1117)
-![Hard](https://img.shields.io/badge/Hard-7-fb7185?style=flat-square&labelColor=0D1117)
+![LeetCode](https://img.shields.io/badge/LeetCode-154_Solved_·_100_Days_Badge_2026-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
+![Easy](https://img.shields.io/badge/Easy-84-4ade80?style=flat-square&labelColor=0D1117)
+![Medium](https://img.shields.io/badge/Medium-58-fbbf24?style=flat-square&labelColor=0D1117)
+![Hard](https://img.shields.io/badge/Hard-12-fb7185?style=flat-square&labelColor=0D1117)
 
 <br/>
 
@@ -110,7 +110,7 @@ Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
 </td>
 </tr>
 <tr>
-<td width="50%" valign="top">
+<td width="50%">
 
 ### 🔐 Cyber Defensive Engine
 **C++ · Python · ML · Unix IPC**
@@ -127,7 +127,7 @@ Real-time hybrid network defence system:
 ![IPC](https://img.shields.io/badge/Unix_IPC-333333?style=flat&logo=linux&logoColor=white)
 
 </td>
-<td width="50%" valign="top">
+<td width="50%">
 
 ### 🦠 Dr. Vaccine Antivirus
 **Java · OOP · Security**
@@ -143,10 +143,7 @@ Signature-based antivirus prototype:
 ![OOP](https://img.shields.io/badge/OOP-512BD4?style=flat)
 
 </td>
-</tr>
-
-<tr>
-<td width="50%" valign="top">
+<td width="50%">
 
 ### 🌐 Personal Portfolio Platform
 **HTML/CSS/JS · Supabase · Vercel · REST APIs**
@@ -162,7 +159,9 @@ Full-stack secure portfolio and document platform:
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
 
 </td>
-<td width="50%" valign="top">
+</tr>
+<tr>
+<td width="50%">
 
 ### 📋 Contact Management System
 **Python · MySQL · Tkinter**
@@ -177,10 +176,7 @@ Full-featured desktop CRUD app:
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-2ECC71?style=flat)
 
 </td>
-</tr>
-
-<tr>
-<td width="50%" valign="top">
+<td width="50%">
 
 ### 🔑 Secure Password Generator
 **Python · String Handling**
@@ -192,9 +188,6 @@ GUI-based cryptographic password tool:
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![Security](https://img.shields.io/badge/Cryptography-117A65?style=flat&logo=letsencrypt&logoColor=white)
-
-</td>
-<td width="50%" valign="top">
 
 </td>
 </tr>
@@ -237,7 +230,8 @@ GUI-based cryptographic password tool:
 
 | | Certification | Issuer | Year |
 |--|--------------|--------|------|
-| 🏅 | **LeetCode 50 Days Badge 2026** — 141 solved (81E/53M/7H) · 69-day streak | LeetCode | 2026 |
+| 🏅 | **LeetCode 100 Days Badge 2026** — 154 solved (84E/58M/12H) · 84-day streak · 595 contributions | LeetCode | 2026 |
+| 🏅 | **LeetCode 50 Days Badge 2026** — Consistent daily DSA practice in C++ and Python | LeetCode | 2026 |
 | 🛡️ | **Cybersecurity Fundamentals** *(verified via Credly)* | IBM SkillsBuild | 2026 |
 | 🐍 | Python Internship | CodSoft | 2025 |
 | 🤖 | AI & ML Workshop | Sofcon India Pvt. Ltd. | 2025 |
