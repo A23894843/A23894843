@@ -77,7 +77,7 @@ class Abhinandan:
 
 <br/>
 
-![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-Profile-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 
 </div>
 
@@ -279,7 +279,7 @@ GUI-based cryptographic password tool:
 
 <br/>
 
-![Visitor Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
+[![GitHub Profile](https://img.shields.io/badge/GitHub-Profile-161B22?style=flat-square&logo=github&logoColor=white)](https://github.com/a23894843)
 
 <!-- FOOTER — theme aware -->
 <picture>
