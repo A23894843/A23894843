@@ -33,7 +33,7 @@
 class Abhinandan:
     def __init__(self):
         self.name        = "Abhinandan"
-        self.role        = "CS & Engineering Student — Cybersecurity"
+        self.role        = "Computer Science & Engineering Student — Cybersecurity"
         self.university  = "Gurukul Kangri Vishwavidyalaya (Deemed University)"
         self.cgpa        = 7.755
         self.location    = "Haridwar, Uttarakhand, India"
@@ -97,7 +97,7 @@ Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
 - **PyTorch Autoencoder** detects non-human mouse patterns via reconstruction loss on velocity/acceleration/delta-t vectors
 - **scikit-learn Isolation Forest** flags anomalous keystroke rhythms using dwell time + flight time dynamics
 - Full **async Python backend** (asyncio + aiomysql) handling both sensor streams concurrently — zero blocking I/O
-- **FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh), anomaly score colouring, light/dark theme
+- **FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh), anomaly score coloring, and light/dark theme
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
@@ -109,16 +109,17 @@ Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
 
 </td>
 </tr>
+
 <tr>
 <td width="50%">
 
 ### 🔐 Cyber Defensive Engine
 **C++ · Python · ML · Unix IPC**
 
-Real-time hybrid network defence system:
+Real-time hybrid network defense system:
 - **C++ packet sniffer** for high-speed raw capture
 - **Unsupervised ML pipeline** — detects DDoS, port scans & anomalies
-- **Unix Domain Sockets (UDS/IPC)** for secure cross-process comms
+- **Unix Domain Sockets (UDS/IPC)** for secure cross-process communication
 - Automated **real-time defensive responses**
 
 ![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
@@ -143,6 +144,9 @@ Signature-based antivirus prototype:
 ![OOP](https://img.shields.io/badge/OOP-512BD4?style=flat)
 
 </td>
+</tr>
+
+<tr>
 <td width="50%">
 
 ### 🌐 Personal Portfolio Platform
@@ -159,15 +163,13 @@ Full-stack secure portfolio and document platform:
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
 
 </td>
-</tr>
-<tr>
 <td width="50%">
 
 ### 📋 Contact Management System
 **Python · MySQL · Tkinter**
 
 Full-featured desktop CRUD app:
-- Tkinter GUI + optimised MySQL backend
+- Tkinter GUI + optimized MySQL backend
 - Full **add / update / delete / search** operations
 - Built during internship at **CodSoft**
 
@@ -176,18 +178,24 @@ Full-featured desktop CRUD app:
 ![Tkinter](https://img.shields.io/badge/Tkinter-GUI-2ECC71?style=flat)
 
 </td>
+</tr>
+
+<tr>
 <td width="50%">
 
 ### 🔑 Secure Password Generator
 **Python · String Handling**
 
 GUI-based cryptographic password tool:
-- Secure randomisation logic
+- Secure randomization logic
 - Configurable length & complexity
 - Clean Tkinter interface
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
 ![Security](https://img.shields.io/badge/Cryptography-117A65?style=flat&logo=letsencrypt&logoColor=white)
+
+</td>
+<td width="50%">
 
 </td>
 </tr>
