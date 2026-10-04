@@ -1,283 +1,273 @@
-<div align="center">
+# Abhinandan — Cybersecurity & Systems Portfolio
 
-<!-- ANIMATED BANNER — cybersecurity terminal green palette -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=39FF14&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=7FDBCA">
-  <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=172033&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=008F8C">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=220&section=header&text=Abhinandan&fontSize=56&fontColor=172033&animation=twinkling&fontAlignY=38&desc=Cybersecurity%20%7C%20Python%20%7C%20C%2B%2B%20%7C%20Java&descAlignY=58&descSize=18&descColor=008F8C" width="100%" alt="Abhinandan — Cybersecurity | Python | C++ | Java">
-</picture>
+> **Live portfolio:** https://my-portfolio-abhinandan.vercel.app  
+> **Repository:** https://github.com/A23894843/A23894843
 
-<!-- TYPING ANIMATION — terminal green on dark -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=39FF14&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F">
-  <source media="(prefers-color-scheme: light)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=008F8C&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=19&duration=2800&pause=900&color=008F8C&center=true&vCenter=true&width=650&lines=Computer+Science+%26+Engineering+Student;Cybersecurity+%7C+Network+Defence+Engineer;IBM+Cybersecurity+Fundamentals+%E2%80%94+Certified;Building+Real-Time+Threat+Detection+Systems;Open+to+Cybersecurity+Internships+%F0%9F%9B%A1%EF%B8%8F" alt="Computer Science & Engineering Student — Cybersecurity">
-</picture>
+A production-oriented personal portfolio for **Abhinandan**, a B.Tech Computer Science student focused on **cybersecurity, systems engineering, machine learning and secure full-stack development**.
 
-<br/>
+The project combines a responsive public portfolio with live GitHub/LeetCode activity, a recruiter-facing document room, Supabase authentication, protected admin tooling, contact/query handling and server-side APIs.
 
-[![Portfolio](https://img.shields.io/badge/🌐_Portfolio-my--portfolio--abhinandan.vercel.app-0D1117?style=for-the-badge)](https://my-portfolio-abhinandan.vercel.app)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
-[![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
-[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
-[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf)
-[![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
+## Highlights
 
-</div>
+- Responsive portfolio homepage with dark/light theme support.
+- Mobile navigation with a dedicated **ADMIN CONTROL** section.
+- Public project, engineering, activity, achievement and contact sections.
+- Live GitHub contribution data through a Vercel API route.
+- Live LeetCode statistics through a Vercel API route.
+- Public recruiter document room.
+- Supabase-powered authentication and protected admin pages.
+- Admin document, profile, query and user-management workflows.
+- Role and permission controls with audit logging.
+- Public contact/query workflow with server-side processing.
+- Email delivery support through Nodemailer.
+- Scheduled query processing through Vercel Cron.
+- Password recovery flow.
+- Interactive cursor, scroll, reveal and card effects.
+- Responsive desktop, tablet and mobile layouts.
 
----
+## Featured Projects
 
-## 👨‍💻 About Me
+### Cyber Defensive Engine
 
-```python
-class Abhinandan:
-    def __init__(self):
-        self.name        = "Abhinandan"
-        self.role        = "CS & Engineering Student — Cybersecurity"
-        self.university  = "Gurukul Kangri Vishwavidyalaya (Deemed University)"
-        self.cgpa        = 7.755
-        self.location    = "Haridwar, Uttarakhand, India"
-        self.languages   = ["Python", "C++", "Java", "SQL"]
-        self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
-        self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
-        self.streak      = "84 days and counting 🔥"
-        self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
+A hybrid network-defence project combining low-level packet capture with machine-learning based anomaly detection.
 
-    def current_goal(self) -> str:
-        return "Build. Defend. Repeat. 🛡️"
+**Technologies:** C++, libpcap, Python, scikit-learn, PyTorch, Flask/Flask-SocketIO, SQLite and Unix IPC.
+
+The system is designed around packet capture, anomaly detection, logging, alerting and defensive response workflows.
+
+### ZeroContext IDPS
+
+An intrusion-detection project focused on behavioural telemetry and anomaly detection, with a C++ sensor layer, Python ML processing and a FastAPI monitoring interface.
+
+### Dr. Vaccine Antivirus
+
+A Java antivirus prototype using signature-based scanning and object-oriented design.
+
+### Contact Management System
+
+A Python/Tkinter and MySQL CRUD application developed during the CodSoft internship.
+
+### Strong Password Generator
+
+A Python/Tkinter GUI application for configurable password generation.
+
+## Platform Architecture
+
+```text
+Browser
+   │
+   ├── Public Portfolio
+   │     ├── Projects
+   │     ├── Engineering
+   │     ├── Activity
+   │     ├── Achievements
+   │     └── Contact / Documents
+   │
+   ├── Guest Document Room
+   │
+   └── Admin Authentication
+           │
+           ├── Dashboard
+           ├── Profile Management
+           ├── Document Management
+           ├── Query Management
+           ├── Admin Management
+           └── Audit Log
+                    │
+                    ▼
+              Supabase + Vercel APIs
+                    │
+                    └── Nodemailer / SMTP
 ```
 
----
+## Technology Stack
 
-## 📊 GitHub Activity
+### Frontend
 
-<div align="center">
+- HTML5
+- CSS3
+- Vanilla JavaScript
+- Inter
+- Space Grotesk
+- DM Mono
 
-### 📊 GitHub Stats & Activity
+### Backend / Services
 
-<!-- Snapshot badges — update when refreshing numbers -->
+- Vercel Serverless Functions
+- Supabase Auth
+- Supabase PostgreSQL
+- Nodemailer
+- SMTP
+- Vercel Cron
 
-![Contributions](https://img.shields.io/badge/Total_Contributions-595-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
-![Streak](https://img.shields.io/badge/Current_Streak-84_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
-![Longest](https://img.shields.io/badge/Longest_Streak-84_Days-7FDBCA?style=for-the-badge&labelColor=0D1117)
-![Since](https://img.shields.io/badge/Active_Since-Jun_21_2024-8B949E?style=for-the-badge&labelColor=0D1117)
+### Development
 
-![LeetCode](https://img.shields.io/badge/LeetCode-154_Solved_·_100_Days_Badge_2026-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
-![Easy](https://img.shields.io/badge/Easy-84-4ade80?style=flat-square&labelColor=0D1117)
-![Medium](https://img.shields.io/badge/Medium-58-fbbf24?style=flat-square&labelColor=0D1117)
-![Hard](https://img.shields.io/badge/Hard-12-fb7185?style=flat-square&labelColor=0D1117)
+- Git
+- GitHub
+- Node.js 20+
+- npm
 
-<br/>
+Current `package.json` dependencies include `@supabase/supabase-js` and `nodemailer`.
 
-### 📈 Live Contribution Activity
+## Repository Structure
 
-[![View GitHub Contribution Graph](https://img.shields.io/badge/View%20Live%20Contribution%20Graph-39FF14?style=for-the-badge&logo=github&logoColor=black&labelColor=0D1117)](https://github.com/a23894843)
-
-> 📌 GitHub's live contribution calendar is always up to date — click the badge above to view.
-
-<br/>
-
-![Profile Views](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=for-the-badge&label=Profile+Views)
-
-</div>
-
----
-
-## 🛡️ Featured Projects
-
-<table>
-<tr>
-<td colspan="2">
-
-### 🛡️ ZeroContext IDPS — Flagship Project
-**C++ · Python · PyTorch · scikit-learn · FastAPI · asyncio · MySQL · Kali Linux**
-
-Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
-- **Multi-threaded C++ sensor daemon** captures raw `/dev/input` mouse & keyboard events at kernel level; streams microsecond-precision telemetry via **Unix Domain Sockets**
-- **PyTorch Autoencoder** detects non-human mouse patterns via reconstruction loss on velocity/acceleration/delta-t vectors
-- **scikit-learn Isolation Forest** flags anomalous keystroke rhythms using dwell time + flight time dynamics
-- Full **async Python backend** (asyncio + aiomysql) handling both sensor streams concurrently — zero blocking I/O
-- **FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh), anomaly score colouring, light/dark theme
-
-![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
-![Kali](https://img.shields.io/badge/Kali_Linux-557C94?style=flat&logo=kalilinux&logoColor=white)
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🔐 Cyber Defensive Engine
-**C++ · Python · ML · Unix IPC**
-
-Real-time hybrid network defence system:
-- **C++ packet sniffer** for high-speed raw capture
-- **Unsupervised ML pipeline** — detects DDoS, port scans & anomalies
-- **Unix Domain Sockets (UDS/IPC)** for secure cross-process comms
-- Automated **real-time defensive responses**
-
-![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![ML](https://img.shields.io/badge/Unsupervised_ML-FF6F00?style=flat&logo=scikitlearn&logoColor=white)
-![IPC](https://img.shields.io/badge/Unix_IPC-333333?style=flat&logo=linux&logoColor=white)
-
-</td>
-<td width="50%">
-
-### 🦠 Dr. Vaccine Antivirus
-**Java · OOP · Security**
-
-Signature-based antivirus prototype:
-- **Pattern-matching file scanner** using signature DBs
-- Clean Java UI for scan initiation & monitoring
-- Full OOP architecture — encapsulation, abstraction, modularity
-- End-to-end software lifecycle execution
-
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
-![Security](https://img.shields.io/badge/Security-C0392B?style=flat&logo=virustotal&logoColor=white)
-![OOP](https://img.shields.io/badge/OOP-512BD4?style=flat)
-
-</td>
-<td width="50%">
-
-### 🌐 Personal Portfolio Platform
-**HTML/CSS/JS · Supabase · Vercel · REST APIs**
-
-Full-stack secure portfolio and document platform:
-- **Supabase Auth** — admin login, signup, password recovery
-- **Protected document room** — public preview, enforced download permissions
-- **Serverless API routes** — live GitHub & LeetCode stats via Vercel functions
-- **Admin panel** — document management with full CRUD
-
-![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 📋 Contact Management System
-**Python · MySQL · Tkinter**
-
-Full-featured desktop CRUD app:
-- Tkinter GUI + optimised MySQL backend
-- Full **add / update / delete / search** operations
-- Built during internship at **CodSoft**
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
-![Tkinter](https://img.shields.io/badge/Tkinter-GUI-2ECC71?style=flat)
-
-</td>
-<td width="50%">
-
-### 🔑 Secure Password Generator
-**Python · String Handling**
-
-GUI-based cryptographic password tool:
-- Secure randomisation logic
-- Configurable length & complexity
-- Clean Tkinter interface
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
-![Security](https://img.shields.io/badge/Cryptography-117A65?style=flat&logo=letsencrypt&logoColor=white)
-
-</td>
-</tr>
-</table>
-
----
-
-## 🧰 Tech Stack
-
-<div align="center">
-
-**Languages**
-
-![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=cplusplus&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![SQL](https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-
-**Security & OS**
-
-![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)
-![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Wireshark](https://img.shields.io/badge/Network_Security-1679A7?style=for-the-badge&logo=wireshark&logoColor=white)
-
-**Libraries & Tools**
-
-![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
-![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-![MySQL Workbench](https://img.shields.io/badge/MySQL_Workbench-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
-
-</div>
-
----
-
-## 🏅 Certifications
-
-| | Certification | Issuer | Year |
-|--|--------------|--------|------|
-| 🏅 | **LeetCode 100 Days Badge 2026** — 154 solved (84E/58M/12H) · 84-day streak · 595 contributions | LeetCode | 2026 |
-| 🏅 | **LeetCode 50 Days Badge 2026** — Consistent daily DSA practice in C++ and Python | LeetCode | 2026 |
-| 🛡️ | **Cybersecurity Fundamentals** *(verified via Credly)* | IBM SkillsBuild | 2026 |
-| 🐍 | Python Internship | CodSoft | 2025 |
-| 🤖 | AI & ML Workshop | Sofcon India Pvt. Ltd. | 2025 |
-| ⚡ | Intelligent BMS: Leveraging AI for Accuracy, Safety & Sustainability | MathWorks | 2025 |
-| 💬 | Group Discussion on Technology and Innovation | NDLI Club | 2024 |
-
----
-
-## 🎓 Education
-
-```
-🎓 B.Tech — Computer Science & Engineering (Cybersecurity)
-   Gurukul Kangri Vishwavidyalaya (Deemed University) | 2023 – Present | CGPA: 7.755
-
-🏫 12th Grade — CBSE, S.B.N. International School, Laksar | 2022 | 67%
-🏫 10th Grade — CBSE, S.B.N. International School, Laksar | 2020 | 70%
+```text
+A23894843/
+├── index.html                 # Public portfolio
+├── contact.html               # Public contact/query page
+├── reset-password.html        # Password recovery destination
+├── admin-queries.html         # Legacy/admin query page
+├── admin/                     # Protected admin interface
+├── guest/                     # Public/recruiter document room
+├── auth-pages/                # Authentication pages
+├── api/                       # Vercel serverless API routes
+├── lib/                       # Shared server-side helpers
+├── assets/                    # Portfolio assets
+├── supabase/                  # Database/migration material
+├── package.json
+├── vercel.json
+├── .env.example
+└── README.md
 ```
 
----
+> **Security note:** `admin/config.js` is intentionally not documented or modified as part of public portfolio changes.
 
-## 💼 Internship
+## Authentication & Admin System
 
-**Python Intern — CodSoft** *(August 2025)*
-> Delivered 3 production-quality Python applications in 1 month — Contact Management System, Secure Password Generator, and a GUI-based game — demonstrating rapid execution and clean code practices.
+The admin side uses Supabase authentication and server-side authorization.
+
+Supported capabilities include:
+
+- Admin login and signup
+- Password recovery
+- Protected admin routes
+- Approved-admin status
+- Owner/admin/support roles
+- Granular permissions
+- Dashboard access
+- Profile management
+- Document management
+- Query management
+- Admin management
+- Audit logging
+
+The public website exposes only the required entry points. Internal admin capabilities remain behind authentication and authorization.
+
+## Documents
+
+The portfolio includes a recruiter-facing document room.
+
+- Public documents can be previewed by visitors.
+- Private documents remain restricted to authorized administrators.
+- Download permissions are enforced server-side.
+- Administrators can manage document visibility and access behavior.
+
+## Contact & Query System
+
+The public contact workflow stores incoming queries and supports administrative handling.
+
+The backend supports:
+
+- Query status tracking
+- Admin replies
+- Email delivery through Nodemailer
+- Scheduled processing
+- Reminder processing
+- Audit logging
+
+The current Vercel configuration schedules the query scheduler once per day, compatible with Vercel Hobby cron limits.
+
+## Environment Variables
+
+Create a local `.env` from `.env.example` and configure the deployment environment with the required server-side values.
+
+Typical server configuration includes:
+
+```text
+SUPABASE_URL=...
+SUPABASE_SECRET_KEY=...
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_SECURE=true
+SMTP_USER=...
+SMTP_PASS=...
+EMAIL_FROM=...
+```
+
+**Never commit real Supabase service keys, SMTP passwords or other secrets to GitHub.**
+
+For Gmail SMTP, use a Google App Password rather than the normal Gmail account password.
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+For a quick static frontend preview:
+
+```bash
+python -m http.server 8000
+```
+
+Then open `http://localhost:8000`.
+
+> The complete server-side functionality depends on the Vercel/Supabase environment and deployed API routes, so a plain static server is intended for frontend inspection only.
+
+## Deployment
+
+The project is structured for Vercel deployment:
+
+1. Connect the GitHub repository to Vercel.
+2. Configure the required environment variables.
+3. Deploy the `main` branch.
+4. Verify the public portfolio.
+5. Verify Supabase authentication and redirect URLs.
+6. Verify serverless API routes.
+7. Verify document access rules.
+8. Verify query/email processing.
+
+**Live deployment:** https://my-portfolio-abhinandan.vercel.app
+
+## Professional Links
+
+- **Portfolio:** https://my-portfolio-abhinandan.vercel.app
+- **GitHub:** https://github.com/A23894843
+- **LinkedIn:** https://www.linkedin.com/in/abhinandan-29b66b28b/
+- **LeetCode:** https://leetcode.com/u/a23894843/
+- **Email:** a23894843@gmail.com
+
+## Education & Focus
+
+**B.Tech — Computer Science & Engineering**  
+Gurukul Kangri Vishwavidyalaya, Haridwar
+
+Current technical focus:
+
+- Cybersecurity
+- Network defence
+- Systems engineering
+- Machine learning
+- Data structures & algorithms
+- Secure full-stack development
+- Linux
+- C++
+- Python
+- Java
+- SQL
+
+## Engineering Philosophy
+
+**Build → Measure → Explain**
+
+Each major project is presented with its purpose, technical stack and engineering context rather than only showing a finished interface.
 
 ---
 
 <div align="center">
 
-### 📬 Open to Opportunities
-
-*Cybersecurity internships · Open-source contributions · Security research collaborations*
-
-[![Portfolio](https://img.shields.io/badge/🌐_Visit_My_Portfolio-0D1117?style=for-the-badge)](https://my-portfolio-abhinandan.vercel.app)
-[![Email](https://img.shields.io/badge/📧_Email_Me-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/Connect_on_LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
-
-<br/>
-
-![Visitor Count](https://komarev.com/ghpvc/?username=a23894843&color=39FF14&style=flat-square&label=Profile+Views)
-
-<!-- FOOTER — theme aware -->
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=150&section=footer&reversal=true">
-  <source media="(prefers-color-scheme: light)" srcset="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=150&section=footer&reversal=true">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=F5F7FA&height=150&section=footer&reversal=true" width="100%"/>
-</picture>
+**Secure Systems · Intelligent Solutions · Real Impact**
 
 </div>
