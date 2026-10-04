@@ -74,9 +74,9 @@ class Abhinandan:
 <div align="center">
 
 <img
-  src="https://github-readme-activity-graph.vercel.app/graph?username=A23894843&custom_title=GitHub%20Contribution%20Activity&bg_color=0D1117&color=39FF14&line=39FF14&point=39FF14&area=true&hide_border=true&radius=10&days=31"
+  src="https://ghchart.rshah.org/39FF14/A23894843"
   width="100%"
-  alt="Abhinandan's GitHub Contribution Activity Graph"
+  alt="Abhinandan's GitHub Contribution Graph"
 />
 
 </div>
