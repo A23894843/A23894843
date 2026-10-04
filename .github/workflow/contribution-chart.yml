@@ -1,4 +1,4 @@
-name: Update Daily Contribution Graph
+name: Update Contribution Chart
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
+      - test
 
 permissions:
   contents: write
@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Generate daily contribution bar chart
+      - name: Generate daily contribution chart
         uses: pipipi-dev/gcchart@v1
         with:
           github_user_name: A23894843
           outputs: |
-            contributions-90d.svg?period=90&granularity=day&style=clean&theme=dark&cumulative=false
+            contributions-90d.svg?period=90&granularity=day&style=clean&cumulative=false
