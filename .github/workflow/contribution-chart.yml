@@ -1,0 +1,24 @@
+name: Update Daily Contribution Graph
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Generate daily contribution bar chart
+        uses: pipipi-dev/gcchart@v1
+        with:
+          github_user_name: A23894843
+          outputs: |
+            contributions-90d.svg?period=90&granularity=day&style=clean&theme=dark&cumulative=false

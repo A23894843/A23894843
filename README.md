@@ -69,17 +69,19 @@ class Abhinandan:
 
 <br/>
 
-### 📈 Live Contribution Activity
+### 📈 Daily GitHub Contribution Activity
 
 <div align="center">
 
 <img
-  src="https://ghchart.rshah.org/39FF14/A23894843"
+  src="https://raw.githubusercontent.com/A23894843/A23894843/output/contributions-90d.svg"
   width="100%"
-  alt="Abhinandan's GitHub Contribution Graph"
+  alt="Abhinandan's daily GitHub contribution activity"
 />
 
 </div>
+
+> Daily bar chart · Last 90 days · Automatically updated by GitHub Actions
 
 ---
 
