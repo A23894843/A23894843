@@ -71,13 +71,13 @@ class Abhinandan:
 
 ### 📈 Live Contribution Activity
 
-[![View GitHub Contribution Graph](https://img.shields.io/badge/View%20Live%20Contribution%20Graph-39FF14?style=for-the-badge&logo=github&logoColor=black&labelColor=0D1117)](https://github.com/a23894843)
+<div align="center">
 
-> 📌 GitHub's live contribution calendar is always up to date — click the badge above to view.
-
-<br/>
-
-[![GitHub Profile](https://img.shields.io/badge/GitHub-Profile-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
+<img
+  src="https://github-readme-activity-graph.vercel.app/graph?username=A23894843&custom_title=GitHub%20Contribution%20Activity&bg_color=0D1117&color=39FF14&line=39FF14&point=39FF14&area=true&hide_border=true&radius=10&days=31"
+  width="100%"
+  alt="Abhinandan's GitHub Contribution Activity Graph"
+/>
 
 </div>
 
