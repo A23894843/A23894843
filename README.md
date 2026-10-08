@@ -57,14 +57,14 @@ class Abhinandan:
 
 <!-- Snapshot badges — update when refreshing numbers -->
 
-![Contributions](https://img.shields.io/badge/Total_Contributions-595-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
-![Streak](https://img.shields.io/badge/Current_Streak-84_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
-![Longest](https://img.shields.io/badge/Longest_Streak-84_Days-7FDBCA?style=for-the-badge&labelColor=0D1117)
+![Contributions](https://img.shields.io/badge/Total_Contributions-626-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
+![Streak](https://img.shields.io/badge/Current_Streak-92_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
+![Longest](https://img.shields.io/badge/Longest_Streak-92_Days-7FDBCA?style=for-the-badge&labelColor=0D1117)
 ![Since](https://img.shields.io/badge/Active_Since-Jun_21_2024-8B949E?style=for-the-badge&labelColor=0D1117)
 
-![LeetCode](https://img.shields.io/badge/LeetCode-154_Solved_·_100_Days_Badge_2026-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
-![Easy](https://img.shields.io/badge/Easy-84-4ade80?style=flat-square&labelColor=0D1117)
-![Medium](https://img.shields.io/badge/Medium-58-fbbf24?style=flat-square&labelColor=0D1117)
+![LeetCode](https://img.shields.io/badge/LeetCode-162_Solved-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
+![Easy](https://img.shields.io/badge/Easy-88-4ade80?style=flat-square&labelColor=0D1117)
+![Medium](https://img.shields.io/badge/Medium-62-fbbf24?style=flat-square&labelColor=0D1117)
 ![Hard](https://img.shields.io/badge/Hard-12-fb7185?style=flat-square&labelColor=0D1117)
 
 <br/>
