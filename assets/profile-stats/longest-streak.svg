@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="34" role="img" aria-label="Longest Streak: 92 days">
+      <rect width="300" height="34" rx="7" fill="#0D1117"/>
+      <rect width="190" height="34" rx="7" fill="#161B22"/>
+      <rect x="190" width="110" height="34" fill="#39FF14"/>
+      <text x="95.0" y="22" fill="#E6EDF3" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle">LONGEST STREAK</text>
+      <text x="245.0" y="22" fill="#0D1117" font-family="Arial,sans-serif" font-size="13" font-weight="800" text-anchor="middle">92 days</text>
+    </svg>
