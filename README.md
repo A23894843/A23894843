@@ -40,7 +40,7 @@ class Abhinandan:
         self.languages   = ["Python", "C++", "Java", "SQL"]
         self.focus       = ["Network Security", "Anomaly Detection", "ML Pipelines"]
         self.certified   = ["IBM Cybersecurity Fundamentals (Credly, 2026)"]
-        self.streak      = "Live GitHub streak — see stats below 🔥"
+        self.streak      = "Live GitHub streak — shown in the activity section 🔥"
         self.open_to     = ["Cybersecurity Internships", "Open Source", "Collaborations"]
 
     def current_goal(self) -> str:
@@ -55,17 +55,21 @@ class Abhinandan:
 
 ### 📊 GitHub Stats & Activity
 
-<!-- LIVE STATS — automatically refreshed by .github/workflows/update-profile-stats.yml -->
+<!-- All changing statistics below are generated as SVGs by GitHub Actions.
+     No contribution/streak/LeetCode numbers are hard-coded in this README. -->
 
-![Contributions](https://img.shields.io/badge/Total_Contributions-627-39FF14?style=for-the-badge&labelColor=0D1117&logo=github&logoColor=39FF14)
-![Streak](https://img.shields.io/badge/Current_Streak-92_Days_🔥-FF6B35?style=for-the-badge&labelColor=0D1117)
-![Longest](https://img.shields.io/badge/Longest_Streak-92_Days-7FDBCA?style=for-the-badge&labelColor=0D1117)
-![Since](https://img.shields.io/badge/Active_Since-Jun_21_2024-8B949E?style=for-the-badge&labelColor=0D1117)
+<p>
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/github-contributions.svg" alt="Live GitHub contributions" />
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/current-streak.svg" alt="Live GitHub current streak" />
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/longest-streak.svg" alt="Live GitHub longest streak" />
+</p>
 
-![LeetCode](https://img.shields.io/badge/LeetCode-162_Solved-FFA500?style=for-the-badge&labelColor=0D1117&logo=leetcode&logoColor=FFA500)
-![Easy](https://img.shields.io/badge/Easy-88-4ade80?style=flat-square&labelColor=0D1117)
-![Medium](https://img.shields.io/badge/Medium-62-fbbf24?style=flat-square&labelColor=0D1117)
-![Hard](https://img.shields.io/badge/Hard-12-fb7185?style=flat-square&labelColor=0D1117)
+<p>
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/leetcode-total.svg" alt="Live LeetCode solved count" />
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/leetcode-easy.svg" alt="Live LeetCode Easy count" />
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/leetcode-medium.svg" alt="Live LeetCode Medium count" />
+  <img src="https://raw.githubusercontent.com/A23894843/A23894843/main/assets/profile-stats/leetcode-hard.svg" alt="Live LeetCode Hard count" />
+</p>
 
 <br/>
 
@@ -82,6 +86,8 @@ class Abhinandan:
 </div>
 
 > Daily bar chart · Last 90 days · Automatically updated by GitHub Actions
+
+</div>
 
 ---
 
@@ -240,7 +246,7 @@ GUI-based cryptographic password tool:
 
 | | Certification | Issuer | Year |
 |--|--------------|--------|------|
-| 🏅 | **LeetCode 100 Days Badge 2026** — Live solved-count and activity stats shown above | LeetCode | 2026 |
+| 🏅 | **LeetCode 100 Days Badge 2026** — Live statistics shown above| LeetCode | 2026 |
 | 🏅 | **LeetCode 50 Days Badge 2026** — Consistent daily DSA practice in C++ and Python | LeetCode | 2026 |
 | 🛡️ | **Cybersecurity Fundamentals** *(verified via Credly)* | IBM SkillsBuild | 2026 |
 | 🐍 | Python Internship | CodSoft | 2025 |
