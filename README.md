@@ -97,7 +97,7 @@ class Abhinandan:
 <tr>
 <td colspan="2">
 
-### 🛡️ ZeroContext IDPS — Flagship Project
+### 🛡️ Zero Context IDPS — Flagship Project
 **C++ · Python · PyTorch · scikit-learn · FastAPI · asyncio · MySQL · Kali Linux**
 
 Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
