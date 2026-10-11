@@ -20,7 +20,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abhinandan-29b66b28b/)
 [![GitHub](https://img.shields.io/badge/GitHub-161B22?style=for-the-badge&logo=github&logoColor=white)](https://github.com/a23894843)
 [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:a23894843@gmail.com)
-[![Resume](https://img.shields.io/badge/📄_Resume-Download-0D1117?style=for-the-badge&logo=adobeacrobatreader&logoColor=white)](https://github.com/A23894843/A23894843/raw/main/assets/ABHINANDAN_CV.pdf)
 [![IBM Credly](https://img.shields.io/badge/IBM_Certified-054ADA?style=for-the-badge&logo=ibm&logoColor=white)](https://www.credly.com)
 
 </div>
