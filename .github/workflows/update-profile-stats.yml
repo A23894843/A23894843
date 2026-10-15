@@ -78,7 +78,7 @@ jobs:
           now = datetime.now(timezone.utc)
           start = now - timedelta(days=366)
 
-          gh_query = '''
+          gh_query = """
           query($login:String!, $from:DateTime!, $to:DateTime!) {
             user(login:$login) {
               contributionsCollection(from:$from, to:$to) {
@@ -94,7 +94,7 @@ jobs:
               }
             }
           }
-          '''
+          """
 
           gh = graphql(
               "https://api.github.com/graphql",
@@ -111,15 +111,26 @@ jobs:
           counts = {d["date"]: int(d["contributionCount"]) for d in days}
           total = int(calendar["totalContributions"])
 
-          # Current streak
+          # Grace-protected current streak: count contribution days, not calendar days.
+          # Gaps of 1–4 days freeze the value; a gap of 5+ days resets it to 0.
           today = now.date()
-          cursor = today if counts.get(today.isoformat(), 0) > 0 else today - timedelta(days=1)
+          contribution_dates = sorted(
+              datetime.strptime(day, "%Y-%m-%d").date()
+              for day, count in counts.items()
+              if count > 0 and datetime.strptime(day, "%Y-%m-%d").date() <= today
+          )
           current = 0
-          while counts.get(cursor.isoformat(), 0) > 0:
-              current += 1
-              cursor -= timedelta(days=1)
+          if contribution_dates and (today - contribution_dates[-1]).days < 5:
+              current = 1
+              previous = contribution_dates[0]
+              for contribution_date in contribution_dates[1:]:
+                  if (contribution_date - previous).days >= 5:
+                      current = 1
+                  else:
+                      current += 1
+                  previous = contribution_date
 
-          # Longest streak
+          # Longest streak remains the strict consecutive-calendar-day metric.
           longest = 0
           running = 0
           previous = None
@@ -138,7 +149,7 @@ jobs:
           badge("longest-streak.svg", "Longest Streak", f"{longest} days")
 
           # LeetCode public statistics
-          lc_query = '''
+          lc_query = """
           query($username:String!) {
             matchedUser(username:$username) {
               username
@@ -150,7 +161,7 @@ jobs:
               }
             }
           }
-          '''
+          """
 
           lc = graphql(
               "https://leetcode.com/graphql",
