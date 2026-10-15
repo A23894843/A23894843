@@ -126,58 +126,109 @@ export default async function handler(req, res) {
       .sort((a, b) => a.date.localeCompare(b.date));
   }
 
-  function calculateStats(days) {
-    const total = days.reduce((sum, day) => sum + day.count, 0);
-    const byDate = new Map(days.map(day => [day.date, day.count]));
+  
+function calculateStats(days) {
+  const total = days.reduce((sum, day) => sum + day.count, 0);
 
-    // Work from the latest date actually returned by GitHub rather than the
-    // server's timezone. This keeps the streak aligned with GitHub's calendar.
-    let cursorDate = days.length ? new Date(days[days.length - 1].date + 'T00:00:00Z') : new Date();
-    const iso = d => d.toISOString().slice(0, 10);
+  // Collect only dates on which a contribution was made.
+  const contributionDates = days
+    .filter(day => day.count > 0)
+    .map(day => day.date)
+    .sort();
 
-    // GitHub treats an unfinished current day as not breaking an existing streak.
-    if ((byDate.get(iso(cursorDate)) || 0) === 0) {
-      cursorDate.setUTCDate(cursorDate.getUTCDate() - 1);
-    }
+  let currentStreak = 0;
+  let currentStart = '';
 
-    let currentStreak = 0;
-    let currentStart = '';
-    while ((byDate.get(iso(cursorDate)) || 0) > 0) {
-      currentStart = iso(cursorDate);
-      currentStreak++;
-      cursorDate.setUTCDate(cursorDate.getUTCDate() - 1);
-    }
+  // Allow up to four days without contributions.
+  // If five or more days have passed since the latest contribution,
+  // reset the current streak to zero.
+  if (contributionDates.length > 0) {
+    const latestDate = contributionDates[contributionDates.length - 1];
 
-    let longestStreak = 0;
-    let longestStart = '';
-    let longestEnd = '';
-    let run = 0;
-    let runStart = '';
+    const latest = new Date(`${latestDate}T00:00:00Z`);
+    const today = new Date();
+    today.setUTCHours(0, 0, 0, 0);
 
-    for (const day of days) {
-      if (day.count > 0) {
-        if (run === 0) runStart = day.date;
-        run++;
-        if (run > longestStreak) {
-          longestStreak = run;
-          longestStart = runStart;
-          longestEnd = day.date;
+    const daysSinceContribution = Math.floor(
+      (today.getTime() - latest.getTime()) / 86400000
+    );
+
+    if (daysSinceContribution < 5) {
+      let previousDate = null;
+
+      for (const date of contributionDates) {
+        const currentDate = new Date(`${date}T00:00:00Z`);
+
+        if (previousDate === null) {
+          currentStreak = 1;
+          currentStart = date;
+        } else {
+          const gap = Math.floor(
+            (currentDate.getTime() - previousDate.getTime()) / 86400000
+          );
+
+          if (gap >= 5) {
+            // Five or more days between contributions starts a new streak.
+            currentStreak = 1;
+            currentStart = date;
+          } else {
+            // A contribution within the grace period continues the streak.
+            currentStreak++;
+          }
         }
-      } else {
-        run = 0;
-        runStart = '';
+
+        previousDate = currentDate;
       }
     }
-
-    return {
-      total,
-      currentStreak,
-      currentStart,
-      longestStreak,
-      longestStart,
-      longestEnd
-    };
   }
+
+  // Keep the longest streak based on strictly consecutive contribution days.
+  let longestStreak = 0;
+  let longestStart = '';
+  let longestEnd = '';
+  let runningStreak = 0;
+  let runningStart = '';
+  let previousDay = null;
+
+  for (const day of days) {
+    const currentDay = new Date(`${day.date}T00:00:00Z`);
+
+    if (day.count > 0) {
+      if (
+        previousDay === null ||
+        Math.floor(
+          (currentDay.getTime() - previousDay.getTime()) / 86400000
+        ) !== 1
+      ) {
+        runningStreak = 1;
+        runningStart = day.date;
+      } else {
+        runningStreak++;
+      }
+
+      if (runningStreak > longestStreak) {
+        longestStreak = runningStreak;
+        longestStart = runningStart;
+        longestEnd = day.date;
+      }
+
+      previousDay = currentDay;
+    } else {
+      runningStreak = 0;
+      runningStart = '';
+      previousDay = null;
+    }
+  }
+
+  return {
+    total,
+    currentStreak,
+    currentStart,
+    longestStreak,
+    longestStart,
+    longestEnd
+  };
+}
 
   try {
     let days;
