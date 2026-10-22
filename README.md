@@ -93,24 +93,121 @@ class Abhinandan:
 ## 🛡️ Featured Projects
 
 <table>
-  <thead>
-    <tr>
-      <th align="left">Project</th>
-      <th align="center">GitHub Repository</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr><td width="50%"><code>LeetCode-Solutions</code></td><td width="50%" align="center"><a href="https://github.com/A23894843/LeetCode-Solutions">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>A23894843</code></td><td align="center"><a href="https://github.com/A23894843/A23894843">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>Zero_Context</code></td><td align="center"><a href="https://github.com/A23894843/Zero_Context">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>Cyber_Defensive_Engine</code></td><td align="center"><a href="https://github.com/A23894843/Cyber_Defensive_Engine">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>Dr.-Vaccine_Antivirus</code></td><td align="center"><a href="https://github.com/A23894843/Dr.-Vaccine_Antivirus">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>TASK-1_CONTACTS_MANAGEMENT_SYSTEM</code></td><td align="center"><a href="https://github.com/A23894843/TASK-1_CONTACTS_MANAGEMENT_SYSTEM">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>TASK-3-ROCK_PAPER_SCISSOR</code></td><td align="center"><a href="https://github.com/A23894843/TASK-3-ROCK_PAPER_SCISSOR">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>mini-projects-lab</code></td><td align="center"><a href="https://github.com/A23894843/mini-projects-lab">🔗 Open repository ↗</a></td></tr>
-    <tr><td><code>TASK-2-STRONG_PASSWORD_GENERATOR</code></td><td align="center"><a href="https://github.com/A23894843/TASK-2-STRONG_PASSWORD_GENERATOR">🔗 Open repository ↗</a></td></tr>
-  </tbody>
+<tr>
+<td colspan="2">
+
+### 🛡️ Zero Context IDPS — Flagship Project
+**C++ · Python · PyTorch · scikit-learn · FastAPI · asyncio · MySQL · Kali Linux**
+
+Intelligent Intrusion Detection & Prevention System with Behavioral Biometrics:
+- **Multi-threaded C++ sensor daemon** captures raw `/dev/input` mouse & keyboard events at kernel level; streams microsecond-precision telemetry via **Unix Domain Sockets**
+- **PyTorch Autoencoder** detects non-human mouse patterns via reconstruction loss on velocity/acceleration/delta-t vectors
+- **scikit-learn Isolation Forest** flags anomalous keystroke rhythms using dwell time + flight time dynamics
+- Full **async Python backend** (asyncio + aiomysql) handling both sensor streams concurrently — zero blocking I/O
+- **FastAPI SOC Dashboard** with live threat table (1.5s auto-refresh), anomaly score coloring, and light/dark theme
+
+![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat&logo=fastapi&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
+![Kali](https://img.shields.io/badge/Kali_Linux-557C94?style=flat&logo=kalilinux&logoColor=white)
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### 🔐 Cyber Defensive Engine
+**C++ · Python · ML · Unix IPC**
+
+Real-time hybrid network defense system:
+- **C++ packet sniffer** for high-speed raw capture
+- **Unsupervised ML pipeline** — detects DDoS, port scans & anomalies
+- **Unix Domain Sockets (UDS/IPC)** for secure cross-process communication
+- Automated **real-time defensive responses**
+
+![C++](https://img.shields.io/badge/C++-00599C?style=flat&logo=cplusplus&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![ML](https://img.shields.io/badge/Unsupervised_ML-FF6F00?style=flat&logo=scikitlearn&logoColor=white)
+![IPC](https://img.shields.io/badge/Unix_IPC-333333?style=flat&logo=linux&logoColor=white)
+
+</td>
+<td width="50%">
+
+### 🦠 Dr. Vaccine Antivirus
+**Java · OOP · Security**
+
+Signature-based antivirus prototype:
+- **Pattern-matching file scanner** using signature DBs
+- Clean Java UI for scan initiation & monitoring
+- Full OOP architecture — encapsulation, abstraction, modularity
+- End-to-end software lifecycle execution
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
+![Security](https://img.shields.io/badge/Security-C0392B?style=flat&logo=virustotal&logoColor=white)
+![OOP](https://img.shields.io/badge/OOP-512BD4?style=flat)
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### 🌐 Personal Portfolio Platform
+**HTML/CSS/JS · Supabase · Vercel · REST APIs**
+
+Full-stack secure portfolio and document platform:
+- **Supabase Auth** — admin login, signup, password recovery
+- **Protected document room** — public preview, enforced download permissions
+- **Serverless API routes** — live GitHub & LeetCode stats via Vercel functions
+- **Admin panel** — document management with full CRUD
+
+![JS](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white)
+
+</td>
+<td width="50%">
+
+### 📋 Contact Management System
+**Python · MySQL · Tkinter**
+
+Full-featured desktop CRUD app:
+- Tkinter GUI + optimized MySQL backend
+- Full **add / update / delete / search** operations
+- Built during internship at **CodSoft**
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white)
+![Tkinter](https://img.shields.io/badge/Tkinter-GUI-2ECC71?style=flat)
+
+</td>
+</tr>
+
+<tr>
+<td width="50%">
+
+### 🔑 Secure Password Generator
+**Python · String Handling**
+
+GUI-based cryptographic password tool:
+- Secure randomization logic
+- Configurable length & complexity
+- Clean Tkinter interface
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Security](https://img.shields.io/badge/Cryptography-117A65?style=flat&logo=letsencrypt&logoColor=white)
+
+</td>
+<td width="50%">
+
+</td>
+</tr>
 </table>
+
 ---
 
 ## 🧰 Tech Stack
