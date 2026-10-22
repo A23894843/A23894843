@@ -92,6 +92,10 @@ class Abhinandan:
 
 ## 🛡️ Featured Projects
 
+<table>
+<tr>
+<td colspan="2">
+
 | `LeetCode-Solutions` | [Open repository ↗](https://github.com/A23894843/LeetCode-Solutions) |
 | `A23894843` | [Open repository ↗](https://github.com/A23894843/A23894843) |
 | `Zero_Context` | [Open repository ↗](https://github.com/A23894843/Zero_Context) |
@@ -101,6 +105,10 @@ class Abhinandan:
 | `TASK-3-ROCK_PAPER_SCISSOR` | [Open repository ↗](https://github.com/A23894843/TASK-3-ROCK_PAPER_SCISSOR) |
 | `mini-projects-lab` | [Open repository ↗](https://github.com/A23894843/mini-projects-lab) |
 | `TASK-2-STRONG_PASSWORD_GENERATOR` | [Open repository ↗](https://github.com/A23894843/TASK-2-STRONG_PASSWORD_GENERATOR) |
+
+</td>
+</tr>
+</table>
 
 ---
 
