@@ -95,47 +95,20 @@ class Abhinandan:
 <table>
   <thead>
     <tr>
-      <th align="left" width="75%">Project</th>
-      <th align="center" width="75%">GitHub Repository</th>
+      <th align="left">Project</th>
+      <th align="center">GitHub Repository</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><code>LeetCode-Solutions</code></td>
-      <td align="center"><a href="https://github.com/A23894843/LeetCode-Solutions">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>A23894843</code></td>
-      <td align="center"><a href="https://github.com/A23894843/A23894843">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>Zero_Context</code></td>
-      <td align="center"><a href="https://github.com/A23894843/Zero_Context">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>Cyber_Defensive_Engine</code></td>
-      <td align="center"><a href="https://github.com/A23894843/Cyber_Defensive_Engine">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>Dr.-Vaccine_Antivirus</code></td>
-      <td align="center"><a href="https://github.com/A23894843/Dr.-Vaccine_Antivirus">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>TASK-1_CONTACTS_MANAGEMENT_SYSTEM</code></td>
-      <td align="center"><a href="https://github.com/A23894843/TASK-1_CONTACTS_MANAGEMENT_SYSTEM">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>TASK-3-ROCK_PAPER_SCISSOR</code></td>
-      <td align="center"><a href="https://github.com/A23894843/TASK-3-ROCK_PAPER_SCISSOR">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>mini-projects-lab</code></td>
-      <td align="center"><a href="https://github.com/A23894843/mini-projects-lab">🔗 Open repository ↗</a></td>
-    </tr>
-    <tr>
-      <td><code>TASK-2-STRONG_PASSWORD_GENERATOR</code></td>
-      <td align="center"><a href="https://github.com/A23894843/TASK-2-STRONG_PASSWORD_GENERATOR">🔗 Open repository ↗</a></td>
-    </tr>
+    <tr><td width="50%"><code>LeetCode-Solutions</code></td><td width="50%" align="center"><a href="https://github.com/A23894843/LeetCode-Solutions">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>A23894843</code></td><td align="center"><a href="https://github.com/A23894843/A23894843">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>Zero_Context</code></td><td align="center"><a href="https://github.com/A23894843/Zero_Context">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>Cyber_Defensive_Engine</code></td><td align="center"><a href="https://github.com/A23894843/Cyber_Defensive_Engine">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>Dr.-Vaccine_Antivirus</code></td><td align="center"><a href="https://github.com/A23894843/Dr.-Vaccine_Antivirus">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>TASK-1_CONTACTS_MANAGEMENT_SYSTEM</code></td><td align="center"><a href="https://github.com/A23894843/TASK-1_CONTACTS_MANAGEMENT_SYSTEM">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>TASK-3-ROCK_PAPER_SCISSOR</code></td><td align="center"><a href="https://github.com/A23894843/TASK-3-ROCK_PAPER_SCISSOR">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>mini-projects-lab</code></td><td align="center"><a href="https://github.com/A23894843/mini-projects-lab">🔗 Open repository ↗</a></td></tr>
+    <tr><td><code>TASK-2-STRONG_PASSWORD_GENERATOR</code></td><td align="center"><a href="https://github.com/A23894843/TASK-2-STRONG_PASSWORD_GENERATOR">🔗 Open repository ↗</a></td></tr>
   </tbody>
 </table>
 ---
