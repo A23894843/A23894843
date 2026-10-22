@@ -95,8 +95,8 @@ class Abhinandan:
 <table>
   <thead>
     <tr>
-      <th align="left" width="50%">Project</th>
-      <th align="center" width="50%">GitHub Repository</th>
+      <th align="left" width="75%">Project</th>
+      <th align="center" width="75%">GitHub Repository</th>
     </tr>
   </thead>
   <tbody>
