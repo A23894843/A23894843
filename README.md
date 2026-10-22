@@ -92,24 +92,19 @@ class Abhinandan:
 
 ## 🛡️ Featured Projects
 
-<table>
-<tr>
-<td colspan="2">
+### 🛡️ Featured Projects
 
-| `LeetCode-Solutions` | [Open repository ↗](https://github.com/A23894843/LeetCode-Solutions) |
-| `A23894843` | [Open repository ↗](https://github.com/A23894843/A23894843) |
-| `Zero_Context` | [Open repository ↗](https://github.com/A23894843/Zero_Context) |
-| `Cyber_Defensive_Engine` | [Open repository ↗](https://github.com/A23894843/Cyber_Defensive_Engine) |
-| `Dr.-Vaccine_Antivirus` | [Open repository ↗](https://github.com/A23894843/Dr.-Vaccine_Antivirus) |
-| `TASK-1_CONTACTS_MANAGEMENT_SYSTEM` | [Open repository ↗](https://github.com/A23894843/TASK-1_CONTACTS_MANAGEMENT_SYSTEM) |
-| `TASK-3-ROCK_PAPER_SCISSOR` | [Open repository ↗](https://github.com/A23894843/TASK-3-ROCK_PAPER_SCISSOR) |
-| `mini-projects-lab` | [Open repository ↗](https://github.com/A23894843/mini-projects-lab) |
-| `TASK-2-STRONG_PASSWORD_GENERATOR` | [Open repository ↗](https://github.com/A23894843/TASK-2-STRONG_PASSWORD_GENERATOR) |
-
-</td>
-</tr>
-</table>
-
+| Project | GitHub Repository |
+|:---|:---:|
+| `LeetCode-Solutions` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/LeetCode-Solutions) |
+| `A23894843` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/A23894843) |
+| `Zero_Context` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/Zero_Context) |
+| `Cyber_Defensive_Engine` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/Cyber_Defensive_Engine) |
+| `Dr.-Vaccine_Antivirus` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/Dr.-Vaccine_Antivirus) |
+| `TASK-1_CONTACTS_MANAGEMENT_SYSTEM` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/TASK-1_CONTACTS_MANAGEMENT_SYSTEM) |
+| `TASK-3-ROCK_PAPER_SCISSOR` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/TASK-3-ROCK_PAPER_SCISSOR) |
+| `mini-projects-lab` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/mini-projects-lab) |
+| `TASK-2-STRONG_PASSWORD_GENERATOR` | [![GitHub](https://img.shields.io/badge/GitHub-Open%20repository-181717?logo=github)](https://github.com/A23894843/TASK-2-STRONG_PASSWORD_GENERATOR) |
 ---
 
 ## 🧰 Tech Stack
